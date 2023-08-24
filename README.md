@@ -1,3 +1,3 @@
 # lapuertaverde_app
 
-josemongolo
+josemongolo x2
