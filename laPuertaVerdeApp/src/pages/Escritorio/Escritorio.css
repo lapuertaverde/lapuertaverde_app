@@ -1,0 +1,10 @@
+.mainContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.asideContainer {
+  flex: 1;
+  height: 100%;
+}
