@@ -1,4 +1,3 @@
-/* eslint-disable multiline-ternary */
 import PropTypes from 'prop-types'
 
 import './Avatar.css'
