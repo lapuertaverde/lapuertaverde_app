@@ -1,6 +1,16 @@
 :root {
   background-color: rgb(156, 111, 219);
+  --select-border: #777;
+  --select-focus: blue;
+  --select-arrow: var(--select-border);
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -15,6 +25,24 @@ button {
 .ag-theme-alpine-dark .ag-header-cell {
   font-size: 22px;
 
+}
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  outline: none;
+}
+
+select::-ms-expand {
+  display: none;
 }
 
 .custom-theme {

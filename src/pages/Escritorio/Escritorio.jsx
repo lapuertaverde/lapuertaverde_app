@@ -19,11 +19,16 @@ const Escritorio = () => {
   const [consumerGroup, setConsumerGroup] = useState(null)
 
   useEffect(() => {
-    get('consumer').then((res) => setConsumers(res))
-    get('consumerGroup').then((res) => {
-      setConsumerGroups(res)
-      setConsumerGroup(res[0])
-    })
+    get('consumer')
+      .then((res) => setConsumers(res))
+      .catch((error) => console.log(error))
+   
+    get('consumerGroup')
+      .then((res) => {
+        setConsumerGroups(res)
+        setConsumerGroup(res[0])
+      })
+      .catch((error) => console.log(error))
   }, [])
 
   return (
