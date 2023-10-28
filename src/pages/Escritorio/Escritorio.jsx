@@ -4,6 +4,7 @@ import Loading from '../../components/Loading/Loading'
 import { get } from '../../services/APIServices'
 
 import './Escritorio.css'
+import { useNavigate } from 'react-router-dom'
 
 const Escritorio = () => {
   const GridContainer = lazy(() => import('./partials/GridContainer'))
@@ -13,31 +14,38 @@ const Escritorio = () => {
     hojasDeReparto: false,
     creargrupo: false
   })
-
+  const navigate = useNavigate()
   const [consumers, setConsumers] = useState([])
   const [consumerGroups, setConsumerGroups] = useState([])
   const [consumerGroup, setConsumerGroup] = useState(null)
+  const token = localStorage.getItem('token')
 
   useEffect(() => {
-    get('consumer')
-      .then((res) => setConsumers(res))
-      .catch((error) => console.log(error))
-   
-    get('consumerGroup')
-      .then((res) => {
-        setConsumerGroups(res)
-        setConsumerGroup(res[0])
-      })
-      .catch((error) => console.log(error))
+    if (token) {
+      get('consumer', token)
+        .then((res) => setConsumers(res))
+        .catch((error) => console.log(error))
+
+      get('consumerGroup', token)
+        .then((res) => {
+          setConsumerGroups(res)
+          setConsumerGroup(res[0])
+        })
+        .catch((error) => console.log(error))
+    } else {
+      navigate('/')
+    }
   }, [])
 
-  return (
+  return token ? (
     <main className="mainContainer">
       <Nav {...{ escritorio, setEscritorio, consumerGroups, setConsumerGroup }} />
       <Suspense fallback={<Loading />}>
         <GridContainer {...{ consumerGroup, consumers, escritorio }} />
       </Suspense>
     </main>
+  ) : (
+    <></>
   )
 }
 
