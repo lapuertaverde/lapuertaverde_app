@@ -3,6 +3,7 @@ import React, { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { AgGridReact } from 'ag-grid-react' // the AG Grid React Component
 import 'ag-grid-community/styles/ag-grid.css' // Core grid CSS, always needed
 import 'ag-grid-community/styles/ag-theme-alpine.css' // Optional theme CSS
+import { patch } from '../../services/APIServices'
 
 const Consumidores = ({ consumers }) => {
   const ref = useRef()
@@ -11,19 +12,14 @@ const Consumidores = ({ consumers }) => {
     { field: 'consumerGroup', filter: true, width: 250, rowDrag: true },
     { field: 'name', filter: true },
     { field: 'address', filter: true },
+    { field: 'CP' },
     { field: 'phone' },
-    { field: 'Enero' },
-    { field: 'Febrero' },
-    { field: 'Marzo' },
-    { field: 'Abril' },
-    { field: 'Mayo' },
-    { field: 'Junio' },
-    { field: 'Julio' },
-    { field: 'Agosto' },
-    { field: 'Septiembre' },
-    { field: 'Octubre' },
-    { field: 'Noviembre' },
-    { field: 'Diciembre' }
+    { field: 'email' },
+    { field: 'dni' },
+    { field: 'KgByDefault' },
+    { field: 'active' },
+    { field: 'favorites' },
+    { field: 'discarded' }
   ]
 
   const columnTypes = useMemo(
@@ -69,8 +65,12 @@ const Consumidores = ({ consumers }) => {
     console.log('cellClicked', event)
   }, [])
 
-  const cellEditingStopped = useCallback((event) => {
-    console.log('cellEditingStopped', event)
+  const cellEditingStopped = useCallback(({ data, oldValue, newValue, column: { colId } }) => {
+    const { _id } = data
+
+    patch(`consumer/${_id}`, { [colId]: newValue })
+      .then((res) => console.log('res', res))
+      .catch((error) => console.log(error))
   }, [])
 
   return (
@@ -82,7 +82,7 @@ const Consumidores = ({ consumers }) => {
           rowData={consumers}
           animateRows={true}
           // rowSelection="multiple" // Options - allows click selection of rows
-          onCellClicked={cellClickedListener}
+          // onCellClicked={cellClickedListener}
           onCellEditingStopped={cellEditingStopped}
           rowDragManaged={true}
           rowDragMultiRow={true}
