@@ -1,0 +1,39 @@
+.loginForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loginCard {
+  background-color: rgb(109, 81, 168);
+  padding: 6rem;
+  border-radius: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.inputLoginContainer {
+  display: flex;
+  font-family: fantasy;
+  gap: 1rem;
+  align-items: center;
+  font-size: large;
+}
+
+.buttonLogin {
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+  padding: 0.4rem;
+}
+
+.buttonLogin:hover {
+  cursor: pointer;
+  color: rgb(109, 81, 168);
+  background-color: white;
+  border: 1px solid white;
+}

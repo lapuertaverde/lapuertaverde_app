@@ -18,7 +18,7 @@ const Escritorio = () => {
   const [consumers, setConsumers] = useState([])
   const [consumerGroups, setConsumerGroups] = useState([])
   const [consumerGroup, setConsumerGroup] = useState(null)
-  const token = localStorage.getItem('token')
+  const token = sessionStorage.getItem('token')
 
   useEffect(() => {
     if (token) {
