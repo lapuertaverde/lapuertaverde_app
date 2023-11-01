@@ -5,8 +5,17 @@ import { FormProvider, useForm } from 'react-hook-form'
 const onSubmit = (values, e) => console.log(values, e)
 const onError = (error, e) => console.log(error, e)
 
-const Form = ({ id, defaultValues, mode, onError, onSubmit, children, methods: propMethods }) => {
-  const methods = propMethods || useForm({ defaultValues, mode: 'onChange' })
+const Form = ({
+  id,
+  defaultValues,
+  mode,
+  onError,
+  onSubmit,
+  children,
+  methods: propMethods,
+  className
+}) => {
+  const methods = propMethods || useForm({ defaultValues, mode: mode || 'onChange' })
   const defaultId = useId()
   const { handleSubmit } = methods
 
@@ -19,7 +28,7 @@ const Form = ({ id, defaultValues, mode, onError, onSubmit, children, methods: p
           (data, e) => onSubmit(data, e),
           (errors, e) => onError(errors, e)
         )}
-        {...{ id: id || defaultId }}
+        {...{ id: id || defaultId, className }}
         onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
       >
         {children}
