@@ -1,0 +1,15 @@
+.inputContainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  height: 15px;
+}
+.inputControls {
+  align-self: center;
+  height: 100%;
+  cursor: pointer;
+  color: 'white';
+}
+.inputControls:hover {
+  border: '1px solid white';
+}
