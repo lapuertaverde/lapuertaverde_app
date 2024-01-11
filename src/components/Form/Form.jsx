@@ -1,5 +1,5 @@
 import { string, object, func } from 'prop-types'
-import { useId } from 'react'
+import { useEffect, useId } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 
 const onSubmit = (values, e) => console.log(values, e)
@@ -17,7 +17,11 @@ const Form = ({
 }) => {
   const methods = propMethods || useForm({ defaultValues, mode: mode || 'onChange' })
   const defaultId = useId()
-  const { handleSubmit } = methods
+  const { handleSubmit, reset } = methods
+
+  useEffect(() => {
+    reset(defaultValues)
+  }, [defaultValues])
 
   return (
     <FormProvider {...methods}>

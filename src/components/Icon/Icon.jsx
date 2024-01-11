@@ -1,6 +1,6 @@
 import { findIconDefinition, library } from '@fortawesome/fontawesome-svg-core'
 
-import { faKey, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faKey, faUser, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -9,7 +9,7 @@ const Icon = ({
   prefix = 'fas',
   style,
   className,
-  callBack,
+  callback,
   tabIndex,
   onFocus,
   onBlur,
@@ -18,7 +18,7 @@ const Icon = ({
   disabled,
   color
 }) => {
-  library.add(faKey, faUser)
+  library.add(faKey, faUser, faPlus, faMinus)
 
   return (
     icon && (
@@ -29,7 +29,7 @@ const Icon = ({
         })}
         {...{ onBlur, onFocus, onKeyDown, style, className, tabIndex, disabled }}
         style={style || { color }}
-        onClick={onClick || callBack}
+        onClick={onClick || callback}
         focusable="true"
       />
     )
