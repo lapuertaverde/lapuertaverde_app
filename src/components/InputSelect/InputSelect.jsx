@@ -1,30 +1,69 @@
-import { string, array } from 'prop-types'
+import { string, array, bool, number, func } from 'prop-types'
 import { useId } from 'react'
 import { useFormContext } from 'react-hook-form'
-import style from './InputSelect.module.scss'
+import { custom_select } from './InputSelect.module.scss'
+import { selectSchema } from '../../utils/validationSchemas'
 
-const InputSelect = ({ options, name, form }) => {
+const InputSelect = ({
+  options,
+  name,
+  form,
+  label,
+  autoFocus,
+  disabled,
+  required,
+  multiple,
+  maxOptions,
+  onChange
+}) => {
   const id = useId()
-  const { register } = useFormContext()
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext()
 
   return (
-    <select {...register(name)} {...{ name, id, form }} className={style['custom-select']}>
-      {options.map(({ value }) => (
-        <option {...{ value }} />
-      ))}
-    </select>
+    <div className={custom_select}>
+      {label && <label htmlFor={id}>{label}</label>}
+      <select
+        {...register(name, selectSchema({ name, label, required, maxOptions, multiple }))}
+        {...{ name, id, form, autoFocus, disabled, required, multiple }}
+        onChange={(e) => typeof onChange === 'function' && onChange(e)}
+      >
+        {options.map(
+          (value) =>
+            value && (
+              <option key={value} {...{ value }}>
+                {value}
+              </option>
+            )
+        )}
+      </select>
+      {errors[name] && <span style={{ color: 'white' }}>{errors[name].message}</span>}
+    </div>
   )
 }
 
 InputSelect.propTypes = {
-  name: string,
-  options: array,
-  form: string
+  name: string.isRequired,
+  options: array.isRequired,
+  label: string,
+  form: string,
+  autoFocus: bool,
+  disabled: bool,
+  required: bool,
+  multiple: bool,
+  maxOptions: number,
+  onChange: func
 }
 
 InputSelect.defaultProps = {
   name: 'select',
-  options: ['no defined options']
+  options: ['no defined options'],
+  autoFocus: false,
+  disabled: false,
+  required: false,
+  multiple: false
 }
 
 export default InputSelect
