@@ -3,11 +3,13 @@ import InputSelect from '../../components/InputSelect/InputSelect'
 
 import Form from '../../components/Form/Form'
 import { useEffect, useState } from 'react'
+import Modal from '../../components/Modal/Modal'
 
 const options = ['verde', 'marron', undefined]
 
 const CrearGrupo = () => {
   const [defaultValues, setDefaulValues] = useState({ edad: 0, petardos: 'marron' })
+  const [openModal, setOpenModal] = useState(false)
 
   const getDefaultValues = async () => setDefaulValues({ edad: 13, petardos: 'verde' })
 
@@ -18,6 +20,7 @@ const CrearGrupo = () => {
   const handleSelectChange = (e) => {
     console.log(e)
   }
+
   return (
     <div style={{ padding: '1rem' }}>
       <Form
@@ -39,6 +42,10 @@ const CrearGrupo = () => {
           </button>
         </div>
       </Form>
+      <button onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }}>
+        OPEN MODAL
+      </button>
+      <Modal {...{ openModal, setOpenModal }} />
     </div>
   )
 }
