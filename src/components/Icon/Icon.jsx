@@ -1,6 +1,6 @@
 import { findIconDefinition, library } from '@fortawesome/fontawesome-svg-core'
 
-import { faKey, faUser, faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { faKey, faUser, faPlus, faMinus, faXmark } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -18,7 +18,7 @@ const Icon = ({
   disabled,
   color
 }) => {
-  library.add(faKey, faUser, faPlus, faMinus)
+  library.add(faKey, faUser, faPlus, faMinus, faXmark)
 
   return (
     icon && (
