@@ -5,7 +5,7 @@ import Form from '../../components/Form/Form'
 import { useEffect, useState } from 'react'
 import Modal from '../../components/Modal/Modal'
 
-const options = ['verde', 'marron', undefined]
+const options = ['verde', 'marron','azul', undefined]
 
 const CrearGrupo = () => {
   const [defaultValues, setDefaulValues] = useState({ edad: 0, petardos: 'marron' })
