@@ -22,12 +22,11 @@ const useDraggableGepeto = (initialPosition) => {
   const handleDragStart = (e) => setIsDragging(true)
 
   const handleDragEnd = (e) => {
-    if (isDragging) setIsDragging(false)
-
     setPosition({
       x: getCoordX(e),
       y: getCoordY(e)
     })
+    if (isDragging) setIsDragging(false)
   }
 
   return {

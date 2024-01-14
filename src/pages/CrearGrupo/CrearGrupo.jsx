@@ -5,7 +5,7 @@ import Form from '../../components/Form/Form'
 import { useEffect, useState } from 'react'
 import Modal from '../../components/Modal/Modal'
 
-const options = ['verde', 'marron','azul', undefined]
+const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
   const [defaultValues, setDefaulValues] = useState({ edad: 0, petardos: 'marron' })
@@ -45,7 +45,7 @@ const CrearGrupo = () => {
       <button onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }}>
         OPEN MODAL
       </button>
-      <Modal {...{ openModal, setOpenModal, title: 'Modal Example' }}>
+      <Modal {...{ openModal, setOpenModal, title: 'Modal Example' }} draggable>
         <Form
           id="secondForm"
           {...{ defaultValues: { petardo: 'verde', edadB: 18 } }}

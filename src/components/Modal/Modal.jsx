@@ -5,7 +5,7 @@ import useDraggableGepeto from '../../customHooks/useDragGepeto'
 import Icon from '../Icon/Icon'
 import { modalContainer, titleContainer, modalIconXmark } from './modal.module.scss'
 
-const Modal = ({ openModal, setOpenModal, children, width, height, title }) => {
+const Modal = ({ openModal, setOpenModal, children, width, height, title, draggable }) => {
   const { position, isDragging, handleDragStart, handleDragEnd } = useDraggableGepeto({
     width,
     height,
@@ -17,7 +17,7 @@ const Modal = ({ openModal, setOpenModal, children, width, height, title }) => {
     openModal &&
     createPortal(
       <div
-        draggable
+        {...{ draggable }}
         className={modalContainer}
         style={{
           width,
@@ -25,11 +25,14 @@ const Modal = ({ openModal, setOpenModal, children, width, height, title }) => {
           position: 'absolute',
           left: position.x,
           top: position.y,
-          cursor: isDragging ? 'grabbing' : 'auto',
-          userSelect: 'none'
+          cursor: isDragging ? 'grabbing' : 'auto'
         }}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
+        // onDrag={(e) => {
+        //   console.log(e.target)
+        //   e.target.style.cursor = 'grabbing'
+        // }}
+        onDragStart={draggable && handleDragStart}
+        onDragEnd={draggable && handleDragEnd}
       >
         <div className={titleContainer}>
           {title && title}
@@ -48,12 +51,14 @@ Modal.propTypes = {
   children: node,
   width: number,
   height: number,
-  title: string
+  title: string,
+  draggable: bool
 }
 
 Modal.defaultProps = {
   width: 400,
-  height: 400
+  height: 400,
+  draggable: false
 }
 
 export default Modal
