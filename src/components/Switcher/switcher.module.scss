@@ -1,0 +1,72 @@
+.input_switcher {
+  display: none;
+}
+.switcher_box {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.toggle_switch_label {
+  --widthTotal: 35px;
+  cursor: pointer;
+  text-indent: -9999px;
+  width: var(--widthTotal);
+  height: calc(var(--widthTotal) / 2);
+  display: block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.toggle_switch_label_Medium {
+  --widthTotal: 50px;
+}
+
+.toggle_switch_label_Large {
+  --widthTotal: 65px;
+}
+
+.toggle_switch_checked {
+  background: #bada55;
+}
+
+.toggle_switch_notChecked {
+  background: grey;
+}
+
+.toggle_switch_notChecked:after {
+  content: '';
+  position: absolute;
+  top: calc(var(--widthTotal) / 41);
+  left: calc(var(--widthTotal) / 40);
+  width: calc(var(--widthTotal) * 0.45);
+  height: calc(var(--widthTotal) * 0.45);
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.toggle_switch_checked:after {
+  content: '';
+  position: absolute;
+  top: calc(var(--widthTotal) / 41);
+  left: calc(var(--widthTotal) * 0.96);
+  width: calc(var(--widthTotal) * 0.45);
+  height: calc(var(--widthTotal) * 0.45);
+  background: #fff;
+  border-radius: 90px;
+  transition: 0.3s;
+}
+
+.toggle_switch_notChecked + .toggle_switch_label:after {
+  left: calc(100% - calc(var(--widthTotal) / 2));
+  transform: translateX(-100%);
+}
+
+.toggle_switch_label:active:after {
+  width: calc(var(--widthTotal) * 0.65);
+}
+
+.toggle_switch_checked:after {
+  right: calc(100% - calc(var(--widthTotal) / 40));
+  transform: translateX(-100%);
+}
