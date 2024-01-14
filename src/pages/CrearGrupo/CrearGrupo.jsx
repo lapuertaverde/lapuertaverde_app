@@ -45,7 +45,25 @@ const CrearGrupo = () => {
       <button onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }}>
         OPEN MODAL
       </button>
-      <Modal {...{ openModal, setOpenModal }} />
+      <Modal {...{ openModal, setOpenModal, title: 'Modal Example' }}>
+        <Form
+          id="secondForm"
+          {...{ defaultValues: { petardo: 'verde', edadB: 18 } }}
+          onError={(error) => console.log('error', error)}
+          onSubmit={(values) => console.log('onSubmit', values)}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <InputNumber name="edadB" label="Edad" min={3} max={100} />
+            <InputSelect {...{ options, name: 'petardo', label: 'color', maxOptions: 2 }} />
+            <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
+              SUBMIT
+            </button>
+          </div>
+        </Form>
+        <button onClick={() => setOpenModal(true)} style={{ cursor: 'pointer' }}>
+          OPEN MODAL
+        </button>
+      </Modal>
     </div>
   )
 }

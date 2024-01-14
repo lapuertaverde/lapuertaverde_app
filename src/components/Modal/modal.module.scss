@@ -1,0 +1,25 @@
+.modalContainer {
+  background-color: white;
+  z-index: 999999999;
+  align-self: center;
+  border: 1px solid white;
+  position: fixed;
+  border-radius: 8px;
+  padding: 0.4rem;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  font-size: 1.3rem;
+}
+
+.modalIconXmark {
+  cursor: pointer;
+}
+
+.modalIconXmark:hover {
+  color: violet;
+}
