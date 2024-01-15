@@ -3,15 +3,24 @@ import InputSelect from '../../components/InputSelect/InputSelect'
 
 import Form from '../../components/Form/Form'
 import { useEffect, useState } from 'react'
+
+import { Switcher } from '../../components/Switcher/Switcher'
+
 import Modal from '../../components/Modal/Modal'
+
 
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
+
+  const [defaultValues, setDefaulValues] = useState({ edad: 0, petardos: 'marron', toggle: false })
+
   const [defaultValues, setDefaulValues] = useState({ edad: 0, petardos: 'marron' })
   const [openModal, setOpenModal] = useState(false)
 
-  const getDefaultValues = async () => setDefaulValues({ edad: 13, petardos: 'verde' })
+
+  const getDefaultValues = async () =>
+    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false' })
 
   useEffect(() => {
     getDefaultValues()
@@ -34,9 +43,9 @@ const CrearGrupo = () => {
           <InputSelect
             {...{ options, name: 'petardos', label: 'color', maxOptions: 2 }}
             required
-            multiple
             onChange={handleSelectChange}
           />
+          <Switcher {...{ name: 'toggle', label: 'prueba', size: 'medium' }} />
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
           </button>
