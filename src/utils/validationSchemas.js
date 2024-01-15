@@ -20,7 +20,7 @@ export const selectSchema = ({ name, label, required, maxOptions, multiple }) =>
     message: `${label || name} is mandatory`
   },
   validate: (value) => {
-    if (multiple && maxOptions)
+    if (multiple && maxOptions && typeof value == Object)
       return value.length <= maxOptions || `No puedes tantas opciones, máximo ${maxOptions}`
   }
 })
