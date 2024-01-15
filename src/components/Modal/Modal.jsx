@@ -1,12 +1,12 @@
 import { string, bool, func, node, number } from 'prop-types'
 
 import { createPortal } from 'react-dom'
-import useDraggableGepeto from '../../customHooks/useDragGepeto'
+import useDraggableCustom from '../../customHooks/useDragCustom'
 import Icon from '../Icon/Icon'
 import { modalContainer, titleContainer, modalIconXmark } from './modal.module.scss'
 
 const Modal = ({ openModal, setOpenModal, children, width, height, title, draggable }) => {
-  const { position, isDragging, handleDragStart, handleDragEnd } = useDraggableGepeto({
+  const { position, isDragging, handleDragStart, handleDragEnd } = useDraggableCustom({
     width,
     height,
     x: window.innerWidth / 2 - width / 2,
@@ -27,10 +27,6 @@ const Modal = ({ openModal, setOpenModal, children, width, height, title, dragga
           top: position.y,
           cursor: isDragging ? 'grabbing' : 'auto'
         }}
-        // onDrag={(e) => {
-        //   console.log(e.target)
-        //   e.target.style.cursor = 'grabbing'
-        // }}
         onDragStart={draggable && handleDragStart}
         onDragEnd={draggable && handleDragEnd}
       >
