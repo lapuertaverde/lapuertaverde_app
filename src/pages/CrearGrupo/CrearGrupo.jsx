@@ -8,16 +8,12 @@ import { Switcher } from '../../components/Switcher/Switcher'
 
 import Modal from '../../components/Modal/Modal'
 
-
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
-
   const [defaultValues, setDefaulValues] = useState({ edad: 0, petardos: 'marron', toggle: false })
 
-  const [defaultValues, setDefaulValues] = useState({ edad: 0, petardos: 'marron' })
   const [openModal, setOpenModal] = useState(false)
-
 
   const getDefaultValues = async () =>
     setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false' })
