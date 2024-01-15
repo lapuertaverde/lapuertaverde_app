@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const useDraggableGepeto = (initialPosition) => {
+const useDraggableCustom = (initialPosition) => {
   const { x, y, height, width } = initialPosition
 
   const [position, setPosition] = useState({ x, y })
@@ -37,4 +37,4 @@ const useDraggableGepeto = (initialPosition) => {
   }
 }
 
-export default useDraggableGepeto
+export default useDraggableCustom
