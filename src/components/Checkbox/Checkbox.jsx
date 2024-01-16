@@ -14,7 +14,12 @@ const Checkbox = ({ name, id, label, options, disabled, required, onChange }) =>
           <div>
             {label && <label>{label}</label>}
             {options?.length
-              ? options.map(({ label }) => <input id={`${inputId + label}`} type="checkbox" />)
+              ? options.map(({ value, label }) => (
+                  <div key={value}>
+                    <label for={`${inputId + value}`}>{label}</label>
+                    <input id={`${inputId + value}`} type="checkbox" />
+                  </div>
+                ))
               : null}
           </div>
         )
