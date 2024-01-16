@@ -26,7 +26,10 @@ export const RadioButton = ({
       render={({ field, formState: { errors } }) => (
         <div className={radioButton_box}>
           {label && <label>{label}</label>}
-          <div className={radioSection_container} style={{ flexDirection: flexDir }}>
+          <div
+            className={radioSection_container}
+            style={{ flexDirection: flexDir, gap: flexDir === 'row' ? '1.5rem' : '1rem' }}
+          >
             {options.map(
               (element) =>
                 element && (
@@ -82,5 +85,5 @@ RadioButton.defaultProps = {
   options: ['no defined options'],
   label: 'Select one option',
   size: 17,
-  flexDir: 'row'
+  flexDir: 'column'
 }
