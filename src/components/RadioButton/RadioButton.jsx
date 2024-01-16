@@ -1,5 +1,5 @@
 import { string, array, func, bool, number } from 'prop-types'
-import { Controller, useFormContext } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import { radioButtonSchema } from '../../utils/validationSchemas'
 import {
   radioButton_box,
@@ -18,15 +18,11 @@ export const RadioButton = ({
   size,
   onChange
 }) => {
-  const {
-    formState: { errors }
-  } = useFormContext()
-
   return (
     <Controller
       {...{ name }}
       rules={radioButtonSchema({ name, label, required, disabledElements })}
-      render={({ field }) => (
+      render={({ field, formState: { errors } }) => (
         <div className={radioButton_box}>
           {label && <label>{label}</label>}
           <div className={radioSection_container}>
