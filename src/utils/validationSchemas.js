@@ -21,6 +21,22 @@ export const selectSchema = ({ name, label, required, maxOptions, multiple }) =>
   },
   validate: (value) => {
     if (multiple && maxOptions)
-      return value.length <= maxOptions || `No puedes tantas opciones, máximo ${maxOptions}`
+      return value.length <= maxOptions || `The maximun options are ${maxOptions}`
+  }
+})
+
+export const radioButtonSchema = ({ name, label, required, disabledElements }) => ({
+  required: {
+    value: required,
+    message: `${label || name} is mandatory`
+  },
+  validate: (value) => {
+    if (disabledElements) {
+      let isDisabled = false
+      disabledElements.forEach((element) => {
+        if (value === element) isDisabled = true
+      })
+      return !isDisabled || `The option: ${value} is disabled`
+    }
   }
 })
