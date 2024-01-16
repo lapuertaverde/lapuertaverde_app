@@ -4,7 +4,7 @@ import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 
 const Checkbox = ({ name, id, label, options, disabled, required, onChange }) => {
-  const inputId = is || useId()
+  const inputId = id || useId()
 
   return (
     <Controller
@@ -13,7 +13,9 @@ const Checkbox = ({ name, id, label, options, disabled, required, onChange }) =>
         return (
           <div>
             {label && <label>{label}</label>}
-            {options?.length ? options.map((option) => <input type="checkbox" />) : null}
+            {options?.length
+              ? options.map(({ label }) => <input id={`${inputId + label}`} type="checkbox" />)
+              : null}
           </div>
         )
       }}
