@@ -16,6 +16,7 @@ export const RadioButton = ({
   disabled,
   disabledElements,
   size,
+  flexDir,
   onChange
 }) => {
   return (
@@ -25,7 +26,7 @@ export const RadioButton = ({
       render={({ field, formState: { errors } }) => (
         <div className={radioButton_box}>
           {label && <label>{label}</label>}
-          <div className={radioSection_container}>
+          <div className={radioSection_container} style={{ flexDirection: flexDir }}>
             {options.map(
               (element) =>
                 element && (
@@ -72,6 +73,7 @@ RadioButton.propTypes = {
   disabled: bool,
   disabledElements: array,
   size: number,
+  flexDir: string,
   onChange: func
 }
 
@@ -79,5 +81,6 @@ RadioButton.defaultProps = {
   name: 'button-radio',
   options: ['no defined options'],
   label: 'Select one option',
-  size: 17
+  size: 17,
+  flexDir: 'row'
 }
