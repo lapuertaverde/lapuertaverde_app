@@ -7,17 +7,21 @@ import { useEffect, useState } from 'react'
 import { Switcher } from '../../components/Switcher/Switcher'
 
 import Modal from '../../components/Modal/Modal'
+
 import { RadioButton } from '../../components/RadioButton/RadioButton'
+
 
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
+
   const [defaultValues, setDefaulValues] = useState({
     edad: 0,
     petardos: 'marron',
     toggle: false,
     pago: 'verde'
   })
+
 
   const [openModal, setOpenModal] = useState(false)
 

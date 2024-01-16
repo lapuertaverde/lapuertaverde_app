@@ -30,13 +30,12 @@ const InputSelect = ({
         {...{ name, id, form, autoFocus, disabled, required, multiple }}
         onChange={(e) => typeof onChange === 'function' && onChange(e)}
       >
-        {options.map(
-          (value) =>
-            value && (
-              <option key={value} {...{ value }}>
-                {value}
-              </option>
-            )
+        {options.map((value) =>
+          value ? (
+            <option key={value} {...{ value }}>
+              {value}
+            </option>
+          ) : null
         )}
       </select>
       {errors[name] && <span style={{ color: 'white' }}>{errors[name].message}</span>}
