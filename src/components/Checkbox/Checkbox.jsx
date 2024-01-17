@@ -11,10 +11,7 @@ const Checkbox = ({ name, id: inputId, label, disabled, onChange, variant }) => 
     <Controller
       {...{ name }}
       render={({ field }) => (
-        <div
-          className={checkboxContainer}
-          style={{ flexDirection: `${variant}`, border: '1px solid red' }}
-        >
+        <div className={checkboxContainer} style={{ flexDirection: `${variant}` }}>
           {label && <label htmlFor={inputId}>{label}</label>}
           <input
             {...{ disabled, id }}
