@@ -11,26 +11,21 @@ import Checkbox from '../../components/Checkbox/Checkbox'
 
 import { RadioButton } from '../../components/RadioButton/RadioButton'
 
-
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
-
   const [defaultValues, setDefaulValues] = useState({
     edad: 0,
     petardos: 'marron',
     toggle: false,
-    opcion1: false
+    opcion1: false,
     pago: 'verde'
   })
-
 
   const [openModal, setOpenModal] = useState(false)
 
   const getDefaultValues = async () =>
-
-    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', opcion1: true, pago:'verde' })
-
+    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', opcion1: true, pago: 'verde' })
 
   useEffect(() => {
     getDefaultValues()
