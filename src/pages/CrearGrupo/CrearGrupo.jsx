@@ -7,26 +7,25 @@ import { useEffect, useState } from 'react'
 import { Switcher } from '../../components/Switcher/Switcher'
 
 import Modal from '../../components/Modal/Modal'
+import Checkbox from '../../components/Checkbox/Checkbox'
 
 import { RadioButton } from '../../components/RadioButton/RadioButton'
-
 
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
-
   const [defaultValues, setDefaulValues] = useState({
     edad: 0,
     petardos: 'marron',
     toggle: false,
+    opcion1: false,
     pago: 'verde'
   })
-
 
   const [openModal, setOpenModal] = useState(false)
 
   const getDefaultValues = async () =>
-    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', pago: 'verde' })
+    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', opcion1: true, pago: 'verde' })
 
   useEffect(() => {
     getDefaultValues()
@@ -51,6 +50,7 @@ const CrearGrupo = () => {
             required
             onChange={handleSelectChange}
           />
+          <Checkbox name="opcion1" label="Opciones" />
           <Switcher {...{ name: 'toggle', label: 'prueba' }} />
           <RadioButton
             {...{
@@ -79,6 +79,7 @@ const CrearGrupo = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <InputNumber name="edadB" label="Edad" min={3} max={100} />
             <InputSelect {...{ options, name: 'petardo', label: 'color', maxOptions: 2 }} />
+
             <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
               SUBMIT
             </button>

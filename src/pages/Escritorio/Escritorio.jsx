@@ -45,7 +45,7 @@ const Escritorio = () => {
       </Suspense>
     </main>
   ) : (
-    <></>
+    <div>WRONG.... no token</div>
   )
 }
 
