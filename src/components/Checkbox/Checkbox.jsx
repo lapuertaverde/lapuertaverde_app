@@ -1,46 +1,48 @@
-import { string, array, bool, number, func } from 'prop-types'
+import { string, bool, func, oneOf } from 'prop-types'
 import { useId } from 'react'
-
 import { Controller } from 'react-hook-form'
 
-const Checkbox = ({ name, id, label, options, disabled, required, onChange }) => {
-  const inputId = id || useId()
+import { checkboxContainer } from './checkbox.module.scss'
+
+const Checkbox = ({ name, id: inputId, label, disabled, onChange, variant }) => {
+  const id = inputId || useId()
 
   return (
     <Controller
       {...{ name }}
-      render={({ field }) => {
-        return (
-          <div>
-            {label && <label>{label}</label>}
-            {options?.length
-              ? options.map(({ value, label }) => (
-                  <div key={value}>
-                    <label for={`${inputId + value}`}>{label}</label>
-                    <input id={`${inputId + value}`} type="checkbox" />
-                  </div>
-                ))
-              : null}
-          </div>
-        )
-      }}
+      render={({ field }) => (
+        <div
+          className={checkboxContainer}
+          style={{ flexDirection: `${variant}`, border: '1px solid red' }}
+        >
+          {label && <label htmlFor={inputId}>{label}</label>}
+          <input
+            {...{ disabled, id }}
+            type="checkbox"
+            checked={field.value}
+            onChange={(e) => {
+              if (typeof onChange === 'function') onChange(e)
+              field.onChange(e)
+            }}
+          />
+        </div>
+      )}
     />
   )
 }
 
-InputSelect.propTypes = {
+Checkbox.propTypes = {
   name: string.isRequired,
-  options: array.isRequired,
   label: string,
   disabled: bool,
-  required: bool,
-  onChange: func
+  onChange: func,
+  variant: oneOf(['row', 'row-reverse', 'column'])
 }
 
-InputSelect.defaultProps = {
-  name: 'chekboxExample',
+Checkbox.defaultProps = {
+  name: 'checkboxExample',
   disabled: false,
-  required: false
+  variant: 'row'
 }
 
 export default Checkbox
