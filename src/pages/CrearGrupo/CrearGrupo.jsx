@@ -9,24 +9,29 @@ import { Switcher } from '../../components/Switcher/Switcher'
 import Modal from '../../components/Modal/Modal'
 
 import { RadioButton } from '../../components/RadioButton/RadioButton'
-
+import { InputText } from '../../components/InputText/InputText'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
-
   const [defaultValues, setDefaulValues] = useState({
     edad: 0,
     petardos: 'marron',
     toggle: false,
-    pago: 'verde'
+    pago: 'verde',
+    password: 'ojete'
   })
-
 
   const [openModal, setOpenModal] = useState(false)
 
   const getDefaultValues = async () =>
-    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', pago: 'verde' })
+    setDefaulValues({
+      edad: 13,
+      petardos: 'verde',
+      toggle: 'false',
+      pago: 'verde',
+      password: 'cara ojete'
+    })
 
   useEffect(() => {
     getDefaultValues()
@@ -60,6 +65,14 @@ const CrearGrupo = () => {
               width: '50px'
               // disabledElements: [options[2], options[0]]
             }}
+          />
+          <InputText
+            type="password"
+            label="password"
+            name="password"
+            placeholder="Enter you name"
+            width="40%"
+            required
           />
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
