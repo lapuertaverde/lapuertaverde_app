@@ -67,7 +67,7 @@ const CrearGrupo = () => {
             }}
           />
           <InputText
-            type="password"
+            type="email"
             label="password"
             name="password"
             placeholder="Enter you name"

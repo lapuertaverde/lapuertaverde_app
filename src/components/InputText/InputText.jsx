@@ -26,13 +26,19 @@ export const InputText = ({
   return (
     <Controller
       {...{ name }}
-      rules={inputTextSchema({ name, label, required })}
+      rules={inputTextSchema({ name, label, required, type })}
       render={({ field }) => (
         <div className={inputText_box} style={{ flexDirection: flexDir, width }}>
           {label && <label htmlFor={id}>{label}</label>}
           <input
             {...{ id, placeholder }}
-            type={showPass || type === 'text' ? 'text' : 'password'}
+            type={
+              showPass || type === 'text'
+                ? 'text'
+                : showPass || type === 'email'
+                ? 'email'
+                : 'password'
+            }
             value={field.value}
             onChange={(e) => {
               if (typeof onChange === 'function') onChange(e)
@@ -54,7 +60,7 @@ export const InputText = ({
 InputText.propTypes = {
   name: string.isRequired,
   label: string,
-  type: oneOf(['text', 'password']),
+  type: oneOf(['text', 'password', 'email']),
   placeholder: string,
   flexDir: oneOf(['row', 'row-reverse', 'column']),
   width: string,

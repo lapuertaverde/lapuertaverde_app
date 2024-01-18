@@ -41,9 +41,19 @@ export const radioButtonSchema = ({ name, label, required, disabledElements }) =
   }
 })
 
-export const inputTextSchema = ({ name, label, required }) => ({
+export const inputTextSchema = ({ name, label, required, type }) => ({
   required: {
     value: required,
     message: `${label || name} is mandatory`
+  },
+  validate: (value) => {
+    if (type === 'email') {
+      return isValidEmail(value) || `The email is not correct`
+    }
   }
 })
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
