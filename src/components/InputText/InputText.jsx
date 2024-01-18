@@ -31,7 +31,7 @@ export const InputText = ({
         <div className={inputText_box} style={{ flexDirection: flexDir, width }}>
           {label && <label htmlFor={id}>{label}</label>}
           <input
-            {...{ name, id, placeholder }}
+            {...{ id, placeholder }}
             type={showPass || type === 'text' ? 'text' : 'password'}
             value={field.value}
             onChange={(e) => {
@@ -56,7 +56,7 @@ InputText.propTypes = {
   label: string,
   type: oneOf(['text', 'password']),
   placeholder: string,
-  flexDir: string,
+  flexDir: oneOf(['row', 'row-reverse', 'column']),
   width: string,
   required: bool,
   onChange: func
