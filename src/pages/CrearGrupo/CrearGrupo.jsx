@@ -13,7 +13,6 @@ import { RadioButton } from '../../components/RadioButton/RadioButton'
 
 import { InputText } from '../../components/InputText/InputText'
 
-
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
@@ -21,7 +20,7 @@ const CrearGrupo = () => {
     edad: 0,
     petardos: 'marron',
     toggle: false,
-    password: 'ojete'
+    password: 'ojete',
     opcion1: false,
     pago: 'verde'
   })
