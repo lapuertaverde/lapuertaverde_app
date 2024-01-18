@@ -3,6 +3,7 @@ import { useId } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { custom_select } from './InputSelect.module.scss'
 import { selectSchema } from '../../utils/validationSchemas'
+import { LabelCustom } from '../Label/LabelCustom'
 
 const InputSelect = ({
   options,
@@ -24,7 +25,7 @@ const InputSelect = ({
 
   return (
     <div className={custom_select}>
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && <LabelCustom {...{ label, id }} />}
       <select
         {...register(name, selectSchema({ name, label, required, maxOptions, multiple }))}
         {...{ name, id, form, autoFocus, disabled, required, multiple }}
