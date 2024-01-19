@@ -1,3 +1,4 @@
+
 import { string, number, bool } from 'prop-types'
 
 export const LabelCustom = ({ label, id, fontSize, color, borderB }) => {
@@ -22,3 +23,4 @@ LabelCustom.defaultProps = {
   color: '#1f1f1f',
   borderB: false
 }
+
