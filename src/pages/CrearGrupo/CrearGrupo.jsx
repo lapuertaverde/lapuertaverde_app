@@ -10,7 +10,7 @@ import Modal from '../../components/Modal/Modal'
 import Checkbox from '../../components/Checkbox/Checkbox'
 
 import { RadioButton } from '../../components/RadioButton/RadioButton'
-import { GridLayout } from '../../components/Layouts/GridLayout/GridLayout'
+import { GridLayout } from '../../layouts/GridLayout/GridLayout'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
