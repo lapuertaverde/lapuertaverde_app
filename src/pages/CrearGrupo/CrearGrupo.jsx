@@ -67,8 +67,8 @@ const CrearGrupo = () => {
               options,
               name: 'pago',
               label: 'pago',
-              width: '50px'
-              // disabledElements: [options[2], options[0]]
+              width: '50px',
+              disabledElements: [options[2], options[0]]
             }}
           />
           <InputText
