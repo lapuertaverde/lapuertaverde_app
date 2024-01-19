@@ -6,6 +6,7 @@ import {
   radioSection_container,
   radioButton_section
 } from './radioButton.module.scss'
+import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
 
 export const RadioButton = ({
   name,
@@ -60,7 +61,7 @@ export const RadioButton = ({
                 )
             )}
           </div>
-          {errors[name] && <span style={{ color: 'white' }}>{errors[name].message}</span>}
+          {errors[name] && <ErrorCustom error={errors[name].message} />}
         </div>
       )}
     />

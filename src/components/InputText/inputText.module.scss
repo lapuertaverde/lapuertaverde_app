@@ -1,0 +1,14 @@
+.inputText_box {
+    display: flex;
+    gap: 0.5rem;
+    position: relative;
+}
+
+.eye_box{
+    position: absolute;
+    right: 0;
+    transform: translateY(-50%);
+    cursor: pointer;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+}

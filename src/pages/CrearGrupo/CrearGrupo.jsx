@@ -12,6 +12,8 @@ import Checkbox from '../../components/Checkbox/Checkbox'
 import { RadioButton } from '../../components/RadioButton/RadioButton'
 import { GridLayout } from '../../components/Layouts/GridLayout/GridLayout'
 
+import { InputText } from '../../components/InputText/InputText'
+
 const options = ['verde', 'marron', 'azul', undefined]
 
 const CrearGrupo = () => {
@@ -19,6 +21,7 @@ const CrearGrupo = () => {
     edad: 0,
     petardos: 'marron',
     toggle: false,
+    password: 'ojete',
     opcion1: false,
     pago: 'verde'
   })
@@ -26,7 +29,14 @@ const CrearGrupo = () => {
   const [openModal, setOpenModal] = useState(false)
 
   const getDefaultValues = async () =>
-    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', opcion1: true, pago: 'verde' })
+    setDefaulValues({
+      edad: 13,
+      petardos: 'verde',
+      toggle: 'false',
+      pago: 'verde',
+      opcion1: true,
+      password: 'cara ojete'
+    })
 
   useEffect(() => {
     getDefaultValues()
@@ -58,15 +68,26 @@ const CrearGrupo = () => {
               options,
               name: 'pago',
               label: 'pago',
-              width: '50px'
-              // disabledElements: [options[2], options[0]]
+              width: '50px',
+              disabledElements: [options[2], options[0]]
             }}
           />
+
           <GridLayout gridTemplateColumns="100px 100px" justifyContent="center">
             <p>Hola</p>
             <p>Pepe</p>
             <p>Phone</p>
           </GridLayout>
+
+          <InputText
+            type="email"
+            label="password"
+            name="password"
+            placeholder="Enter you name"
+            width="40%"
+            required
+          />
+
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
           </button>
