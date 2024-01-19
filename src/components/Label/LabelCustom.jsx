@@ -1,8 +1,9 @@
-import { string } from 'prop-types'
 
-export const LabelCustom = ({ label, id, fontSize }) => {
+import { string, number, bool } from 'prop-types'
+
+export const LabelCustom = ({ label, id, fontSize, color, borderB }) => {
   return (
-    <label htmlFor={id} style={{ fontSize }}>
+    <label htmlFor={id} style={{ fontSize, color, borderBottom: borderB && `1px solid ${color}` }}>
       {label}
     </label>
   )
@@ -11,10 +12,15 @@ export const LabelCustom = ({ label, id, fontSize }) => {
 LabelCustom.propTypes = {
   label: string,
   id: string || number,
-  fontSize: string
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
-LabelCustom.defaultProp = {
+LabelCustom.defaultProps = {
   label: 'label',
-  id
+  fontSize: '16px',
+  color: '#1f1f1f',
+  borderB: false
 }
+
