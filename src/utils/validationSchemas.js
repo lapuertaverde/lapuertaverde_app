@@ -21,7 +21,7 @@ export const selectSchema = ({ name, label, required, maxOptions, multiple }) =>
   },
   validate: (value) => {
     if (multiple && maxOptions && typeof value === 'object')
-      return value.length <= maxOptions || `No puedes tantas opciones, máximo ${maxOptions}`
+      return value.length <= maxOptions || `The maximum options are: ${maxOptions}`
   }
 })
 
@@ -40,3 +40,20 @@ export const radioButtonSchema = ({ name, label, required, disabledElements }) =
     }
   }
 })
+
+export const inputTextSchema = ({ name, label, required, type }) => ({
+  required: {
+    value: required,
+    message: `${label || name} is mandatory`
+  },
+  validate: (value) => {
+    if (type === 'email') {
+      return isValidEmail(value) || `The email is not correct`
+    }
+  }
+})
+
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  return emailRegex.test(email)
+}
