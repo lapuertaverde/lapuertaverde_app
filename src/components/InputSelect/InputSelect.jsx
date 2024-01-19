@@ -25,7 +25,7 @@ const InputSelect = ({
 
   return (
     <div className={custom_select}>
-      {label && <LabelCustom {...{ label, id }} />}
+      {label && <LabelCustom {...{ label, id }} borderB />}
       <select
         {...register(name, selectSchema({ name, label, required, maxOptions, multiple }))}
         {...{ name, id, form, autoFocus, disabled, required, multiple }}
