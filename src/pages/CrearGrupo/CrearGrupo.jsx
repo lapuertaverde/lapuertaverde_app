@@ -10,6 +10,7 @@ import Modal from '../../components/Modal/Modal'
 import Checkbox from '../../components/Checkbox/Checkbox'
 
 import { RadioButton } from '../../components/RadioButton/RadioButton'
+import { GridLayout } from '../../layouts/GridLayout/GridLayout'
 
 import { InputText } from '../../components/InputText/InputText'
 
@@ -71,6 +72,13 @@ const CrearGrupo = () => {
               disabledElements: [options[2], options[0]]
             }}
           />
+
+          <GridLayout gridTemplateColumns="100px 100px" justifyContent="center">
+            <p>Hola</p>
+            <p>Pepe</p>
+            <p>Phone</p>
+          </GridLayout>
+
           <InputText
             type="email"
             label="password"
@@ -79,6 +87,7 @@ const CrearGrupo = () => {
             width="40%"
             required
           />
+
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
           </button>
