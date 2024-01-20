@@ -76,18 +76,28 @@ const CrearGrupo = () => {
 
     console.log('DELETE', response)
   }
-  const handlePost = async () => {
-    const response = await post(watch('endpoint'), {
+  const handlePost = async ({
+    endpoint,
+    name,
+    email,
+    phone,
+    consumerGroup,
+    address,
+    CP,
+    KgByDefault,
+    active
+  }) => {
+    const response = await post(endpoint, {
       weeklyLog: [],
       monthlyBills: [],
-      name: watch('name'),
-      email: watch('email'),
-      phone: watch('phone'),
-      consumerGroup: watch('consumerGroup'),
-      address: watch('address'),
-      CP: watch('CP'),
-      KgByDefault: watch('kgByDefault'),
-      active: watch('active')
+      name,
+      email,
+      phone,
+      consumerGroup,
+      address,
+      CP,
+      KgByDefault,
+      active
     })
     setRes(JSON.stringify(response))
 
@@ -174,11 +184,11 @@ const CrearGrupo = () => {
           id="testingCrudForm"
           {...{ methods }}
           onError={(error) => console.log('error', error)}
-          onSubmit={(values) => console.log('onSubmit', values)}
+          onSubmit={(values) => handlePost(values)}
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             <div style={{ width: '395px' }}>
-              <InputText name="endpoint" label="Endpoint" max={100} />
+              <InputText name="endpoint" label="Endpoint" required />
             </div>
             <div style={{ display: 'flex', gap: '2rem' }}>
               <button style={buttonCrudStyle} onClick={handleGet} {...{ type }}>
@@ -190,18 +200,16 @@ const CrearGrupo = () => {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ width: '395px' }}>
-                <InputText name="name" label="Name" max={100} />
-                <InputText name="phone" label="Phone" max={100} />
-                <InputText name="address" label="Address" max={100} />
-                <InputText name="email" label="Email" max={100} type="email" />
-                <InputText name="consumerGroup" label="Consumer Group" max={100} />
-                <InputText name="CP" label="CP" max={100} />
-                <InputNumber name="kgByDefault" label="kgByDefault" min={10} max={100} />
-                <Switcher name="active" label="active" />
+                <InputText name="name" label="Name" max={100} required />
+                <InputText name="phone" label="Phone" max={100} required />
+                <InputText name="address" label="Address" max={100} required />
+                <InputText name="email" label="Email" max={100} type="email" required />
+                <InputText name="consumerGroup" label="Consumer Group" max={100} required />
+                <InputText name="CP" label="CP" max={100} required />
+                <InputNumber name="KgByDefault" label="kgByDefault" min={10} max={100} required />
+                <Switcher name="active" label="active" required />
                 <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem' }}>
-                  <button style={buttonCrudStyle} onClick={handlePost} {...{ type }}>
-                    Post
-                  </button>
+                  <button style={buttonCrudStyle}>Post</button>
                   <button style={buttonCrudStyle} onClick={handlePatch} {...{ type }}>
                     Patch
                   </button>
