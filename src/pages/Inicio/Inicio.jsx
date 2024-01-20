@@ -6,7 +6,9 @@ import Icon from '../../components/Icon/Icon'
 
 const Inicio = () => {
   const { handleSubmit, register } = useForm()
+
   const navigate = useNavigate()
+
   const onSubmit = async (values) => {
     const response = await post('user/login', values)
     const { status, data } = response
