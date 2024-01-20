@@ -58,7 +58,7 @@ const CrearGrupo = () => {
     defaultValues: {
       endpoint: 'consumer',
       consumerGroup: 'PATIO MARAVILLAS',
-      kgByDefault: 13,
+      KgByDefault: 13,
       active: true
     }
   })
