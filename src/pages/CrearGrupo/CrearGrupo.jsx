@@ -10,33 +10,38 @@ import Modal from '../../components/Modal/Modal'
 import Checkbox from '../../components/Checkbox/Checkbox'
 
 import { RadioButton } from '../../components/RadioButton/RadioButton'
-import { GridLayout } from '../../layouts/GridLayout/GridLayout'
-
 import { InputText } from '../../components/InputText/InputText'
+import { useForm } from 'react-hook-form'
+import { deleteService, get, patch, post } from '../../services/APIServices'
 
 const options = ['verde', 'marron', 'azul', undefined]
+
+const type = 'button'
+const buttonCrudStyle = {
+  cursor: 'pointer',
+  border: '1px solid white',
+  width: '70px',
+  padding: '0.2rem',
+  height: '3rem',
+  textAlign: 'center',
+  borderRadius: '9px',
+  color: 'white'
+}
 
 const CrearGrupo = () => {
   const [defaultValues, setDefaulValues] = useState({
     edad: 0,
     petardos: 'marron',
     toggle: false,
-    password: 'ojete',
     opcion1: false,
     pago: 'verde'
   })
 
   const [openModal, setOpenModal] = useState(false)
+  const [res, setRes] = useState('')
 
   const getDefaultValues = async () =>
-    setDefaulValues({
-      edad: 13,
-      petardos: 'verde',
-      toggle: 'false',
-      pago: 'verde',
-      opcion1: true,
-      password: 'cara ojete'
-    })
+    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', opcion1: true, pago: 'verde' })
 
   useEffect(() => {
     getDefaultValues()
@@ -45,6 +50,69 @@ const CrearGrupo = () => {
   const handleSelectChange = (e) => {
     console.log(e)
   }
+
+  /////////////////////////////////////////////////////////////////////
+  //Logic & useFORM for CRUDForm
+
+  const methods = useForm({
+    defaultValues: {
+      endpoint: 'consumer',
+      consumerGroup: 'PATIO MARAVILLAS',
+      kgByDefault: 13,
+      active: true
+    }
+  })
+  const { watch } = methods
+
+  const handleGet = async () => {
+    const response = await get(watch('endpoint'))
+    setRes(JSON.stringify(response))
+
+    console.log('GET', response)
+  }
+  const handleDelete = async () => {
+    const response = await deleteService(watch('endpoint'))
+    setRes(JSON.stringify(response))
+
+    console.log('DELETE', response)
+  }
+  const handlePost = async () => {
+    const response = await post(watch('endpoint'), {
+      weeklyLog: [],
+      monthlyBills: [],
+      name: watch('name'),
+      email: watch('email'),
+      phone: watch('phone'),
+      consumerGroup: watch('consumerGroup'),
+      address: watch('address'),
+      CP: watch('CP'),
+      KgByDefault: watch('kgByDefault'),
+      active: watch('active')
+    })
+    setRes(JSON.stringify(response))
+
+    console.log('POST', response)
+  }
+
+  const handlePatch = async () => {
+    let values = {}
+
+    if (watch('name')) values = { ...values, name: watch('name') }
+    if (watch('email')) values = { ...values, email: watch('email') }
+    if (watch('phone')) values = { ...values, phone: watch('phone') }
+    if (watch('consumerGroup')) values = { ...values, consumerGroup: watch('consumerGroup') }
+    if (watch('address')) values = { ...values, address: watch('address') }
+
+    if (Object.keys(values).length)
+      patch(watch('endpoint'), values)
+        .then((res) => {
+          setRes(JSON.stringify(res))
+          console.log('PATCH', res)
+        })
+        .catch((error) => console.log(error))
+  }
+
+  ////////////////////////////////////////////////////////////////////////
 
   return (
     <div style={{ padding: '1rem' }}>
@@ -68,26 +136,10 @@ const CrearGrupo = () => {
               options,
               name: 'pago',
               label: 'pago',
-              width: '50px',
-              disabledElements: [options[2], options[0]]
+              width: '50px'
+              // disabledElements: [options[2], options[0]]
             }}
           />
-
-          <GridLayout gridTemplateColumns="100px 100px" justifyContent="center">
-            <p>Hola</p>
-            <p>Pepe</p>
-            <p>Phone</p>
-          </GridLayout>
-
-          <InputText
-            type="email"
-            label="password"
-            name="password"
-            placeholder="Enter you name"
-            width="40%"
-            required
-          />
-
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
           </button>
@@ -116,6 +168,50 @@ const CrearGrupo = () => {
           OPEN MODAL
         </button>
       </Modal>
+      <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
+        <span> CRUD TESTING: </span>
+        <Form
+          id="testingCrudForm"
+          {...{ methods }}
+          onError={(error) => console.log('error', error)}
+          onSubmit={(values) => console.log('onSubmit', values)}
+        >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ width: '395px' }}>
+              <InputText name="endpoint" label="Endpoint" max={100} />
+            </div>
+            <div style={{ display: 'flex', gap: '2rem' }}>
+              <button style={buttonCrudStyle} onClick={handleGet} {...{ type }}>
+                GetByIts...
+              </button>
+              <button style={buttonCrudStyle} onClick={handleDelete} {...{ type }}>
+                Delete
+              </button>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <div style={{ width: '395px' }}>
+                <InputText name="name" label="Name" max={100} />
+                <InputText name="phone" label="Phone" max={100} />
+                <InputText name="address" label="Address" max={100} />
+                <InputText name="email" label="Email" max={100} type="email" />
+                <InputText name="consumerGroup" label="Consumer Group" max={100} />
+                <InputText name="CP" label="CP" max={100} />
+                <InputNumber name="kgByDefault" label="kgByDefault" min={10} max={100} />
+                <Switcher name="active" label="active" />
+                <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem' }}>
+                  <button style={buttonCrudStyle} onClick={handlePost} {...{ type }}>
+                    Post
+                  </button>
+                  <button style={buttonCrudStyle} onClick={handlePatch} {...{ type }}>
+                    Patch
+                  </button>
+                </div>
+              </div>
+            </div>
+            {res && <p style={{ fontVariant: 'historical-forms' }}>{res}</p>}
+          </div>
+        </Form>
+      </div>
     </div>
   )
 }
