@@ -1,8 +1,8 @@
 import { useState, useEffect, Suspense, lazy } from 'react'
 import Nav from '../../components/Nav/Nav'
 import Loading from '../../components/Loading/Loading'
-import { get } from '../../services/APIServices'
 
+import useEscritorioFetch from './useEscritorioFetch'
 import './Escritorio.css'
 
 const Escritorio = () => {
@@ -15,24 +15,7 @@ const Escritorio = () => {
     creargrupo: false
   })
 
-  const [consumers, setConsumers] = useState([])
-  const [consumerGroups, setConsumerGroups] = useState([])
-  const [consumerGroup, setConsumerGroup] = useState(null)
-
-  const token = sessionStorage.getItem('token')
-
-  useEffect(() => {
-    get('consumer')
-      .then((res) => setConsumers(res))
-      .catch((error) => console.log(error))
-
-    get('consumerGroup', token)
-      .then((res) => {
-        setConsumerGroups(res)
-        setConsumerGroup(res[0])
-      })
-      .catch((error) => console.log(error))
-  }, [])
+  const { consumers, consumerGroup, setConsumerGroup, consumerGroups } = useEscritorioFetch()
 
   return (
     <main className="mainContainer">
