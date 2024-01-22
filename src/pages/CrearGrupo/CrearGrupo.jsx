@@ -13,6 +13,7 @@ import { RadioButton } from '../../components/RadioButton/RadioButton'
 import { GridLayout } from '../../layouts/GridLayout/GridLayout'
 
 import { InputText } from '../../components/InputText/InputText'
+import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -78,6 +79,11 @@ const CrearGrupo = () => {
             <p>Pepe</p>
             <p>Phone</p>
           </GridLayout>
+          <FlexLayout justifyContent="space-around">
+            <p>Hola</p>
+            <p>Pepe</p>
+            <p>Phone</p>
+          </FlexLayout>
 
           <InputText
             type="email"
