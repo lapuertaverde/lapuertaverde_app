@@ -13,6 +13,7 @@ import { RadioButton } from '../../components/RadioButton/RadioButton'
 import { InputText } from '../../components/InputText/InputText'
 import { useForm } from 'react-hook-form'
 import { deleteService, get, patch, post } from '../../services/APIServices'
+import { TextArea } from '../../components/TextArea/TextArea'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -148,6 +149,16 @@ const CrearGrupo = () => {
               label: 'pago',
               width: '50px'
               // disabledElements: [options[2], options[0]]
+            }}
+          />
+          <TextArea
+            {...{
+              name: 'mensaje',
+              label: 'escribe tu mensaje',
+              flexDirection: 'column',
+              width: '300px',
+              height: '150px',
+              minLength: 3
             }}
           />
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
