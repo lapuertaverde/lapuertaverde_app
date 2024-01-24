@@ -9,7 +9,7 @@ const GridContainer = ({ consumerGroup, consumers, escritorio }) => {
   return (
     <aside className="asideContainer">
       {gruposDeConsumo && <GruposDeConsumo {...{ consumerGroup }} />}
-      {consumidores && <Consumidores {...{ consumers }} />}
+      {consumidores && consumers && <Consumidores {...{ consumers }} />}
       {hojasDeReparto && <HojasDeReparto />}
       {creargrupo && <CrearGrupo />}
     </aside>
