@@ -14,6 +14,9 @@ const Inicio = () => {
     const { status, data } = response
     if (status === 200) {
       navigate('escritorio')
+      const oldToken = sessionStorage.getItem('token')
+
+      if (oldToken) sessionStorage.removeItem('token')
       sessionStorage.setItem('token', data.info.data)
     }
   }
