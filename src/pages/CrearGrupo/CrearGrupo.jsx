@@ -13,10 +13,10 @@ import { RadioButton } from '../../components/RadioButton/RadioButton'
 import { InputText } from '../../components/InputText/InputText'
 
 import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
-
+import { GridLayout } from '../../layouts/GridLayout/GridLayout'
 import { useForm } from 'react-hook-form'
 import { deleteService, get, patch, post } from '../../services/APIServices'
-
+import { InputDate } from '../../components/InputDate/InputDate'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -155,7 +155,6 @@ const CrearGrupo = () => {
             }}
           />
 
-
           <GridLayout gridTemplateColumns="100px 100px" justifyContent="center">
             <p>Hola</p>
             <p>Pepe</p>
@@ -175,7 +174,7 @@ const CrearGrupo = () => {
             width="40%"
             required
           />
-
+          <InputDate {...{ name: 'date', label: 'date' }} />
 
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
