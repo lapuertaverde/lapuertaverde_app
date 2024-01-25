@@ -11,9 +11,14 @@ import Checkbox from '../../components/Checkbox/Checkbox'
 
 import { RadioButton } from '../../components/RadioButton/RadioButton'
 import { InputText } from '../../components/InputText/InputText'
+
+import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
+import { GridLayout } from '../../layouts/GridLayout/GridLayout'
+
 import { useForm } from 'react-hook-form'
 import { deleteService, get, patch, post } from '../../services/APIServices'
 import { TextArea } from '../../components/TextArea/TextArea'
+
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -151,6 +156,7 @@ const CrearGrupo = () => {
               // disabledElements: [options[2], options[0]]
             }}
           />
+
           <TextArea
             {...{
               name: 'mensaje',
@@ -161,6 +167,31 @@ const CrearGrupo = () => {
               minLength: 3
             }}
           />
+
+
+
+          <GridLayout gridTemplateColumns="100px 100px" justifyContent="center">
+            <p>Hola</p>
+            <p>Pepe</p>
+            <p>Phone</p>
+          </GridLayout>
+          <FlexLayout justifyContent="space-around">
+            <p>Hola</p>
+            <p>Pepe</p>
+            <p>Phone</p>
+          </FlexLayout>
+
+          <InputText
+            type="email"
+            label="password"
+            name="password"
+            placeholder="Enter you name"
+            width="40%"
+            required
+          />
+
+
+
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
           </button>

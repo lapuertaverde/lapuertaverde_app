@@ -15,7 +15,8 @@ const Escritorio = () => {
     creargrupo: false
   })
 
-  const { consumers, consumerGroup, setConsumerGroup, consumerGroups } = useEscritorioFetch()
+  const { consumers, consumerGroup, setConsumerGroup, consumerGroups } =
+    useEscritorioFetch(escritorio)
 
   return (
     <main className="mainContainer">
