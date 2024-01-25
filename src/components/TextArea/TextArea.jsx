@@ -48,8 +48,6 @@ export const TextArea = ({
               autoFocus,
               disabled,
               readOnly,
-              maxLength,
-              minLength,
               placeholder
             }}
             style={{ resize }}
