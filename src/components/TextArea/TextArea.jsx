@@ -39,7 +39,7 @@ export const TextArea = ({
       rules={textareaSchema({ name, label, required, maxLength, minLength })}
       render={({ field }) => (
         <div className={textArea_Box} style={{ flexDirection, width, height }}>
-          {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB }} />}
+          {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
           <textarea
             {...{
               id,
