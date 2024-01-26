@@ -18,7 +18,10 @@ export const get = (route) =>
 export const post = (route, values) =>
   axios
     .post(`http://localhost:8080/api/v1/${route}`, values, {
-      headers: { 'Content-Type': 'application/json', authorization: `Bearer ${getToken()}` }
+      headers: {
+        'Content-Type': 'application/json',
+        authorization: `Bearer ${route.includes('login') ? '' : getToken()}`
+      }
     })
     .then((res) => res)
     .catch((error) => console.log(error))
