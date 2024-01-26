@@ -1,6 +1,9 @@
 import axios from 'axios'
 
-const getToken = () => sessionStorage.getItem('token')
+const getToken = () => {
+  const { token } = JSON.parse(sessionStorage.getItem('token'))
+  return token
+}
 
 export const get = (route) =>
   axios
