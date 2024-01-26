@@ -13,7 +13,8 @@ export const InputText = ({
   flexDir,
   width,
   required,
-  onChange
+  onChange,
+  autoFocus
 }) => {
   const { id } = useId()
 
@@ -31,7 +32,7 @@ export const InputText = ({
         <div className={inputText_box} style={{ flexDirection: flexDir, width }}>
           {label && <label htmlFor={id}>{label}</label>}
           <input
-            {...{ id, placeholder }}
+            {...{ id, placeholder, autoFocus }}
             type={
               showPass || type === 'text'
                 ? 'text'
@@ -65,12 +66,14 @@ InputText.propTypes = {
   flexDir: oneOf(['row', 'row-reverse', 'column']),
   width: string,
   required: bool,
-  onChange: func
+  onChange: func,
+  autoFocus: bool
 }
 
 InputText.defaultProps = {
   name: 'input-text',
   type: 'text',
   flexDir: 'column',
-  required: false
+  required: false,
+  autoFocus: false
 }

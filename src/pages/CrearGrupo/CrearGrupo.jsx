@@ -13,10 +13,11 @@ import { RadioButton } from '../../components/RadioButton/RadioButton'
 import { InputText } from '../../components/InputText/InputText'
 
 import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
+import { GridLayout } from '../../layouts/GridLayout/GridLayout'
 
 import { useForm } from 'react-hook-form'
 import { deleteService, get, patch, post } from '../../services/APIServices'
-
+import { TextArea } from '../../components/TextArea/TextArea'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -155,6 +156,17 @@ const CrearGrupo = () => {
             }}
           />
 
+          <TextArea
+            {...{
+              name: 'mensaje',
+              label: 'escribe tu mensaje',
+              flexDirection: 'column',
+              width: '300px',
+              height: '150px',
+              minLength: 3
+            }}
+            required
+          />
 
           <GridLayout gridTemplateColumns="100px 100px" justifyContent="center">
             <p>Hola</p>
@@ -175,7 +187,6 @@ const CrearGrupo = () => {
             width="40%"
             required
           />
-
 
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
