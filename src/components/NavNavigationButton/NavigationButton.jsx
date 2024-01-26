@@ -4,6 +4,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 const NavigationButton = ({ text, onClick, options, onClickOption }) => {
   const [show, setShow] = useState(true)
+
   const [parent] = useAutoAnimate()
 
   return (
