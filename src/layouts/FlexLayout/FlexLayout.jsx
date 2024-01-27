@@ -39,7 +39,10 @@ FlexLayout.propTypes = {
   height: string,
   background: string,
   gap: string,
+  flexDirection: string,
   justifyContent: string,
+  alignItems: string,
+  flexWrap: string,
   padding: string
 }
 

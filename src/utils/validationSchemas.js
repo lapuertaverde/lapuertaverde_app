@@ -1,3 +1,5 @@
+import { dateFormat, formatDateToDDMMYYYY } from './dateFormat'
+
 export const numberSchema = ({ name, required, label, min, max }) => ({
   required: {
     value: required,
@@ -47,7 +49,7 @@ export const inputTextSchema = ({ name, label, required, type }) => ({
     message: `${label || name} is mandatory`
   },
   validate: (value) => {
-    if (type === 'email') {
+    if (required && type === 'email') {
       return isValidEmail(value) || `The email is not correct`
     }
   }
@@ -57,3 +59,21 @@ const isValidEmail = (email) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   return emailRegex.test(email)
 }
+
+export const inputDateSchema = ({ name, label, required, maxDate, minDate }) => ({
+  required: {
+    value: required,
+    message: `${label || name} is mandatory`
+  },
+  validate: (value) => {
+    let isCorrect = true
+    if (minDate && value < minDate) {
+      isCorrect = false
+      return isCorrect || `The minimum date is ${formatDateToDDMMYYYY(minDate)}`
+    }
+    if (maxDate && value > maxDate) {
+      isCorrect = false
+      return isCorrect || `The maximum date is ${formatDateToDDMMYYYY(maxDate)}`
+    }
+  }
+})

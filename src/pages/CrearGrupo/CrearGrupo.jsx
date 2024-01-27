@@ -17,6 +17,7 @@ import { GridLayout } from '../../layouts/GridLayout/GridLayout'
 import { useForm } from 'react-hook-form'
 import { deleteService, get, patch, post } from '../../services/APIServices'
 import { InputDate } from '../../components/InputDate/InputDate'
+import { dateFormat } from '../../utils/dateFormat'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -38,14 +39,22 @@ const CrearGrupo = () => {
     petardos: 'marron',
     toggle: false,
     opcion1: false,
-    pago: 'verde'
+    pago: 'verde',
+    date: dateFormat('01/02/2024')
   })
 
   const [openModal, setOpenModal] = useState(false)
   const [res, setRes] = useState('')
 
   const getDefaultValues = async () =>
-    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', opcion1: true, pago: 'verde' })
+    setDefaulValues({
+      edad: 13,
+      petardos: 'verde',
+      toggle: 'false',
+      opcion1: true,
+      pago: 'verde',
+      date: dateFormat('01/06/2024')
+    })
 
   useEffect(() => {
     getDefaultValues()
@@ -172,9 +181,19 @@ const CrearGrupo = () => {
             name="password"
             placeholder="Enter you name"
             width="40%"
-            required
           />
-          <InputDate {...{ name: 'date', label: 'date' }} />
+          <InputDate
+            {...{
+              name: 'date',
+              label: 'date',
+              justifyContent: 'start',
+              gap: '0.5rem',
+              alignItems: 'center',
+              maxDate: dateFormat('29/01/2024')
+            }}
+            required
+            borderB
+          />
 
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
