@@ -218,13 +218,13 @@ const CrearGrupo = () => {
         </button>
       </Modal>
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
-        <Fieldset id="fieldsetExample" legend=" CRUD TESTING:">
-          <Form
-            id="testingCrudForm"
-            {...{ methods }}
-            onError={(error) => console.log('error', error)}
-            onSubmit={(values) => handlePost(values)}
-          >
+        <Form
+          id="testingCrudForm"
+          {...{ methods }}
+          onError={(error) => console.log('error', error)}
+          onSubmit={(values) => handlePost(values)}
+        >
+          <Fieldset id="fieldsetExample" legend=" CRUD TESTING:">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ width: '395px' }}>
                 <InputText name="endpoint" label="Endpoint" required />
@@ -259,8 +259,8 @@ const CrearGrupo = () => {
 
               {res && <p style={{ fontVariant: 'historical-forms' }}>{res}</p>}
             </div>
-          </Form>
-        </Fieldset>
+          </Fieldset>
+        </Form>
       </div>
     </div>
   )
