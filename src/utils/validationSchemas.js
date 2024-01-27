@@ -1,4 +1,4 @@
-import { dateFormat, formatDateToDDMMYYYY } from './dateFormat'
+import { formatDateToDDMMYYYY } from './dateFormat'
 
 export const numberSchema = ({ name, required, label, min, max }) => ({
   required: {
@@ -60,6 +60,22 @@ const isValidEmail = (email) => {
   return emailRegex.test(email)
 }
 
+
+export const textareaSchema = ({ name, label, required, maxLength, minLength, readOnly }) => ({
+  required: {
+    value: required,
+    message: `${label || name} is mandatory`
+  },
+  maxLength: {
+    value: maxLength,
+    message: `The maximum number of characters for ${label || name} is ${maxLength}`
+  },
+  minLength: {
+    value: minLength,
+    message: `The minimum number of characters for ${label || name} is ${minLength}`
+  }
+})
+
 export const inputDateSchema = ({ name, label, required, maxDate, minDate }) => ({
   required: {
     value: required,
@@ -77,3 +93,4 @@ export const inputDateSchema = ({ name, label, required, maxDate, minDate }) => 
     }
   }
 })
+

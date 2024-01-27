@@ -14,10 +14,13 @@ import { InputText } from '../../components/InputText/InputText'
 
 import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
 import { GridLayout } from '../../layouts/GridLayout/GridLayout'
-import { useForm } from 'react-hook-form'
-import { deleteService, get, patch, post } from '../../services/APIServices'
+
 import { InputDate } from '../../components/InputDate/InputDate'
 import { dateFormat } from '../../utils/dateFormat'
+
+import { useForm } from 'react-hook-form'
+import { deleteService, get, patch, post } from '../../services/APIServices'
+import { TextArea } from '../../components/TextArea/TextArea'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -162,6 +165,18 @@ const CrearGrupo = () => {
               width: '50px'
               // disabledElements: [options[2], options[0]]
             }}
+          />
+
+          <TextArea
+            {...{
+              name: 'mensaje',
+              label: 'escribe tu mensaje',
+              flexDirection: 'column',
+              width: '300px',
+              height: '150px',
+              minLength: 3
+            }}
+            required
           />
 
           <GridLayout gridTemplateColumns="100px 100px" justifyContent="center">
