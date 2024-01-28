@@ -7,7 +7,9 @@ import {
   faMinus,
   faXmark,
   faEye,
-  faAsterisk
+  faAsterisk,
+  faCaretDown,
+  faCaretUp
 } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -26,7 +28,7 @@ const Icon = ({
   disabled,
   color
 }) => {
-  library.add(faKey, faUser, faPlus, faMinus, faXmark, faEye, faAsterisk)
+  library.add(faKey, faUser, faPlus, faMinus, faXmark, faEye, faAsterisk, faCaretDown, faCaretUp)
 
   return (
     icon && (

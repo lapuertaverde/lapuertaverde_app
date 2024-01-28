@@ -15,9 +15,13 @@ import { InputText } from '../../components/InputText/InputText'
 import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
 import { GridLayout } from '../../layouts/GridLayout/GridLayout'
 
+import { InputDate } from '../../components/InputDate/InputDate'
+import { dateFormat } from '../../utils/dateFormat'
+
 import { useForm } from 'react-hook-form'
 import { deleteService, get, patch, post } from '../../services/APIServices'
 import { TextArea } from '../../components/TextArea/TextArea'
+import Fieldset from '../../components/Fieldset/Fieldset'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -39,14 +43,22 @@ const CrearGrupo = () => {
     petardos: 'marron',
     toggle: false,
     opcion1: false,
-    pago: 'verde'
+    pago: 'verde',
+    date: dateFormat('01/02/2024')
   })
 
   const [openModal, setOpenModal] = useState(false)
   const [res, setRes] = useState('')
 
   const getDefaultValues = async () =>
-    setDefaulValues({ edad: 13, petardos: 'verde', toggle: 'false', opcion1: true, pago: 'verde' })
+    setDefaulValues({
+      edad: 13,
+      petardos: 'verde',
+      toggle: 'false',
+      opcion1: true,
+      pago: 'verde',
+      date: dateFormat('01/06/2024')
+    })
 
   useEffect(() => {
     getDefaultValues()
@@ -185,7 +197,18 @@ const CrearGrupo = () => {
             name="password"
             placeholder="Enter you name"
             width="40%"
+          />
+          <InputDate
+            {...{
+              name: 'date',
+              label: 'date',
+              justifyContent: 'start',
+              gap: '0.5rem',
+              alignItems: 'center',
+              maxDate: dateFormat('29/01/2024')
+            }}
             required
+            borderB
           />
 
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
@@ -217,45 +240,48 @@ const CrearGrupo = () => {
         </button>
       </Modal>
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
-        <span> CRUD TESTING: </span>
         <Form
           id="testingCrudForm"
           {...{ methods }}
           onError={(error) => console.log('error', error)}
           onSubmit={(values) => handlePost(values)}
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ width: '395px' }}>
-              <InputText name="endpoint" label="Endpoint" required />
-            </div>
-            <div style={{ display: 'flex', gap: '2rem' }}>
-              <button style={buttonCrudStyle} onClick={handleGet} {...{ type }}>
-                GetByIts...
-              </button>
-              <button style={buttonCrudStyle} onClick={handleDelete} {...{ type }}>
-                Delete
-              </button>
-            </div>
+          <Fieldset id="fieldsetExample" legend=" CRUD TESTING:">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ width: '395px' }}>
-                <InputText name="name" label="Name" max={100} required />
-                <InputText name="phone" label="Phone" max={100} required />
-                <InputText name="address" label="Address" max={100} required />
-                <InputText name="email" label="Email" max={100} type="email" required />
-                <InputText name="consumerGroup" label="Consumer Group" max={100} required />
-                <InputText name="CP" label="CP" max={100} required />
-                <InputNumber name="KgByDefault" label="kgByDefault" min={10} max={100} required />
-                <Switcher name="active" label="active" required />
-                <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem' }}>
-                  <button style={buttonCrudStyle}>Post</button>
-                  <button style={buttonCrudStyle} onClick={handlePatch} {...{ type }}>
-                    Patch
-                  </button>
+                <InputText name="endpoint" label="Endpoint" required />
+              </div>
+              <div style={{ display: 'flex', gap: '2rem' }}>
+                <button style={buttonCrudStyle} onClick={handleGet} {...{ type }}>
+                  GetByIts...
+                </button>
+                <button style={buttonCrudStyle} onClick={handleDelete} {...{ type }}>
+                  Delete
+                </button>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ width: '395px' }}>
+                  <InputText name="name" label="Name" max={100} required />
+                  <InputText name="phone" label="Phone" max={100} required />
+                  <InputText name="address" label="Address" max={100} required />
+                  <InputText name="email" label="Email" max={100} type="email" required />
+                  <InputText name="consumerGroup" label="Consumer Group" max={100} required />
+                  <InputText name="CP" label="CP" max={100} required />
+                  <InputNumber name="KgByDefault" label="kgByDefault" min={10} max={100} required />
+                  <Switcher name="active" label="active" required />
+                  <div style={{ display: 'flex', gap: '2rem', marginTop: '2rem' }}>
+                    <button style={buttonCrudStyle}>Post</button>
+                    <button style={buttonCrudStyle} onClick={handlePatch} {...{ type }}>
+                      Patch
+                    </button>
+                  </div>
                 </div>
               </div>
+
+              {res && <p style={{ fontVariant: 'historical-forms' }}>{res}</p>}
             </div>
-            {res && <p style={{ fontVariant: 'historical-forms' }}>{res}</p>}
-          </div>
+          </Fieldset>
         </Form>
       </div>
     </div>
