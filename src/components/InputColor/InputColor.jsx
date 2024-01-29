@@ -14,7 +14,6 @@ const InputColor = ({ name, id: inputId, label, disabled, onChange, required, va
       {...{ name }}
       rules={inputColorSchema({ name, label, required })}
       render={({ field, formState: { errors } }) => {
-        console.log('field', field)
         return (
           <div className={inputColorContainer}>
             {label && <label htmlFor={id}>{label}</label>}
