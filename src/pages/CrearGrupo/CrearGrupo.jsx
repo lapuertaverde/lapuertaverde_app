@@ -23,6 +23,7 @@ import { useForm } from 'react-hook-form'
 import { deleteService, get, patch, post } from '../../services/APIServices'
 import { TextArea } from '../../components/TextArea/TextArea'
 import Fieldset from '../../components/Fieldset/Fieldset'
+import { Tooltip } from '../../components/Tooltip/Tooltip'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -217,7 +218,9 @@ const CrearGrupo = () => {
             required
             borderB
           />
-
+          <Tooltip text="Tonto el que lea ñññññññññññññññ ñññññññññññññññ ññññññññññññññ ñññññññññ ññññññ ññññññññññññ">
+            <p>I</p>
+          </Tooltip>
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
           </button>
