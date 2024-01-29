@@ -1,0 +1,17 @@
+.fieldsetContainer {
+  width: max-content;
+  height: max-content;
+}
+
+.legendContainer {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.fieldset {
+  border: none;
+}
+
+.icon {
+  cursor: pointer;
+}
