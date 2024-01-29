@@ -15,6 +15,7 @@ const Inicio = () => {
     const { status, data } = response
     if (status === 200) {
       const { role } = data.info.data
+      console.log(data.info.data)
       sessionStorage.setItem('token', JSON.stringify(data.info.data))
       if (role === 'Admin') navigate('escritorio')
       if (role === 'Consumer') navigate('consumidor')
