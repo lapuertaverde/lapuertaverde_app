@@ -3,18 +3,29 @@ import { post } from '../../services/APIServices'
 import { useNavigate } from 'react-router-dom'
 import style from './inicio.module.scss'
 import Icon from '../../components/Icon/Icon'
+import { useEffect } from 'react'
 
 const Inicio = () => {
   const { handleSubmit, register } = useForm()
+
   const navigate = useNavigate()
+
   const onSubmit = async (values) => {
     const response = await post('user/login', values)
     const { status, data } = response
     if (status === 200) {
-      navigate('escritorio')
-      sessionStorage.setItem('token', data.info.data)
+      const { role } = data.info.data
+      sessionStorage.setItem('token', JSON.stringify(data.info.data))
+      if (role === 'Admin') navigate('escritorio')
+      if (role === 'Consumer') navigate('consumidor')
     }
   }
+
+  useEffect(() => {
+    const oldToken = sessionStorage.getItem('token')
+
+    if (oldToken) sessionStorage.removeItem('token')
+  }, [])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.loginForm} autoComplete="off">

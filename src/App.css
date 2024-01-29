@@ -16,7 +16,7 @@ body {
   margin: 0;
   box-sizing: border-box;
   background-color: rgb(159, 118, 246);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 button {
   all: unset;
