@@ -1,0 +1,34 @@
+.inputColorContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Espacio entre el label y el input */
+  }
+  
+  .inputColorContainer label {
+    font-size: 16px;
+  }
+  
+  .inputColorContainer input[type="color"] {
+    background:none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 30px; 
+    height: 30px; 
+    border: none;
+    padding: 0;
+    border-radius: 20%; 
+    transition: box-shadow 0.3s ease; 
+    cursor: pointer;
+  }
+  .inputColorContainer input[type="color"]::-webkit-color-swatch{
+    border:none;
+    border-radius: 20%;
+  }
+  .inputColorContainer input[type="color"]::-moz-color-swatch{
+    border:none;
+  }
+  
+  .inputColorContainer input[type="color"]:hover,
+  .inputColorContainer input[type="color"]:focus {
+    box-shadow: 0 0 0 3px rgba(226, 255, 245, 0.3);
+  }
