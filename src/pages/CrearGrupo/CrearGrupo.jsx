@@ -212,7 +212,7 @@ const CrearGrupo = () => {
             borderB
           />
           <Tooltip text="Tonto el que lea ñññññññññññññññ ñññññññññññññññ ññññññññññññññ ñññññññññ ññññññ ññññññññññññ">
-            <p>INFO</p>
+            <p>I</p>
           </Tooltip>
           <button style={{ cursor: 'pointer', border: '1px solid white', width: '52px' }}>
             SUBMIT
