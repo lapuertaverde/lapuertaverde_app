@@ -60,6 +60,7 @@ const isValidEmail = (email) => {
   return emailRegex.test(email)
 }
 
+
 export const textareaSchema = ({ name, label, required, maxLength, minLength, readOnly }) => ({
   required: {
     value: required,
@@ -93,9 +94,3 @@ export const inputDateSchema = ({ name, label, required, maxDate, minDate }) => 
   }
 })
 
-export const inputColorSchema = ({ name, label, required }) => ({
-  required: {
-    value: required,
-    message: `${label || name} is mandatory`
-  }
-})

@@ -1,4 +1,3 @@
-import InputColor from '../../components/InputColor/InputColor'
 import InputNumber from '../../components/InputNumber/InputNumber'
 import InputSelect from '../../components/InputSelect/InputSelect'
 
@@ -45,9 +44,7 @@ const CrearGrupo = () => {
     toggle: false,
     opcion1: false,
     pago: 'verde',
-    date: dateFormat('01/02/2024'),
-    example: '#00fc8f',
-    puto: '#190b38'
+    date: dateFormat('01/02/2024')
   })
 
   const [openModal, setOpenModal] = useState(false)
@@ -60,9 +57,7 @@ const CrearGrupo = () => {
       toggle: 'false',
       opcion1: true,
       pago: 'verde',
-      date: dateFormat('01/06/2024'),
-      example: '#ff0000',
-      puto: '#b4a4b6'
+      date: dateFormat('01/06/2024')
     })
 
   useEffect(() => {
@@ -155,8 +150,6 @@ const CrearGrupo = () => {
         onSubmit={(values) => console.log('onSubmit', values)}
       >
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-          <InputColor {...{ name: 'example', label: 'Elige tu color' }} />
-          <InputColor {...{ name: 'puto', label: 'Elige tu color' }} />
           <InputNumber name="edad" label="Edad" min={3} max={100} />
           <InputSelect
             {...{ options, name: 'petardos', label: 'color', maxOptions: 2 }}
