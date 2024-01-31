@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import style from './inicio.module.scss'
 import Icon from '../../components/Icon/Icon'
 import { useEffect } from 'react'
+import { toast } from 'react-toastify'
 
 const Inicio = () => {
   const { handleSubmit, register } = useForm()
@@ -12,8 +13,19 @@ const Inicio = () => {
 
   const onSubmit = async (values) => {
     const response = await post('user/login', values)
+    console.log(response)
     const { status, data } = response
     if (status === 200) {
+      // toast.success('Login is ok 👌', {
+      //   position: 'top-right',
+      //   autoClose: 1500,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: 'light'
+      // })
       const { role } = data.info.data
       sessionStorage.setItem('token', JSON.stringify(data.info.data))
       if (role === 'Admin') navigate('escritorio')
