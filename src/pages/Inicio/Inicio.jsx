@@ -16,16 +16,6 @@ const Inicio = () => {
     console.log(response)
     const { status, data } = response
     if (status === 200) {
-      // toast.success('Login is ok 👌', {
-      //   position: 'top-right',
-      //   autoClose: 1500,
-      //   hideProgressBar: false,
-      //   closeOnClick: true,
-      //   pauseOnHover: true,
-      //   draggable: true,
-      //   progress: undefined,
-      //   theme: 'light'
-      // })
       const { role } = data.info.data
       sessionStorage.setItem('token', JSON.stringify(data.info.data))
       if (role === 'Admin') navigate('escritorio')
