@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import style from './inicio.module.scss'
 import Icon from '../../components/Icon/Icon'
 import { useEffect } from 'react'
-import { toast } from 'react-toastify'
 
 const Inicio = () => {
   const { handleSubmit, register } = useForm()
