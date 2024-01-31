@@ -1,32 +1,27 @@
-import {string, array, bool,number,func} from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-
-/**
- * Primeros pasos componente button 
- * @param {*} param0 
- * @returns 
- */
-
-export const CustomButton = ({ texto, onClick, estilo }) => {
+const ButtonCustom = ({ texto, onClick, estilo, disabled, required }) => {
   return (
-    <button onClick={onClick} style={estilo}>
+    <button onClick={onClick} style={estilo} disabled={disabled} required={required}>
       {texto}
     </button>
-  )
-}
+  );
+};
 
-CustomButton.propTypes = {
-  texto: string.isRequired,
-  onClick: func
-}
+ButtonCustom.propTypes = {
+  texto: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+  estilo: PropTypes.object,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
+};
 
-CustomButton.defaultProps = {
-
-
+ButtonCustom.defaultProps = {
   disabled: false,
   required: false,
+};
 
-}
-
+export default ButtonCustom;
 
 

@@ -1,6 +1,7 @@
 import InputColor from '../../components/InputColor/InputColor'
 import InputNumber from '../../components/InputNumber/InputNumber'
 import InputSelect from '../../components/InputSelect/InputSelect'
+import { CustomButton } from '../../components/ButtonCustom'
 
 import Form from '../../components/Form/Form'
 import { useEffect, useState } from 'react'
@@ -249,6 +250,9 @@ const CrearGrupo = () => {
           OPEN MODAL
         </button>
       </Modal>
+
+      <CustomButton texto="hola que ase" />
+
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
         <Form
           id="testingCrudForm"
@@ -294,8 +298,12 @@ const CrearGrupo = () => {
           </Fieldset>
         </Form>
       </div>
+
     </div>
   )
 }
 
 export default CrearGrupo
+
+
+//probando
