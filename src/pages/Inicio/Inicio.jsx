@@ -13,7 +13,6 @@ const Inicio = () => {
 
   const onSubmit = async (values) => {
     const response = await post('user/login', values)
-    console.log(response)
     const { status, data } = response
     if (status === 200) {
       const { role } = data.info.data
