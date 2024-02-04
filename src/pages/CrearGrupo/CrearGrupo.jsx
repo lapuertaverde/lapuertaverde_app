@@ -1,7 +1,9 @@
 import InputColor from '../../components/InputColor/InputColor'
 import InputNumber from '../../components/InputNumber/InputNumber'
 import InputSelect from '../../components/InputSelect/InputSelect'
+
 import CustomButton from '../../components/ButtonCustom'
+
 
 import Form from '../../components/Form/Form'
 import { useEffect, useState } from 'react'
@@ -298,10 +300,12 @@ const CrearGrupo = () => {
           </Fieldset>
         </Form>
       </div>
+
     </div>
   )
 }
 
 export default CrearGrupo
+
 
 //probando
