@@ -4,6 +4,8 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { inputText_box, eye_box } from './inputText.module.scss'
 import Icon from '../Icon/Icon'
 import { inputTextSchema } from '../../utils/validationSchemas'
+import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
+import { LabelCustom } from '../Label/LabelCustom'
 
 export const InputText = ({
   name,
@@ -14,7 +16,10 @@ export const InputText = ({
   width,
   required,
   onChange,
-  autoFocus
+  autoFocus,
+  fontSize,
+  color,
+  borderB
 }) => {
   const { id } = useId()
 
@@ -30,7 +35,7 @@ export const InputText = ({
       rules={inputTextSchema({ name, label, required, type })}
       render={({ field }) => (
         <div className={inputText_box} style={{ flexDirection: flexDir, width }}>
-          {label && <label htmlFor={id}>{label}</label>}
+          {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
           <input
             {...{ id, placeholder, autoFocus }}
             type={
@@ -51,7 +56,7 @@ export const InputText = ({
               <Icon icon="eye" onClick={() => setshowPass(!showPass)} />
             </div>
           )}
-          {errors?.[name] && <span style={{ color: 'white' }}>{errors[name].message}</span>}
+          {errors?.[name] && <ErrorCustom error={errors[name].message} />}
         </div>
       )}
     />

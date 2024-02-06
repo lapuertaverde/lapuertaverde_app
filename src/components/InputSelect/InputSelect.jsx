@@ -4,6 +4,7 @@ import { useFormContext } from 'react-hook-form'
 import { custom_select } from './InputSelect.module.scss'
 import { selectSchema } from '../../utils/validationSchemas'
 import { LabelCustom } from '../Label/LabelCustom'
+import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
 
 const InputSelect = ({
   options,
@@ -39,7 +40,7 @@ const InputSelect = ({
           ) : null
         )}
       </select>
-      {errors[name] && <span style={{ color: 'white' }}>{errors[name].message}</span>}
+      {errors[name] && <ErrorCustom error={errors[name].message} />}
     </div>
   )
 }

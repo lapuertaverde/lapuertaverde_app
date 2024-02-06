@@ -10,8 +10,19 @@ import {
   toggle_switch_label_Medium,
   toggle_switch_label_Large
 } from './switcher.module.scss'
+import { LabelCustom } from '../Label/LabelCustom'
 
-export const Switcher = ({ name, label, disabled, onChange, size }) => {
+export const Switcher = ({
+  name,
+  label,
+  disabled,
+  onChange,
+  size,
+  fontSize,
+  color,
+  borderB,
+  required
+}) => {
   const { setValue } = useFormContext()
   const id = useId()
 
@@ -23,7 +34,9 @@ export const Switcher = ({ name, label, disabled, onChange, size }) => {
         if (field.value && field.value !== 'false') value = true
         return (
           <div className={switcher_box}>
-            {label && <label htmlFor={id}>{label}</label>}
+            {label && (
+              <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />
+            )}
             <input
               className={input_switcher}
               type="checkbox"
@@ -60,7 +73,8 @@ Switcher.prototype = {
   name: string.isRequired,
   onChange: func,
   disabled: bool,
-  size: oneOf(['small', 'medium', 'large'])
+  size: oneOf(['small', 'medium', 'large']),
+  required: bool
 }
 
 Switcher.defaultProps = {

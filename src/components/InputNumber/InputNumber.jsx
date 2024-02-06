@@ -4,8 +4,22 @@ import { Controller, useFormContext } from 'react-hook-form'
 import { numberSchema } from '../../utils/validationSchemas'
 import { inputContainer, inputControls } from './inputNumber.module.scss'
 import Icon from '../Icon/Icon'
+import { LabelCustom } from '../Label/LabelCustom'
+import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
 
-const InputNumber = ({ name, label, max, min, step, required, onChange, placeholder }) => {
+const InputNumber = ({
+  name,
+  label,
+  max,
+  min,
+  step,
+  required,
+  onChange,
+  placeholder,
+  fontSize,
+  color,
+  borderB
+}) => {
   const id = useId()
 
   const {
@@ -20,7 +34,7 @@ const InputNumber = ({ name, label, max, min, step, required, onChange, placehol
       rules={numberSchema({ required, label, min, max })}
       render={({ field }) => (
         <div className={inputContainer}>
-          {label && <label htmlFor={id}>{label}</label>}
+          {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
           <div style={{ display: 'flex', gap: '0.5rem', height: '13px' }}>
             <Icon
               icon="minus"
@@ -49,7 +63,7 @@ const InputNumber = ({ name, label, max, min, step, required, onChange, placehol
               }}
             />
           </div>
-          {errors?.[name] && <span style={{ color: 'white' }}>{errors[name].message}</span>}
+          {errors?.[name] && <ErrorCustom error={errors[name].message} />}
         </div>
       )}
     />
