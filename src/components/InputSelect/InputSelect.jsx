@@ -55,7 +55,10 @@ InputSelect.propTypes = {
   required: bool,
   multiple: bool,
   maxOptions: number,
-  onChange: func
+  onChange: func,
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
 InputSelect.defaultProps = {

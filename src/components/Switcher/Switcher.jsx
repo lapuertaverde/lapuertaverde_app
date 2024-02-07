@@ -74,7 +74,10 @@ Switcher.prototype = {
   onChange: func,
   disabled: bool,
   size: oneOf(['small', 'medium', 'large']),
-  required: bool
+  required: bool,
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
 Switcher.defaultProps = {

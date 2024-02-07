@@ -86,7 +86,10 @@ RadioButton.propTypes = {
   disabledElements: array,
   size: number,
   flexDir: string,
-  onChange: func
+  onChange: func,
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
 RadioButton.defaultProps = {

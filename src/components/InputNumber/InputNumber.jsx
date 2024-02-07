@@ -79,7 +79,10 @@ InputNumber.propTypes = {
   step: number,
   required: bool,
   onChange: func,
-  placeholder: string
+  placeholder: string,
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
 InputNumber.defaultProps = {

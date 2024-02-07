@@ -72,7 +72,10 @@ InputText.propTypes = {
   width: string,
   required: bool,
   onChange: func,
-  autoFocus: bool
+  autoFocus: bool,
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
 InputText.defaultProps = {
