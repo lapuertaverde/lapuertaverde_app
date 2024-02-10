@@ -1,10 +1,13 @@
-import { string, number, bool } from 'prop-types'
+import { string, number, bool, object } from 'prop-types'
 import { span_label } from './labelCustom.module.scss'
 import Icon from '../Icon/Icon'
 
-export const LabelCustom = ({ label, id, fontSize, color, borderB, required }) => {
+export const LabelCustom = ({ label, id, fontSize, color, borderB, required, style }) => {
   return (
-    <label htmlFor={id} style={{ fontSize, color, borderBottom: borderB && `1px solid ${color}` }}>
+    <label
+      htmlFor={id}
+      style={style || { fontSize, color, borderBottom: borderB && `1px solid ${color}` }}
+    >
       {required && <Icon icon="asterisk" style={{ color: '#d71d1d', width: '8px' }} />} {label}
     </label>
   )
@@ -15,7 +18,8 @@ LabelCustom.propTypes = {
   id: string || number,
   fontSize: string,
   color: string,
-  borderB: bool
+  borderB: bool,
+  style: object
 }
 
 LabelCustom.defaultProps = {

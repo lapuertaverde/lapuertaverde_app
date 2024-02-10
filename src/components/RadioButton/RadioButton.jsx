@@ -7,6 +7,7 @@ import {
   radioButton_section
 } from './radioButton.module.scss'
 import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
+import { LabelCustom } from '../Label/LabelCustom'
 
 export const RadioButton = ({
   name,
@@ -18,7 +19,10 @@ export const RadioButton = ({
   disabledElements,
   size,
   flexDir,
-  onChange
+  onChange,
+  fontSize,
+  color,
+  borderB
 }) => {
   return (
     <Controller
@@ -26,7 +30,7 @@ export const RadioButton = ({
       rules={radioButtonSchema({ name, label, required, disabledElements })}
       render={({ field, formState: { errors } }) => (
         <div className={radioButton_box}>
-          {label && <label>{label}</label>}
+          {label && <LabelCustom {...{ label, fontSize, color, borderB, required }} />}
           <div
             className={radioSection_container}
             style={{ flexDirection: flexDir, gap: flexDir === 'row' ? '1.5rem' : '1rem' }}
@@ -35,12 +39,16 @@ export const RadioButton = ({
               (element) =>
                 element && (
                   <section className={radioButton_section} key={element}>
-                    <label
-                      htmlFor={element}
-                      style={{ width, placeSelf: 'center', cursor: 'pointer' }}
-                    >
-                      {element}
-                    </label>
+                    <LabelCustom
+                      {...{
+                        label: element,
+                        htmlFor: element,
+                        fontSize,
+                        color,
+                        borderB
+                      }}
+                      style={{ width, placeSelf: 'center' }}
+                    />
                     <input
                       type="radio"
                       value={element}
@@ -78,7 +86,10 @@ RadioButton.propTypes = {
   disabledElements: array,
   size: number,
   flexDir: string,
-  onChange: func
+  onChange: func,
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
 RadioButton.defaultProps = {

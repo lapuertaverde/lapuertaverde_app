@@ -1,3 +1,23 @@
+> [!NOTE]
+> Aquí tienes una nota especial.
+
+> [!TIP]
+> Un consejo
+
+
+> [!IMPORTANT]
+> IMPORTANTE.
+
+> [!Warning]
+> Aviso!.
+
+> [!Caution]
+> Precaución.
+
+
+
+
+
 Hojas de reparto SEMANAL (para organizarse el dia de reparto y en base al resultado recalcular lo que le deben los consumidores).
 
 - fecha
