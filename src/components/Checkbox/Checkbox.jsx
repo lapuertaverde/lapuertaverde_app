@@ -3,8 +3,20 @@ import { useId } from 'react'
 import { Controller } from 'react-hook-form'
 
 import { checkboxContainer } from './checkbox.module.scss'
+import { LabelCustom } from '../Label/LabelCustom'
 
-const Checkbox = ({ name, id: inputId, label, disabled, onChange, variant }) => {
+const Checkbox = ({
+  name,
+  id: inputId,
+  label,
+  disabled,
+  onChange,
+  variant,
+  fontSize,
+  color,
+  borderB,
+  required
+}) => {
   const id = inputId || useId()
 
   return (
@@ -12,7 +24,7 @@ const Checkbox = ({ name, id: inputId, label, disabled, onChange, variant }) => 
       {...{ name }}
       render={({ field }) => (
         <div className={checkboxContainer} style={{ flexDirection: `${variant}` }}>
-          {label && <label htmlFor={inputId}>{label}</label>}
+          {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
           <input
             {...{ disabled, id }}
             type="checkbox"
@@ -33,7 +45,10 @@ Checkbox.propTypes = {
   label: string,
   disabled: bool,
   onChange: func,
-  variant: oneOf(['row', 'row-reverse', 'column'])
+  variant: oneOf(['row', 'row-reverse', 'column']),
+  fontSize: string,
+  color: string,
+  borderB: bool
 }
 
 Checkbox.defaultProps = {
