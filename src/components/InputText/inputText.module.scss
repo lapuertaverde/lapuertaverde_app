@@ -2,6 +2,8 @@
     display: flex;
     gap: 0.5rem;
     position: relative;
+    //** LauraStyles
+    font-family: "Ubuntu", sans-serif;
 }
 
 .eye_box{
@@ -12,3 +14,30 @@
     margin-top: 0.5rem;
     margin-right: 0.5rem;
 }
+
+//** LauraStyles
+.inputText_Custom_kill {
+    height: 2rem;
+    border-radius: 6px;
+    border: 0px;
+    outline: none;
+    padding-left: 0.5rem;
+    background: #FCFBF2;
+    transition: border 100ms ease-in, background-color 100ms ease-in;
+}
+
+.inputText_Custom_kill:focus{
+    border-color: #6c8d12;
+    outline: none;
+    box-shadow: #6c8d12 0px 0px 0px 2px;
+}
+
+.inputText_Custom_kill:hover {
+     border-color: #6c8d12;
+    outline: none;
+    box-shadow: #6c8d12 0px 0px 0px 2px;
+}
+
+// PALETA VERDE
+// https://huemint.com/brand-intersection/#palette=fcfbf2-91ad13-256c23-a6ce3a
+// https://huemint.com/brand-intersection/#palette=fcfbf2-6c8d12-256c23-bcd132

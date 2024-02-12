@@ -26,6 +26,7 @@ import { deleteService, get, patch, post } from '../../services/APIServices'
 import { TextArea } from '../../components/TextArea/TextArea'
 import Fieldset from '../../components/Fieldset/Fieldset'
 import { Tooltip } from '../../components/Tooltip/Tooltip'
+import { InputTextLaura } from '../../components/InputText/InputTextLaura'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -208,6 +209,13 @@ const CrearGrupo = () => {
             placeholder="Enter you name"
             width="40%"
           />
+          <InputTextLaura
+            type="password"
+            label="pruebaPass"
+            name="pruebaPass"
+            placeholder="Enter you pass"
+            width="40%"
+          />
           <InputDate
             {...{
               name: 'date',
@@ -253,8 +261,8 @@ const CrearGrupo = () => {
       </Modal>
 
       <Button text="click me" icon="plus" form="testingCrudForm" />
-      <Button text="click me"  form="testingCrudForm" />
-      <Button icon="eye"  form="testingCrudForm" />
+      <Button text="click me" form="testingCrudForm" />
+      <Button icon="eye" form="testingCrudForm" />
       <Button disabled text="click me" icon="plus" form="testingCrudForm" />
 
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
