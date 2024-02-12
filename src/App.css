@@ -17,6 +17,7 @@ body {
   box-sizing: border-box;
   background-color: rgb(159, 118, 246);
   overflow-x: hidden;
+  /* font-family: "Ubuntu", sans-serif; */
 }
 button {
   all: unset;
