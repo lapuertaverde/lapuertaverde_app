@@ -1,31 +1,31 @@
-import InputColor from '../../components/InputColor/InputColor'
-import InputNumber from '../../components/InputNumber/InputNumber'
-import InputSelect from '../../components/InputSelect/InputSelect'
+import InputColor from '../../../components/InputColor/InputColor'
+import InputNumber from '../../../components/InputNumber/InputNumber'
+import InputSelect from '../../../components/InputSelect/InputSelect'
 
-import Button from '../../components/Button/Button'
+import Button from '../../../components/Button/Button'
 
-import Form from '../../components/Form/Form'
+import Form from '../../../components/Form/Form'
 import { useEffect, useState } from 'react'
 
-import { Switcher } from '../../components/Switcher/Switcher'
+import { Switcher } from '../../../components/Switcher/Switcher'
 
-import Modal from '../../components/Modal/Modal'
-import Checkbox from '../../components/Checkbox/Checkbox'
+import Modal from '../../../components/Modal/Modal'
+import Checkbox from '../../../components/Checkbox/Checkbox'
 
-import { RadioButton } from '../../components/RadioButton/RadioButton'
-import { InputText } from '../../components/InputText/InputText'
+import { RadioButton } from '../../../components/RadioButton/RadioButton'
+import { InputText } from '../../../components/InputText/InputText'
 
-import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
-import { GridLayout } from '../../layouts/GridLayout/GridLayout'
+import { FlexLayout } from '../../../layouts/FlexLayout/FlexLayout'
+import { GridLayout } from '../../../layouts/GridLayout/GridLayout'
 
-import { InputDate } from '../../components/InputDate/InputDate'
-import { dateFormat } from '../../utils/dateFormat'
+import { InputDate } from '../../../components/InputDate/InputDate'
+import { dateFormat } from '../../../utils/dateFormat'
 
 import { useForm } from 'react-hook-form'
-import { deleteService, get, patch, post } from '../../services/APIServices'
-import { TextArea } from '../../components/TextArea/TextArea'
-import Fieldset from '../../components/Fieldset/Fieldset'
-import { Tooltip } from '../../components/Tooltip/Tooltip'
+import { deleteService, get, patch, post } from '../../../services/APIServices'
+import { TextArea } from '../../../components/TextArea/TextArea'
+import Fieldset from '../../../components/Fieldset/Fieldset'
+import { Tooltip } from '../../../components/Tooltip/Tooltip'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -253,8 +253,8 @@ const CrearGrupo = () => {
       </Modal>
 
       <Button text="click me" icon="plus" form="testingCrudForm" />
-      <Button text="click me"  form="testingCrudForm" />
-      <Button icon="eye"  form="testingCrudForm" />
+      <Button text="click me" form="testingCrudForm" />
+      <Button icon="eye" form="testingCrudForm" />
       <Button disabled text="click me" icon="plus" form="testingCrudForm" />
 
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>

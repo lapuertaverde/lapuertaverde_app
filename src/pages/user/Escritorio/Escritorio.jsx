@@ -1,6 +1,6 @@
 import { useState, useEffect, Suspense, lazy } from 'react'
-import Nav from '../../components/Nav/Nav'
-import Loading from '../../components/Loading/Loading'
+import Nav from '../../../components/Nav/Nav'
+import Loading from '../../../components/Loading/Loading'
 
 import useEscritorioFetch from './useEscritorioFetch'
 import './Escritorio.css'

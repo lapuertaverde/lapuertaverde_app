@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { get } from '../../services/APIServices'
+import { get } from '../../../services/APIServices'
 
 const useEscritorioFetch = (escritorio) => {
   const [consumers, setConsumers] = useState([])
