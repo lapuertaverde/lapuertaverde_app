@@ -103,7 +103,7 @@ const CrearGrupo = () => {
     console.log('DELETE', response)
   }
 
-  const [openAlert, setOpenAlert] = useState(false)
+  const [alert, setAlert] = useState({ open: false })
 
   const handlePost = async ({
     endpoint,
@@ -130,9 +130,8 @@ const CrearGrupo = () => {
         active
       })
       setRes(JSON.stringify(response))
-    } catch (error) {
-      console.log(error)
-      setOpenAlert(true)
+    } catch ({ response: { statusText, status }, message, code }) {
+      setAlert({ open: true, title: `${statusText} ${code}`, message, type: 'error' })
     }
   }
 
@@ -261,9 +260,19 @@ const CrearGrupo = () => {
 
       <Button text="click me" icon="plus" form="testingCrudForm" />
 
-      <Button text="click me" onClick={() => setOpenAlert(true)} />
+      <Button
+        text="click me"
+        onClick={() =>
+          setAlert({
+            open: true,
+            message: 'Hi from the click me button',
+            title: 'Title',
+            type: 'success'
+          })
+        }
+      />
 
-      <AlertMessage {...{ openAlert, setOpenAlert }} />
+      <AlertMessage {...{ alert, setAlert }} />
 
       <Button icon="eye" form="testingCrudForm" />
 

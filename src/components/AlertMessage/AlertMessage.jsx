@@ -2,9 +2,20 @@ import { createPortal } from 'react-dom'
 
 import Icon from '../Icon/Icon'
 
-const AlertMessage = ({ openAlert, setOpenAlert }) => {
+const AlertMessage = ({ alert, setAlert }) => {
+  const { open, message, title, type } = alert
+
+  const types = {
+    error: { icon: 'xmark', color: 'red' },
+    success: { icon: 'thumbs-up', color: 'green' },
+    warn: { icon: 'triangle-exclamation', color: 'orange' }
+  }
+
+  const icon = type ? types[type].icon : 'xmark'
+  const color = type ? types[type].color : 'red'
+
   return (
-    openAlert &&
+    open &&
     createPortal(
       <div
         style={{
@@ -39,11 +50,11 @@ const AlertMessage = ({ openAlert, setOpenAlert }) => {
                 padding: '5px'
               }}
             >
-              <span></span>
+              <span>{title || ''}</span>
               <Icon
                 icon="xmark"
                 style={{ cursor: 'pointer' }}
-                callback={() => setOpenAlert(false)}
+                callback={() => setAlert({ open: false })}
               />
             </div>
 
@@ -59,12 +70,9 @@ const AlertMessage = ({ openAlert, setOpenAlert }) => {
               }}
             >
               <div style={{ width: '100px', height: '100px' }}>
-                <Icon
-                  icon="clipboard-check"
-                  style={{ width: '100%', height: '100%', color: 'green' }}
-                />
+                <Icon {...{ icon }} style={{ width: '100%', height: '100%', color }} />
               </div>
-              <div>Alert Message</div>
+              <div>{message || ''}</div>
             </div>
           </div>
         </div>

@@ -26,26 +26,26 @@ export const post = async (route, values) => {
       }
     })
     .then((res) => {
-      toast.update(id, {
-        render: res.data.info.message,
-        type: 'success',
-        isLoading: false,
-        autoClose: 1500
-      })
+      // toast.update(id, {
+      //   render: res.data.info.message,
+      //   type: 'success',
+      //   isLoading: false,
+      //   autoClose: 1500
+      // })
 
       return res
     })
-    .catch((error) => {
-      console.log(error)
-      toast.update(id, {
-        render: error.response?.data?.info?.message,
-        type: 'error',
-        isLoading: false,
-        autoClose: 1500
-      })
+  // .catch((error) => {
 
-      return error
-    })
+  //   toast.update(id, {
+  //     render: error.response?.data?.info?.message,
+  //     type: 'error',
+  //     isLoading: false,
+  //     autoClose: 1500
+  //   })
+
+  //   return error
+  // })
 }
 
 export const patch = (route, values) =>
