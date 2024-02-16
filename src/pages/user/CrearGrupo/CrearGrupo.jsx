@@ -22,10 +22,12 @@ import { InputDate } from '../../../components/InputDate/InputDate'
 import { dateFormat } from '../../../utils/dateFormat'
 
 import { useForm } from 'react-hook-form'
+
 import { deleteService, get, patch, post } from '../../../services/APIServices'
 import { TextArea } from '../../../components/TextArea/TextArea'
 import Fieldset from '../../../components/Fieldset/Fieldset'
 import { Tooltip } from '../../../components/Tooltip/Tooltip'
+import AlertMessage from '../../../components/AlertMessage/AlertMessage'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -101,6 +103,9 @@ const CrearGrupo = () => {
 
     console.log('DELETE', response)
   }
+
+  const [alert, setAlert] = useState({ open: false })
+
   const handlePost = async ({
     endpoint,
     name,
@@ -112,21 +117,23 @@ const CrearGrupo = () => {
     KgByDefault,
     active
   }) => {
-    const response = await post(endpoint, {
-      weeklyLog: [],
-      monthlyBills: [],
-      name,
-      email,
-      phone,
-      consumerGroup,
-      address,
-      CP,
-      KgByDefault,
-      active
-    })
-    setRes(JSON.stringify(response))
-
-    console.log('POST', response)
+    try {
+      const response = await post(endpoint, {
+        weeklyLog: [],
+        monthlyBills: [],
+        name,
+        email,
+        phone,
+        consumerGroup,
+        address,
+        CP,
+        KgByDefault,
+        active
+      })
+      setRes(JSON.stringify(response))
+    } catch ({ response: { statusText, status }, message, code }) {
+      setAlert({ open: true, title: `${statusText} ${code}`, message, type: 'error' })
+    }
   }
 
   const handlePatch = async () => {
@@ -253,8 +260,29 @@ const CrearGrupo = () => {
       </Modal>
 
       <Button text="click me" icon="plus" form="testingCrudForm" />
-      <Button text="click me" form="testingCrudForm" />
-      <Button icon="eye" form="testingCrudForm" />
+
+      <Button
+        text="click me"
+        onClick={() =>
+          setAlert({
+            open: true,
+            message: 'Hi from the click me button',
+            title: 'Title',
+            type: 'success'
+          })
+        }
+      />
+
+      <AlertMessage {...{ alert, setAlert }} />
+
+      <Button
+        icon="eye"
+        type="button"
+        onClick={() =>
+          setAlert({ title: 'HI SALAOS', message: 'Hi from eye button', type: 'warn', open: true })
+        }
+      />
+
       <Button disabled text="click me" icon="plus" form="testingCrudForm" />
 
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
