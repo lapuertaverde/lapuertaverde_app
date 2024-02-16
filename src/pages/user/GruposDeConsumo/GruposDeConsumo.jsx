@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import Grid from '../../components/Grid/Grid'
+import Grid from '../../../components/Grid/Grid'
 
 const GruposDeConsumo = ({ consumerGroup }) => {
   const ref = useRef(null)
