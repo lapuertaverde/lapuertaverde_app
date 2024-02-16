@@ -23,11 +23,11 @@ import { dateFormat } from '../../../utils/dateFormat'
 
 import { useForm } from 'react-hook-form'
 
-import { deleteService, get, patch, post } from '../../services/APIServices'
-import { TextArea } from '../../components/TextArea/TextArea'
-import Fieldset from '../../components/Fieldset/Fieldset'
-import { Tooltip } from '../../components/Tooltip/Tooltip'
-import AlertMessage from '../../components/AlertMessage/AlertMessage'
+import { deleteService, get, patch, post } from '../../../services/APIServices'
+import { TextArea } from '../../../components/TextArea/TextArea'
+import Fieldset from '../../../components/Fieldset/Fieldset'
+import { Tooltip } from '../../../components/Tooltip/Tooltip'
+import AlertMessage from '../../../components/AlertMessage/AlertMessage'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
