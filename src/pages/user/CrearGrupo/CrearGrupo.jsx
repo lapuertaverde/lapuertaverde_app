@@ -1,27 +1,28 @@
-import InputColor from '../../components/InputColor/InputColor'
-import InputNumber from '../../components/InputNumber/InputNumber'
-import InputSelect from '../../components/InputSelect/InputSelect'
+import InputColor from '../../../components/InputColor/InputColor'
+import InputNumber from '../../../components/InputNumber/InputNumber'
+import InputSelect from '../../../components/InputSelect/InputSelect'
 
-import Button from '../../components/Button/Button'
+import Button from '../../../components/Button/Button'
 
-import Form from '../../components/Form/Form'
+import Form from '../../../components/Form/Form'
 import { useEffect, useState } from 'react'
 
-import { Switcher } from '../../components/Switcher/Switcher'
+import { Switcher } from '../../../components/Switcher/Switcher'
 
-import Modal from '../../components/Modal/Modal'
-import Checkbox from '../../components/Checkbox/Checkbox'
+import Modal from '../../../components/Modal/Modal'
+import Checkbox from '../../../components/Checkbox/Checkbox'
 
-import { RadioButton } from '../../components/RadioButton/RadioButton'
-import { InputText } from '../../components/InputText/InputText'
+import { RadioButton } from '../../../components/RadioButton/RadioButton'
+import { InputText } from '../../../components/InputText/InputText'
 
-import { FlexLayout } from '../../layouts/FlexLayout/FlexLayout'
-import { GridLayout } from '../../layouts/GridLayout/GridLayout'
+import { FlexLayout } from '../../../layouts/FlexLayout/FlexLayout'
+import { GridLayout } from '../../../layouts/GridLayout/GridLayout'
 
-import { InputDate } from '../../components/InputDate/InputDate'
-import { dateFormat } from '../../utils/dateFormat'
+import { InputDate } from '../../../components/InputDate/InputDate'
+import { dateFormat } from '../../../utils/dateFormat'
 
 import { useForm } from 'react-hook-form'
+
 import { deleteService, get, patch, post } from '../../services/APIServices'
 import { TextArea } from '../../components/TextArea/TextArea'
 import Fieldset from '../../components/Fieldset/Fieldset'
@@ -276,7 +277,6 @@ const CrearGrupo = () => {
 
       <Button
         icon="eye"
-        form="testingCrudForm"
         type="button"
         onClick={() =>
           setAlert({ title: 'HI SALAOS', message: 'Hi from eye button', type: 'warn', open: true })
