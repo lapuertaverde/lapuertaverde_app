@@ -1,0 +1,22 @@
+.maskContainer {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 999999999;
+  background-color: hsl(0.75turn, 100%, 50%, 0.5);
+  top: 0;
+  left: 0;
+}
+
+.modalContainer {
+  width: 700px;
+  height: 300px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 8px;
+}

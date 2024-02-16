@@ -1,0 +1,57 @@
+.headerContainer {
+  display: flex;
+  height: 3rem;
+  justify-content: space-between;
+  width: 100%;
+  padding: '5px 10px';
+}
+
+.titleStyle {
+  font: 2rem gray;
+  font-variant: historical-ligatures;
+}
+
+.closeIcon {
+  cursor: pointer;
+  height: 100%;
+  color: gray;
+}
+.closeIcon:hover {
+  color: violet;
+}
+
+.mainContainer {
+  width: 600px;
+  height: 300px;
+  background-color: white;
+  display: flex;
+  gap: 0.9rem;
+  padding: 2rem;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.mainIconContainer {
+  width: 100px;
+  height: 100px;
+}
+
+.mainIcon {
+  width: 100%;
+  height: 100%;
+}
+
+.messageContainer {
+  font: 1.3rem gray;
+  font-variant: historical-ligatures;
+  flex: 1;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 5px;
+  height: 3rem;
+}
