@@ -17,7 +17,6 @@ export const get = (route) =>
     .catch((error) => console.log(error))
 
 export const post = async (route, values) => {
-  const id = toast.loading('Please wait...')
   return axios
     .post(`http://localhost:8080/api/v1/${route}`, values, {
       headers: {
@@ -25,27 +24,7 @@ export const post = async (route, values) => {
         authorization: `Bearer ${route?.includes('login') ? '' : getToken()}`
       }
     })
-    .then((res) => {
-      // toast.update(id, {
-      //   render: res.data.info.message,
-      //   type: 'success',
-      //   isLoading: false,
-      //   autoClose: 1500
-      // })
-
-      return res
-    })
-  // .catch((error) => {
-
-  //   toast.update(id, {
-  //     render: error.response?.data?.info?.message,
-  //     type: 'error',
-  //     isLoading: false,
-  //     autoClose: 1500
-  //   })
-
-  //   return error
-  // })
+    .then((res) => res)
 }
 
 export const patch = (route, values) =>

@@ -34,9 +34,9 @@ const Inicio = () => {
           <Icon icon="user" color="white" />
           <input
             type="text"
-            {...register('name')}
-            name="name"
-            placeholder="User name"
+            {...register('email')}
+            name="email"
+            placeholder="User email"
             style={{ padding: '0.4rem', borderRadius: '4px' }}
             autoFocus
             autoComplete="off"
