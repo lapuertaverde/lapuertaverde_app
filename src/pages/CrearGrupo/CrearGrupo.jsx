@@ -274,7 +274,14 @@ const CrearGrupo = () => {
 
       <AlertMessage {...{ alert, setAlert }} />
 
-      <Button icon="eye" form="testingCrudForm" />
+      <Button
+        icon="eye"
+        form="testingCrudForm"
+        type="button"
+        onClick={() =>
+          setAlert({ title: 'HI SALAOS', message: 'Hi from eye button', type: 'warn', open: true })
+        }
+      />
 
       <Button disabled text="click me" icon="plus" form="testingCrudForm" />
 
