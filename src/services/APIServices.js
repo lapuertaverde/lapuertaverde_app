@@ -22,7 +22,7 @@ export const post = async (route, values) => {
     .post(`http://localhost:8080/api/v1/${route}`, values, {
       headers: {
         'Content-Type': 'application/json',
-        authorization: `Bearer ${route.includes('login') ? '' : getToken()}`
+        authorization: `Bearer ${route?.includes('login') ? '' : getToken()}`
       }
     })
     .then((res) => {

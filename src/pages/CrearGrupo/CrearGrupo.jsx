@@ -26,6 +26,7 @@ import { deleteService, get, patch, post } from '../../services/APIServices'
 import { TextArea } from '../../components/TextArea/TextArea'
 import Fieldset from '../../components/Fieldset/Fieldset'
 import { Tooltip } from '../../components/Tooltip/Tooltip'
+import AlertMessage from '../../components/AlertMessage/AlertMessage'
 
 const options = ['verde', 'marron', 'azul', undefined]
 
@@ -101,6 +102,9 @@ const CrearGrupo = () => {
 
     console.log('DELETE', response)
   }
+
+  const [openAlert, setOpenAlert] = useState(false)
+
   const handlePost = async ({
     endpoint,
     name,
@@ -112,21 +116,24 @@ const CrearGrupo = () => {
     KgByDefault,
     active
   }) => {
-    const response = await post(endpoint, {
-      weeklyLog: [],
-      monthlyBills: [],
-      name,
-      email,
-      phone,
-      consumerGroup,
-      address,
-      CP,
-      KgByDefault,
-      active
-    })
-    setRes(JSON.stringify(response))
-
-    console.log('POST', response)
+    try {
+      const response = await post(endpoint, {
+        weeklyLog: [],
+        monthlyBills: [],
+        name,
+        email,
+        phone,
+        consumerGroup,
+        address,
+        CP,
+        KgByDefault,
+        active
+      })
+      setRes(JSON.stringify(response))
+    } catch (error) {
+      console.log(error)
+      setOpenAlert(true)
+    }
   }
 
   const handlePatch = async () => {
@@ -253,8 +260,13 @@ const CrearGrupo = () => {
       </Modal>
 
       <Button text="click me" icon="plus" form="testingCrudForm" />
-      <Button text="click me"  form="testingCrudForm" />
-      <Button icon="eye"  form="testingCrudForm" />
+
+      <Button text="click me" onClick={() => setOpenAlert(true)} />
+
+      <AlertMessage {...{ openAlert, setOpenAlert }} />
+
+      <Button icon="eye" form="testingCrudForm" />
+
       <Button disabled text="click me" icon="plus" form="testingCrudForm" />
 
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
