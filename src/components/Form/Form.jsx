@@ -16,6 +16,7 @@ const Form = ({
   className
 }) => {
   const methods = propMethods || useForm({ defaultValues, mode: mode || 'onChange' })
+
   const defaultId = useId()
   const { handleSubmit, reset } = methods
 

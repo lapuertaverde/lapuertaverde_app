@@ -1,7 +1,7 @@
 import { string, oneOf, bool, func } from 'prop-types'
 import { useId, useState } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { inputText_box, eye_box } from './inputText.module.scss'
+import { inputText_box, eye_box, inputText_error, inputText } from './inputText.module.scss'
 import Icon from '../Icon/Icon'
 import { inputTextSchema } from '../../utils/validationSchemas'
 import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
@@ -19,7 +19,9 @@ export const InputText = ({
   autoFocus,
   fontSize,
   color,
-  borderB
+  borderB,
+  readOnly,
+  disabled
 }) => {
   const { id } = useId()
 
@@ -37,7 +39,8 @@ export const InputText = ({
         <div className={inputText_box} style={{ flexDirection: flexDir, width }}>
           {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
           <input
-            {...{ id, placeholder, autoFocus }}
+            className={`${inputText} ${errors?.[name] ? inputText_error : ''}`}
+            {...{ id, placeholder, autoFocus, readOnly, disabled }}
             type={
               showPass || type === 'text'
                 ? 'text'

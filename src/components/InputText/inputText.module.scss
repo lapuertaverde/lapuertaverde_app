@@ -1,14 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
 .inputText_box {
-    display: flex;
-    gap: 0.5rem;
-    position: relative;
+  display: flex;
+  gap: 0.5rem;
+  position: relative;
 }
 
-.eye_box{
-    position: absolute;
-    right: 0;
-    transform: translateY(-50%);
-    cursor: pointer;
-    margin-top: 0.5rem;
-    margin-right: 0.5rem;
+.eye_box {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  cursor: pointer;
+  margin-top: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.inputText {
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  font-style: normal;
+  padding: 0.3rem;
+  outline: 0;
+  border: 1px solid rgb(11, 113, 247);
+  border-radius: 0.2rem;
+  height: 2rem;
+}
+
+.inputText:hover {
+  border: 1px solid rgb(78, 129, 240);
+}
+
+.inputText:active {
+  border: 1px solid rgb(78, 129, 240);
+}
+
+.inputText:disabled,
+.inputText:read-only {
+  border-radius: 0;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  border-bottom: 1px solid rgb(78, 129, 240);
+}
+
+.inputText_error {
+  border: 1px solid rgb(223, 7, 169);
 }
