@@ -5,7 +5,8 @@ import { numberSchema } from '../../utils/validationSchemas'
 import { inputContainer, inputControls } from './inputNumber.module.scss'
 import Icon from '../Icon/Icon'
 import { LabelCustom } from '../Label/LabelCustom'
-import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
+
+import { Tooltip } from '../Tooltip/Tooltip'
 
 const InputNumber = ({
   name,
@@ -33,38 +34,41 @@ const InputNumber = ({
       {...{ name }}
       rules={numberSchema({ required, label, min, max })}
       render={({ field }) => (
-        <div className={inputContainer}>
-          {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
-          <div style={{ display: 'flex', gap: '0.5rem', height: '13px' }}>
-            <Icon
-              icon="minus"
-              className={inputControls}
-              onClick={() => {
-                if (getValues(name) <= min) setValue(name, min)
-                else setValue(name, Number(getValues(name) - step))
-              }}
-            />
-            <input
-              {...{ id, max, min, step, placeholder }}
-              type="number"
-              value={field.value}
-              onChange={(e) => {
-                if (typeof onChange === 'function') onChange(e)
+        <Tooltip text={errors?.[name]?.message}>
+          <div className={inputContainer}>
+            {label && (
+              <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />
+            )}
+            <div style={{ display: 'flex', gap: '0.5rem', height: '13px' }}>
+              <Icon
+                icon="minus"
+                className={inputControls}
+                onClick={() => {
+                  if (getValues(name) <= min) setValue(name, min)
+                  else setValue(name, Number(getValues(name) - step))
+                }}
+              />
+              <input
+                {...{ id, max, min, step, placeholder }}
+                type="number"
+                value={field.value}
+                onChange={(e) => {
+                  if (typeof onChange === 'function') onChange(e)
 
-                field.onChange(e)
-              }}
-            />
-            <Icon
-              icon="plus"
-              className={inputControls}
-              onClick={() => {
-                if (getValues(name) >= max) setValue(name, max)
-                else setValue(name, Number(getValues(name) + step))
-              }}
-            />
+                  field.onChange(e)
+                }}
+              />
+              <Icon
+                icon="plus"
+                className={inputControls}
+                onClick={() => {
+                  if (getValues(name) >= max) setValue(name, max)
+                  else setValue(name, Number(getValues(name) + step))
+                }}
+              />
+            </div>
           </div>
-          {errors?.[name] && <ErrorCustom error={errors[name].message} />}
-        </div>
+        </Tooltip>
       )}
     />
   )

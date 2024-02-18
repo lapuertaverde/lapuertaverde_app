@@ -6,6 +6,7 @@ import { textArea_Box, textArea_Custom } from './textArea.module.scss'
 import { Controller, useFormContext } from 'react-hook-form'
 import { textareaSchema } from '../../utils/validationSchemas'
 import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
+import { Tooltip } from '../Tooltip/Tooltip'
 
 export const TextArea = ({
   name,
@@ -29,37 +30,34 @@ export const TextArea = ({
   borderB
 }) => {
   const { id } = useId()
-  const {
-    formState: { errors }
-  } = useFormContext()
 
   return (
     <Controller
       {...{ name }}
       rules={textareaSchema({ name, label, required, maxLength, minLength })}
-      render={({ field }) => (
+      render={({ field, formState: { errors } }) => (
         <div className={textArea_Box} style={{ flexDirection, width, height }}>
           {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
-          <textarea
-            {...{
-              id,
-              autoCapitalize,
-              autoComplete,
-              autoFocus,
-              disabled,
-              readOnly,
-              placeholder
-            }}
-            style={{ resize }}
-            className={textArea_Custom}
-            value={field.value}
-            onChange={(e) => {
-              if (typeof onChange === 'function') onChange(e)
-              field.onChange(e)
-            }}
-          ></textarea>
-          {errors[name] && <ErrorCustom error={errors[name].message} />}
-          {readOnly && <ErrorCustom error="read-only field" />}
+          <Tooltip text={errors?.[name]?.message}>
+            <textarea
+              {...{
+                id,
+                autoCapitalize,
+                autoComplete,
+                autoFocus,
+                disabled,
+                readOnly,
+                placeholder
+              }}
+              style={{ resize }}
+              className={textArea_Custom}
+              value={field.value}
+              onChange={(e) => {
+                if (typeof onChange === 'function') onChange(e)
+                field.onChange(e)
+              }}
+            />
+          </Tooltip>
         </div>
       )}
     />
