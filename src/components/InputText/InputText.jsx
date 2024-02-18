@@ -20,7 +20,8 @@ export const InputText = ({
   fontSize,
   color,
   borderB,
-  readOnly
+  readOnly,
+  disabled
 }) => {
   const { id } = useId()
 
@@ -39,7 +40,7 @@ export const InputText = ({
           {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
           <input
             className={`${inputText} ${errors?.[name] ? inputText_error : ''}`}
-            {...{ id, placeholder, autoFocus, readOnly }}
+            {...{ id, placeholder, autoFocus, readOnly, disabled }}
             type={
               showPass || type === 'text'
                 ? 'text'

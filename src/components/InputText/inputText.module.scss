@@ -34,6 +34,7 @@
   border: 1px solid rgb(78, 129, 240);
 }
 
+.inputText:disabled,
 .inputText:read-only {
   border-radius: 0;
   border-top: 1px solid transparent;
