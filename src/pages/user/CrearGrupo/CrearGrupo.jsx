@@ -83,6 +83,7 @@ const CrearGrupo = () => {
 
   const methods = useForm({
     defaultValues: {
+      readOnlyVariant: 'read-only Variant',
       endpoint: 'consumer',
       consumerGroup: 'PATIO MARAVILLAS',
       KgByDefault: 13,
@@ -286,13 +287,13 @@ const CrearGrupo = () => {
       <Button disabled text="click me" icon="plus" form="testingCrudForm" />
 
       <div style={{ marginTop: '2rem', fontVariant: 'small-caps' }}>
-        <Form
-          id="testingCrudForm"
-          {...{ methods }}
-          onError={(error) => console.log('error', error)}
-          onSubmit={(values) => handlePost(values)}
-        >
-          <Fieldset id="fieldsetExample" legend=" CRUD TESTING:">
+        <Fieldset id="fieldsetExample" legend=" CRUD TESTING:">
+          <Form
+            id="testingCrudForm"
+            {...{ methods }}
+            onError={(error) => console.log('error', error)}
+            onSubmit={(values) => handlePost(values)}
+          >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div style={{ width: '395px' }}>
                 <InputText name="endpoint" label="Endpoint" required />
@@ -308,6 +309,7 @@ const CrearGrupo = () => {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <div style={{ width: '395px' }}>
+                  <InputText name="readOnlyVariant" readOnly label="Read only Example" />
                   <InputText name="name" label="Name" max={100} required />
                   <InputText name="phone" label="Phone" max={100} required />
                   <InputText name="address" label="Address" max={100} required />
@@ -327,8 +329,8 @@ const CrearGrupo = () => {
 
               {res && <p style={{ fontVariant: 'historical-forms' }}>{res}</p>}
             </div>
-          </Fieldset>
-        </Form>
+          </Form>
+        </Fieldset>
       </div>
     </div>
   )
