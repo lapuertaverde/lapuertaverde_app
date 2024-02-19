@@ -1,11 +1,11 @@
 import { string, oneOf, bool, func } from 'prop-types'
 import { useId, useState } from 'react'
-import { Controller, useFormContext } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
 import { inputText_box, eye_box } from './inputText.module.scss'
 import Icon from '../Icon/Icon'
 import { inputTextSchema } from '../../utils/validationSchemas'
-import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
 import { LabelCustom } from '../Label/LabelCustom'
+import { Tooltip } from '../Tooltip/Tooltip'
 
 export const InputText = ({
   name,
@@ -25,38 +25,35 @@ export const InputText = ({
 
   const [showPass, setshowPass] = useState(false)
 
-  const {
-    formState: { errors }
-  } = useFormContext()
-
   return (
     <Controller
       {...{ name }}
       rules={inputTextSchema({ name, label, required, type })}
-      render={({ field }) => (
+      render={({ field, formState: { errors } }) => (
         <div className={inputText_box} style={{ flexDirection: flexDir, width }}>
           {label && <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />}
-          <input
-            {...{ id, placeholder, autoFocus }}
-            type={
-              showPass || type === 'text'
-                ? 'text'
-                : showPass || type === 'email'
-                ? 'email'
-                : 'password'
-            }
-            value={field.value}
-            onChange={(e) => {
-              if (typeof onChange === 'function') onChange(e)
-              field.onChange(e)
-            }}
-          />
+          <Tooltip text={errors?.[name]?.message}>
+            <input
+              {...{ id, placeholder, autoFocus }}
+              type={
+                showPass || type === 'text'
+                  ? 'text'
+                  : showPass || type === 'email'
+                  ? 'email'
+                  : 'password'
+              }
+              value={field.value}
+              onChange={(e) => {
+                if (typeof onChange === 'function') onChange(e)
+                field.onChange(e)
+              }}
+            />
+          </Tooltip>
           {type === 'password' && (
             <div className={eye_box} style={{ top: errors?.[name] ? '40%' : '62%' }}>
               <Icon icon="eye" onClick={() => setshowPass(!showPass)} />
             </div>
           )}
-          {errors?.[name] && <ErrorCustom error={errors[name].message} />}
         </div>
       )}
     />
