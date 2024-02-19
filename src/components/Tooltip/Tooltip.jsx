@@ -5,7 +5,7 @@ export const Tooltip = ({ children, text }) => {
   return (
     <div className={tooltip_box}>
       {children}
-      <span className={tooltip_span}>{text}</span>
+      {text && <span className={tooltip_span}>{text}</span>}
     </div>
   )
 }
