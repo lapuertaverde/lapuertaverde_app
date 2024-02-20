@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react'
 import { get } from '../../../services/APIServices'
 
 const useEscritorioFetch = (escritorio) => {
-  const [consumers, setConsumers] = useState([])
-  const [consumerGroups, setConsumerGroups] = useState([])
+  const [consumers, setConsumers] = useState(null)
+  const [consumerGroups, setConsumerGroups] = useState(null)
   const [consumerGroup, setConsumerGroup] = useState(null)
 
   useEffect(() => {
-    if (escritorio.consumidores)
+    if (escritorio === 'consumidores')
       get('consumer')
         .then((res) => setConsumers(res))
         .catch((error) => console.log(error))
 
-    if (escritorio.gruposDeConsumo)
+    if (escritorio === 'gruposDeConsumo')
       get('consumerGroup')
         .then((res) => {
           setConsumerGroups(res)

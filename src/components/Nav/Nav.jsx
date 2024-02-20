@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import Avatar from '../Avatar/Avatar'
+
 import NavigationButton from '../NavNavigationButton/NavigationButton'
 
 import './Nav.css'
@@ -7,70 +7,39 @@ import './Nav.css'
 const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup }) => {
   return (
     <nav className="nav">
-      <Avatar
-        src="https://previews.123rf.com/images/marrakeshh/marrakeshh1506/marrakeshh150600106/41508384-natural-cesta-reci%C3%A9n-recogido-hortalizas-org%C3%A1nicas-del-jard%C3%ADn.jpg"
-        size="xl"
-      />
       <NavigationButton
         text="Grupos de consumo"
-        onClick={() =>
-          !escritorio.gruposDeConsumo &&
-          setEscritorio({
-            gruposDeConsumo: true,
-            consumidores: false,
-            hojasDeReparto: false,
-            creargrupo: false
-          })
-        }
+        onClick={() => escritorio !== 'gruposDeConsumo' && setEscritorio('gruposDeConsumo')}
         options={consumerGroups}
         onClickOption={({ target: { textContent } }) => {
-          !escritorio.gruposDeConsumo &&
-            setEscritorio({
-              gruposDeConsumo: true,
-              consumidores: false,
-              hojasDeReparto: false,
-              creargrupo: false
-            })
-          setConsumerGroup(
-            consumerGroups.find(({ name }) => textContent.toLowerCase() === name.toLowerCase())
-          )
+          escritorio !== 'gruposDeConsumo' && setEscritorio('gruposDeConsumo')
+          if (consumerGroups)
+            setConsumerGroup(
+              consumerGroups.find(({ name }) => textContent.toLowerCase() === name.toLowerCase())
+            )
         }}
       />
       <NavigationButton
         text="Consumidores"
-        onClick={() =>
-          !escritorio.consumidores &&
-          setEscritorio({
-            gruposDeConsumo: false,
-            consumidores: true,
-            hojasDeReparto: false,
-            creargrupo: false
-          })
-        }
+        onClick={() => escritorio !== 'consumidores' && setEscritorio('consumidores')}
+        options={[{ name: 'Todos' }, { name: 'Deudores' }, { name: 'Por Grupo' }]}
       />
       <NavigationButton
         text="Hojas de Reparto"
-        onClick={() =>
-          !escritorio.hojasDeReparto &&
-          setEscritorio({
-            gruposDeConsumo: false,
-            consumidores: false,
-            hojasDeReparto: true,
-            creargrupo: false
-          })
-        }
+        onClick={() => escritorio !== 'hojasDeReparto' && setEscritorio('hojasDeReparto')}
       />
       <NavigationButton
-        text="Crear Nuevo Grupo"
-        onClick={() =>
-          !escritorio.creargrupo &&
-          setEscritorio({
-            gruposDeConsumo: false,
-            consumidores: false,
-            hojasDeReparto: false,
-            creargrupo: true
-          })
-        }
+        text="Facturas"
+        onClick={() => escritorio !== 'creargrupo' && setEscritorio('facturas')}
+        options={[{ name: 'Por Grupo' }, { name: 'Por Fecha' }]}
+      />
+      <NavigationButton
+        text="Crear Grupo"
+        onClick={() => escritorio !== 'creargrupo' && setEscritorio('crearGrupo')}
+      />
+      <NavigationButton
+        text="Crear Consumidor"
+        onClick={() => escritorio !== 'creargrupo' && setEscritorio('crearConsumidor')}
       />
     </nav>
   )
