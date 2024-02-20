@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 
 import { useMemo, useCallback } from 'react'
+import Loading from '../../components/Loading/Loading'
 
 import { AgGridReact } from 'ag-grid-react' // the AG Grid React Component
 import 'ag-grid-community/styles/ag-grid.css' // Core grid CSS, always needed
@@ -72,27 +73,27 @@ const Grid = forwardRef(
       if (typeof handleCellEditingStopped == 'function') handleCellEditingStopped(e)
     }, [])
 
-    return (
-      gridData?.length > 0 && (
-        <div className="ag-theme-alpine-dark" style={{ width: '100%', height: '100%' }}>
-          <AgGridReact
-            ref={gridRef}
-            className="custom-theme"
-            rowData={gridData}
-            {...{
-              columnDefs: columns,
-              defaultColDef,
-              columnTypes,
-              rowSelection,
-              rowDragManaged,
-              rowDragMultiRow,
-              animateRows
-            }}
-            onCellClicked={cellClickedListener}
-            onCellEditingStopped={cellEditingStopped}
-          />
-        </div>
-      )
+    return gridData?.length > 0 ? (
+      <div className="ag-theme-alpine-dark" style={{ width: '100%', height: '100%' }}>
+        <AgGridReact
+          ref={gridRef}
+          className="custom-theme"
+          rowData={gridData}
+          {...{
+            columnDefs: columns,
+            defaultColDef,
+            columnTypes,
+            rowSelection,
+            rowDragManaged,
+            rowDragMultiRow,
+            animateRows
+          }}
+          onCellClicked={cellClickedListener}
+          onCellEditingStopped={cellEditingStopped}
+        />
+      </div>
+    ) : (
+      <Loading />
     )
   }
 )
