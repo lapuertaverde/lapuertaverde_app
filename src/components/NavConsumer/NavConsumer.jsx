@@ -13,51 +13,22 @@ export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard }) =>
       />
       <NavigationButton
         text="Pedidos"
-        onClick={() =>
-          !consumerDashboard.pedidos &&
-          setConsumerDashboard({
-            pedidos: true,
-            proximoPedido: false,
-            perfil: false,
-            favoritos: false
-          })
-        }
+        onClick={() => consumerDashboard !== 'pedidos' && setConsumerDashboard('pedidos')}
       />
       <NavigationButton
         text="Próximo pedido"
         onClick={() =>
-          !consumerDashboard.proximoPedido &&
-          setConsumerDashboard({
-            pedidos: false,
-            proximoPedido: true,
-            perfil: false,
-            favoritos: false
-          })
+          consumerDashboard !== 'proximoPedido' && setConsumerDashboard('proximoPedido')
         }
       />
       <NavigationButton
         text="Perfil"
-        onClick={() =>
-          !consumerDashboard.perfil &&
-          setConsumerDashboard({
-            pedidos: false,
-            proximoPedido: false,
-            perfil: true,
-            favoritos: false
-          })
-        }
+        onClick={() => consumerDashboard !== 'perfil' && setConsumerDashboard('perfil')}
       />
       <NavigationButton
-        text="Mis Favoritos"
-        onClick={() =>
-          !consumerDashboard.favoritos &&
-          setConsumerDashboard({
-            pedidos: false,
-            proximoPedido: false,
-            perfil: false,
-            favoritos: true
-          })
-        }
+        text="Mis Preferencias"
+        onClick={() => consumerDashboard !== 'favoritos' && setConsumerDashboard('favoritos')}
+        options={[{ name: 'Favoritos' }, { name: 'Descartados' }]}
       />
     </nav>
   )
