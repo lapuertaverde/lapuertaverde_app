@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { get } from '../../../services/APIServices'
+import { getConsumerId } from '../../../utils/getConsumerId'
 
-export const useConsumerById = (consumerId, consumerDashboard) => {
-  const [consumerInfo, setConsumerInfo] = useState(null)
+export const useConsumerById = (consumerDashboard) => {
+  const [consumerInfo, setConsumerInfo] = useState({ data: null, loading: true })
 
   useEffect(() => {
-    get(`consumer/${consumerId}`)
-      .then((res) => setConsumerInfo(res))
+    get(`consumer/${getConsumerId()}`)
+      .then((res) => setConsumerInfo({ data: res, loading: false }))
       .catch((error) => console.log(error))
-  }, [consumerId, consumerDashboard])
+  }, [consumerDashboard])
 
   return consumerInfo
 }
