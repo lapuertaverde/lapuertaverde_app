@@ -9,10 +9,10 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
     <nav className="nav">
       <NavigationButton
         text="Grupos de consumo"
-        onClick={() => escritorio !== 'gruposDeConsumo' && setEscritorio('gruposDeConsumo')}
+        onClick={() => escritorio !== 'consumerGroup' && setEscritorio('consumerGroup')}
         options={consumerGroups}
         onClickOption={({ target: { textContent } }) => {
-          escritorio !== 'gruposDeConsumo' && setEscritorio('gruposDeConsumo')
+          escritorio !== 'gruposDeConsumo' && setEscritorio('consumerGroup')
           if (consumerGroups)
             setConsumerGroup(
               consumerGroups.find(({ name }) => textContent.toLowerCase() === name.toLowerCase())
@@ -21,25 +21,29 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
       />
       <NavigationButton
         text="Consumidores"
-        onClick={() => escritorio !== 'consumidores' && setEscritorio('consumidores')}
+        onClick={() => escritorio !== 'consumer' && setEscritorio('consumer')}
         options={[{ name: 'Todos' }, { name: 'Deudores' }, { name: 'Por Grupo' }]}
       />
       <NavigationButton
         text="Hojas de Reparto"
-        onClick={() => escritorio !== 'hojasDeReparto' && setEscritorio('hojasDeReparto')}
+        onClick={() => escritorio !== 'castSheets' && setEscritorio('castSheets')}
       />
       <NavigationButton
         text="Facturas"
-        onClick={() => escritorio !== 'creargrupo' && setEscritorio('facturas')}
+        onClick={() => escritorio !== 'bill' && setEscritorio('bill')}
         options={[{ name: 'Por Grupo' }, { name: 'Por Fecha' }]}
       />
       <NavigationButton
         text="Crear Grupo"
-        onClick={() => escritorio !== 'creargrupo' && setEscritorio('crearGrupo')}
+        onClick={() => escritorio !== 'createGroup' && setEscritorio('createGroup')}
       />
       <NavigationButton
         text="Crear Consumidor"
-        onClick={() => escritorio !== 'creargrupo' && setEscritorio('crearConsumidor')}
+        onClick={() => escritorio !== 'createConsumer' && setEscritorio('createConsumer')}
+      />
+      <NavigationButton
+        text="Pedidos Registrados"
+        onClick={() => escritorio !== 'finalRecord' && setEscritorio('finalRecord')}
       />
     </nav>
   )
