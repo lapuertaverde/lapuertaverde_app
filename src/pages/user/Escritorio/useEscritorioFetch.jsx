@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { get } from '../../../services/APIServices'
 
 const useEscritorioFetch = ({ escritorio, setAlert }) => {
+  const { endpoint, dashboard } = escritorio
+
   const [consumers, setConsumers] = useState(null)
   const [consumerGroups, setConsumerGroups] = useState(null)
   const [consumerGroup, setConsumerGroup] = useState(null)
@@ -10,19 +12,19 @@ const useEscritorioFetch = ({ escritorio, setAlert }) => {
   const [castSheets, setCastsSheets] = useState(null)
 
   const dashboardController = {
-    consumerGroup: (res) => {
-      setConsumerGroups(res)
-      setConsumerGroup(res[0])
-    },
+    consumerGroups: (res) => setConsumerGroups(res),
+    consumerGroup: (res) => setConsumerGroups(res),
     consumer: (res) => setConsumers(res),
     bill: (res) => setBills(res),
+    createGroup: (res) => setConsumerGroups(res),
+    createConsumer: (res) => setConsumers(res),
     castSheets: (res) => setCastsSheets(res),
     finalRecord: (res) => setFinalRecords(res)
   }
 
   useEffect(() => {
-    get(escritorio)
-      .then((res) => dashboardController[escritorio](res))
+    get(endpoint)
+      .then((res) => dashboardController[dashboard](res))
       .catch((error) =>
         setAlert({
           open: true,

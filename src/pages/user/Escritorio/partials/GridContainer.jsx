@@ -5,6 +5,7 @@ import CrearGrupo from './CrearGrupo/CrearGrupo'
 import Facturas from './Facturas/Facturas'
 import CrearConsumidor from './CrearConsumidor/CrearConsumidor'
 import RegistrosFinales from './RegistrosFinales/RegistrosFinales'
+import GrupoDeConsumo from './GrupoDeConsumo/GrupoDeConsumo'
 
 const GridContainer = ({
   consumerGroup,
@@ -12,19 +13,23 @@ const GridContainer = ({
   escritorio,
   bills,
   finalRecords,
-  castSheets
+  castSheets,
+  consumerGroups
 }) => {
+  const { dashboard } = escritorio
+
   const gridsContainer = {
-    consumerGroup: <GruposDeConsumo {...{ consumerGroup }} />,
+    consumerGroups: <GruposDeConsumo {...{ consumerGroups }} />,
+    consumerGroup: <GrupoDeConsumo {...{ consumerGroup }} />,
     consumer: <Consumidores {...{ consumers }} />,
     castSheets: <HojasDeReparto {...{ castSheets }} />,
-    createGroup: <CrearGrupo />,
-    createConsumer: <CrearConsumidor />,
+    createGroup: <CrearGrupo {...{ consumerGroups }} />,
+    createConsumer: <CrearConsumidor {...{ consumers }} />,
     bill: <Facturas {...{ bills }} />,
     finalRecord: <RegistrosFinales {...{ finalRecords }} />
   }
 
-  return <aside className="asideContainer">{gridsContainer[escritorio]}</aside>
+  return <aside className="asideContainer">{gridsContainer[dashboard]}</aside>
 }
 
 export default GridContainer

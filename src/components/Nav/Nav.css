@@ -5,6 +5,7 @@
   display: flex;
   padding-top: 3rem;
   flex-direction: column;
-  gap:3rem;
+  gap: 3rem;
   align-items: center;
+  /* overflow-y: scroll; */
 }

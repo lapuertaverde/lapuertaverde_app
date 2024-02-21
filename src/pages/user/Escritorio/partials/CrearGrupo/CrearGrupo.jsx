@@ -1,7 +1,12 @@
 import React from 'react'
 
-const CrearGrupo = () => {
-  return <div>CrearGrupo</div>
+const CrearGrupo = ({ consumerGroups }) => {
+  return (
+    <div>
+      <p>CrearGrupo</p>
+      <p>{JSON.stringify(consumerGroups)}</p>
+    </div>
+  )
 }
 
 export default CrearGrupo

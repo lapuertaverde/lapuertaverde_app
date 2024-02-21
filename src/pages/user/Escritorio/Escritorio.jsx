@@ -9,7 +9,10 @@ import './Escritorio.css'
 
 const Escritorio = () => {
   const [alert, setAlert] = useState({ open: false })
-  const [escritorio, setEscritorio] = useState('consumerGroup')
+  const [escritorio, setEscritorio] = useState({
+    endpoint: 'consumerGroup',
+    dashboard: 'consumerGroups'
+  })
 
   const {
     consumers,
@@ -28,7 +31,15 @@ const Escritorio = () => {
     <main className="mainContainer">
       <Nav {...{ escritorio, setEscritorio, consumerGroups, setConsumerGroup }} />
       <GridContainer
-        {...{ consumerGroup, consumers, escritorio, bills, finalRecords, castSheets }}
+        {...{
+          consumerGroup,
+          consumers,
+          escritorio,
+          bills,
+          finalRecords,
+          castSheets,
+          consumerGroups
+        }}
       />
       {alert.open && <AlertMessage {...{ alert, setAlert }} />}
     </main>
