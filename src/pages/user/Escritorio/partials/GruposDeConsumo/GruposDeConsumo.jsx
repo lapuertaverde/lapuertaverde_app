@@ -1,6 +1,7 @@
+import { Fragment } from 'react'
 import Grid from '../../../../../components/Grid/Grid'
 
-const GruposDeConsumo = ({ consumerGroup }) => {
+const GruposDeConsumo = ({ consumerGroups }) => {
   const columns = [
     { field: 'name', filter: true, rowDrag: true },
     { field: 'address', filter: true },
@@ -17,12 +18,20 @@ const GruposDeConsumo = ({ consumerGroup }) => {
   }
 
   return (
-    consumerGroup && (
-      <Grid
-        gridData={consumerGroup.consumers}
-        {...{ columns, handleCellClick, handleCellEditingStopped }}
-      />
+    consumerGroups?.length && (
+      <div style={{ height: '200px' }}>
+        {consumerGroups.map(({ consumers, name }) => (
+          <Fragment key={name}>
+            <p style={{ color: 'white', fontSize: '1.2rem' }}>{name.toUpperCase()}</p>
+            <Grid
+              gridData={consumers}
+              {...{ columns, handleCellClick, handleCellEditingStopped }}
+            />
+          </Fragment>
+        ))}
+      </div>
     )
   )
 }
+
 export default GruposDeConsumo
