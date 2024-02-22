@@ -2,35 +2,22 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 
-const NavigationButton = ({ text, onClick, options, onClickOption }) => {
+import {
+  navigationButtonContainer,
+  navigationButtonContent,
+  optionsClass
+} from './navigationButton.module.scss'
+
+const NavigationButton = ({ text, onClick, options, onClickOption, color, onBlurOption }) => {
   const [show, setShow] = useState(true)
 
   const [parent] = useAutoAnimate()
 
   return (
-    <div
-      style={{
-        cursor: 'pointer',
-        display: 'flex',
-        minWidth: '90%',
-        maxWidth: '100%',
-        flexDirection: 'column',
-        gap: '1.5rem',
-        alignItems: 'center',
-        color: 'whitesmoke',
-        backgroundColor: 'rgb(156, 111, 219)'
-      }}
-      ref={parent}
-    >
-      <div
-        style={{
-          background: 'transparent',
-          padding: '.5rem',
-          borderRadius: '10px',
-          fontSize: '1.2rem'
-        }}
-      >
+    <div className={navigationButtonContainer} ref={parent}>
+      <div className={navigationButtonContent}>
         <button
+          style={{ color }}
           onClick={(e) => {
             onClick(e)
             setShow((prev) => !prev)
@@ -41,15 +28,14 @@ const NavigationButton = ({ text, onClick, options, onClickOption }) => {
       </div>
 
       {show &&
-        options.length > 0 &&
-        options.map(({ name }) => (
+        options?.length > 0 &&
+        options.map(({ name, optionColor }) => (
           <button
+            onBlur={(e) => typeof onBlurOption === 'function' && onBlurOption(e)}
             key={name}
             {...{ onClick: onClickOption }}
-            style={{
-              fontSize: '.9rem',
-              padding: '0 0 .5rem 0'
-            }}
+            className={optionsClass}
+            style={{ color: optionColor }}
           >
             {name.toUpperCase()}
           </button>
