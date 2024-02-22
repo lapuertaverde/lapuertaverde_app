@@ -41,6 +41,11 @@
 }
 .avatar-xl {
   font-size: 1.75rem;
+  width: 6rem;
+  height: 6rem;
+}
+.avatar-xxl {
+  font-size: 1.75rem;
   width: 15rem;
   height: 15rem;
 }

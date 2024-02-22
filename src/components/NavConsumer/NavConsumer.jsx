@@ -10,23 +10,30 @@ export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard, cons
     <nav className={nav}>
       <Avatar src={consumerInfo?.avatar} size="xl" />
       <NavigationButton
-        text="Pedidos"
+        text="Mis pedidos"
         onClick={() => consumerDashboard !== 'pedidos' && setConsumerDashboard('pedidos')}
+        options={[{ name: 'Pedidos' }, { name: 'Facturas' }]}
       />
       <NavigationButton
-        text="Próximo pedido"
+        text="Nuevo pedido"
         onClick={() =>
           consumerDashboard !== 'proximoPedido' && setConsumerDashboard('proximoPedido')
         }
       />
       <NavigationButton
-        text="Perfil"
-        onClick={() => consumerDashboard !== 'perfil' && setConsumerDashboard('perfil')}
+        text="Pedido en curso"
+        onClick={() =>
+          consumerDashboard !== 'pedidoEnCurso' && setConsumerDashboard('pedidoEnCurso')
+        }
       />
       <NavigationButton
-        text="Mis Preferencias"
+        text="Mis preferencias"
         onClick={() => consumerDashboard !== 'favoritos' && setConsumerDashboard('favoritos')}
         options={[{ name: 'Favoritos' }, { name: 'Descartados' }]}
+      />
+      <NavigationButton
+        text="Perfil"
+        onClick={() => consumerDashboard !== 'perfil' && setConsumerDashboard('perfil')}
       />
     </nav>
   )
