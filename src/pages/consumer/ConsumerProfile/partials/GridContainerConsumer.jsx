@@ -6,16 +6,16 @@ import { NuevoPedido } from './NuevoPedido/NuevoPedido'
 import { Descartados } from './Descartados/Descartados'
 import { Facturas } from './Facturas/Facturas'
 
-const GridContainerConsumer = ({ consumerDashboard, consumer, setConsumer }) => {
+const GridContainerConsumer = ({ consumerDashboard, consumerInfo, setConsumer }) => {
   const { dashboard } = consumerDashboard
   const gridsContainer = {
-    pedidos: <Pedidos {...{ consumer }} />,
-    facturas: <Facturas {...{ consumer }} />,
-    nuevoPedido: <NuevoPedido {...{ consumer, setConsumer }} />,
-    pedidoEnCurso: <PedidoEnCurso {...{ consumer, setConsumer }} />,
-    perfil: <Perfil {...{ consumer, setConsumer }} />,
-    favoritos: <Favoritos {...{ consumer, setConsumer }} />,
-    descartados: <Descartados {...{ consumer, setConsumer }} />
+    pedidos: <Pedidos {...{ consumerInfo }} />,
+    facturas: <Facturas {...{ consumerInfo }} />,
+    nuevoPedido: <NuevoPedido {...{ consumerInfo, setConsumer }} />,
+    pedidoEnCurso: <PedidoEnCurso {...{ consumerInfo, setConsumer }} />,
+    perfil: <Perfil {...{ consumerInfo, setConsumer }} />,
+    favoritos: <Favoritos {...{ consumerInfo, setConsumer }} />,
+    descartados: <Descartados {...{ consumerInfo, setConsumer }} />
   }
   return <aside className="asideContainer">{gridsContainer[dashboard]}</aside>
 }
