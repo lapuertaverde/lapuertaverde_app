@@ -8,7 +8,7 @@ import {
   optionsClass
 } from './navigationButton.module.scss'
 
-const NavigationButton = ({ text, onClick, options, onClickOption }) => {
+const NavigationButton = ({ text, onClick, options, onClickOption, color, onBlurOption }) => {
   const [show, setShow] = useState(true)
 
   const [parent] = useAutoAnimate()
@@ -17,6 +17,7 @@ const NavigationButton = ({ text, onClick, options, onClickOption }) => {
     <div className={navigationButtonContainer} ref={parent}>
       <div className={navigationButtonContent}>
         <button
+          style={{ color }}
           onClick={(e) => {
             onClick(e)
             setShow((prev) => !prev)
@@ -28,8 +29,14 @@ const NavigationButton = ({ text, onClick, options, onClickOption }) => {
 
       {show &&
         options?.length > 0 &&
-        options.map(({ name }) => (
-          <button key={name} {...{ onClick: onClickOption }} className={optionsClass}>
+        options.map(({ name, optionColor }) => (
+          <button
+            onBlur={(e) => typeof onBlurOption === 'function' && onBlurOption(e)}
+            key={name}
+            {...{ onClick: onClickOption }}
+            className={optionsClass}
+            style={{ color: optionColor }}
+          >
             {name.toUpperCase()}
           </button>
         ))}
