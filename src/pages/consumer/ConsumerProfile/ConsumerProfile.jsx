@@ -5,11 +5,18 @@ import Loading from '../../../components/Loading/Loading'
 
 import { mainContainer } from './consumerProfile.module.scss'
 import GridContainerConsumer from './partials/GridContainerConsumer'
+import { getConsumerId } from '../../../utils/getConsumerId'
 
 const ConsumerProfile = () => {
-  const [consumerDashboard, setConsumerDashboard] = useState('pedidos')
+  const [alert, setAlert] = useState({ open: false })
 
-  const { data: consumerInfo, loading } = useConsumerById(consumerDashboard)
+  const [consumerDashboard, setConsumerDashboard] = useState({
+    endpoint: `consumer/${getConsumerId()}`,
+    dashboard: 'pedidos'
+  })
+
+  console.log('dashboard', consumerDashboard)
+  const { data: consumerInfo, loading } = useConsumerById({ consumerDashboard, setAlert })
 
   return (
     <main className={mainContainer}>

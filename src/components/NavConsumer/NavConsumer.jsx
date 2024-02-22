@@ -6,34 +6,46 @@ import { nav } from './navConsumer.module.scss'
 
 export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard, consumerInfo }) => {
   console.log('log en nav de consumer', consumerInfo)
+  const { dashboard } = consumerDashboard
   return (
     <nav className={nav}>
       <Avatar src={consumerInfo?.avatar} size="xl" />
       <NavigationButton
         text="Mis pedidos"
-        onClick={() => consumerDashboard !== 'pedidos' && setConsumerDashboard('pedidos')}
         options={[{ name: 'Pedidos' }, { name: 'Facturas' }]}
+        onClickOption={({ target: { textContent } }) => {
+          ;(dashboard !== 'pedidos' || dashboard !== 'facturas') &&
+            setConsumerDashboard({ ...consumerDashboard, dashboard: textContent.toLowerCase() })
+        }}
       />
       <NavigationButton
         text="Nuevo pedido"
         onClick={() =>
-          consumerDashboard !== 'proximoPedido' && setConsumerDashboard('proximoPedido')
+          dashboard !== 'nuevoPedido' &&
+          setConsumerDashboard({ ...consumerDashboard, dashboard: 'nuevoPedido' })
         }
       />
       <NavigationButton
         text="Pedido en curso"
         onClick={() =>
-          consumerDashboard !== 'pedidoEnCurso' && setConsumerDashboard('pedidoEnCurso')
+          dashboard !== 'pedidoEnCurso' &&
+          setConsumerDashboard({ ...consumerDashboard, dashboard: 'pedidoEnCurso' })
         }
       />
       <NavigationButton
         text="Mis preferencias"
-        onClick={() => consumerDashboard !== 'favoritos' && setConsumerDashboard('favoritos')}
         options={[{ name: 'Favoritos' }, { name: 'Descartados' }]}
+        onClickOption={({ target: { textContent } }) => {
+          ;(dashboard !== 'favoritos' || dashboard !== 'descartados') &&
+            setConsumerDashboard({ ...consumerDashboard, dashboard: textContent.toLowerCase() })
+        }}
       />
       <NavigationButton
         text="Perfil"
-        onClick={() => consumerDashboard !== 'perfil' && setConsumerDashboard('perfil')}
+        onClick={() =>
+          dashboard !== 'perfil' &&
+          setConsumerDashboard({ ...consumerDashboard, dashboard: 'perfil' })
+        }
       />
     </nav>
   )
