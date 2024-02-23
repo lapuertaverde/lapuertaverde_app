@@ -1,24 +1,30 @@
 import Grid from '../../../../../components/Grid/Grid'
+import { parserDate } from '../../../../../utils/dateFormat'
 
 const RegistrosFinales = ({ finalRecords }) => {
+  const gridData = finalRecords?.map((record) => ({
+    ...record,
+    date: parserDate(record.date)
+  }))
+
   const columns = [
     { field: 'supplementsKgs' },
     { field: 'deliveredKgs', filter: true },
     { filed: 'priceKgSuplements' },
     { field: 'priceKg', filter: true },
-    { field: 'date' },
+    { field: 'date', cellDataType: 'date' },
     { field: 'totalEuros' }
   ]
 
   const cellClickedListener = (event) => {
-    console.log('cellClicked', event)
+    // console.log('cellClicked', event)
   }
 
   const cellEditingStopped = ({ data, oldValue, newValue, column: { colId } }) => {
     console.log(data)
   }
 
-  return <Grid {...{ gridData: finalRecords, columns, cellClickedListener, cellEditingStopped }} />
+  return <Grid {...{ gridData, columns, cellClickedListener, cellEditingStopped }} />
 }
 
 export default RegistrosFinales
