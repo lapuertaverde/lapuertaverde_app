@@ -55,6 +55,56 @@ const Grid = forwardRef(
       []
     )
 
+    const dataTypeDefinitions = useMemo(() => {
+      return {
+        date: {
+          baseDataType: 'dateString',
+          extendsDataType: 'dateString',
+          valueParser: (params) => {
+            // console.log(params)
+            return params.newValue != null && params.newValue.match('\\d{2}/\\d{2}/\\d{4}')
+              ? params.newValue
+              : null
+          },
+
+          valueFormatter: (params) => {
+            //console.log(params)
+            return params.value == null ? '' : new Date(params.value).toLocaleDateString()
+          },
+
+          dataTypeMatcher: (value) => {
+            //console.log(value)
+            return typeof value === 'string' && !!value.match('\\d{2}/\\d{2}/\\d{4}')
+          },
+
+          dateParser: (value) => {
+            if (value == null || value === '') {
+              return undefined
+            }
+            const dateParts = value.split('/')
+            // console.log(dateParts)
+            return dateParts.length === 3
+              ? new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]))
+              : undefined
+          },
+
+          dateFormatter: (value) => {
+            if (value == null) {
+              return undefined
+            }
+
+            //console.log(value)
+
+            const date = String(value.getDate())
+            const month = String(value.getMonth() + 1)
+            return `${date.length === 1 ? '0' + date : date}/${
+              month.length === 1 ? '0' + month : month
+            }/${value.getFullYear()}`
+          }
+        }
+      }
+    }, [])
+
     const defaultColDef = useMemo(
       () =>
         columnsConf || {
@@ -86,7 +136,8 @@ const Grid = forwardRef(
             rowSelection,
             rowDragManaged,
             rowDragMultiRow,
-            animateRows
+            animateRows,
+            dataTypeDefinitions
           }}
           onCellClicked={cellClickedListener}
           onCellEditingStopped={cellEditingStopped}

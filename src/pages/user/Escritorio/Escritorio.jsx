@@ -41,7 +41,8 @@ const Escritorio = () => {
           bills,
           finalRecords,
           castSheets,
-          consumerGroups
+          consumerGroups,
+          setAlert
         }}
       />
       {alert.open && <AlertMessage {...{ alert, setAlert }} />}
