@@ -2,14 +2,10 @@ import Grid from '../../../../../components/Grid/Grid'
 import { parserDate } from '../../../../../utils/dateFormat'
 
 const RegistrosFinales = ({ finalRecords }) => {
-  console.log(finalRecords)
-
-  const gridData = finalRecords
-    ? finalRecords?.map((record) => ({
-        ...record,
-        date: parserDate(record.date)
-      }))
-    : []
+  const gridData = finalRecords?.map((record) => ({
+    ...record,
+    date: parserDate(record.date)
+  }))
 
   const columns = [
     { field: 'supplementsKgs' },
