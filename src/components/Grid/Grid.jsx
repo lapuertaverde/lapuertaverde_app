@@ -19,7 +19,8 @@ const Grid = forwardRef(
       rowSelection,
       rowDragManaged,
       rowDragMultiRow,
-      animateRows
+      animateRows,
+      handleGetRowId
     },
     gridRef
   ) => {
@@ -108,6 +109,10 @@ const Grid = forwardRef(
       if (typeof handleCellEditingStopped == 'function') handleCellEditingStopped(e)
     }, [])
 
+    const getRowId = useCallback((params) => {
+      return params.data.id
+    })
+
     return gridData?.length > 0 ? (
       <div className="ag-theme-alpine-dark" style={{ width: '100%', height: '100%' }}>
         <AgGridReact
@@ -122,7 +127,8 @@ const Grid = forwardRef(
             rowDragManaged,
             rowDragMultiRow,
             animateRows,
-            dataTypeDefinitions
+            dataTypeDefinitions,
+            getRowId
           }}
           onCellClicked={cellClickedListener}
           onCellEditingStopped={cellEditingStopped}
