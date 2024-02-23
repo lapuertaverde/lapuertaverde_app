@@ -4,59 +4,47 @@ import NavigationButton from '../NavNavigationButton/NavigationButton'
 
 import { nav } from './navConsumer.module.scss'
 
-export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard }) => {
+export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard, consumerInfo }) => {
+  console.log('log en nav de consumer', consumerInfo)
+  const { dashboard } = consumerDashboard
   return (
     <nav className={nav}>
-      <Avatar
-        src="https://previews.123rf.com/images/marrakeshh/marrakeshh1506/marrakeshh150600106/41508384-natural-cesta-reci%C3%A9n-recogido-hortalizas-org%C3%A1nicas-del-jard%C3%ADn.jpg"
-        size="xl"
+      <Avatar src={consumerInfo?.avatar} size="xl" />
+      <NavigationButton
+        text="Mis pedidos"
+        options={[{ name: 'Pedidos' }, { name: 'Facturas' }]}
+        onClickOption={({ target: { textContent } }) => {
+          ;(dashboard !== 'pedidos' || dashboard !== 'facturas') &&
+            setConsumerDashboard({ ...consumerDashboard, dashboard: textContent.toLowerCase() })
+        }}
       />
       <NavigationButton
-        text="Pedidos"
+        text="Nuevo pedido"
         onClick={() =>
-          !consumerDashboard.pedidos &&
-          setConsumerDashboard({
-            pedidos: true,
-            proximoPedido: false,
-            perfil: false,
-            favoritos: false
-          })
+          dashboard !== 'nuevoPedido' &&
+          setConsumerDashboard({ ...consumerDashboard, dashboard: 'nuevoPedido' })
         }
       />
       <NavigationButton
-        text="Próximo pedido"
+        text="Pedido en curso"
         onClick={() =>
-          !consumerDashboard.proximoPedido &&
-          setConsumerDashboard({
-            pedidos: false,
-            proximoPedido: true,
-            perfil: false,
-            favoritos: false
-          })
+          dashboard !== 'pedidoEnCurso' &&
+          setConsumerDashboard({ ...consumerDashboard, dashboard: 'pedidoEnCurso' })
         }
+      />
+      <NavigationButton
+        text="Mis preferencias"
+        options={[{ name: 'Favoritos' }, { name: 'Descartados' }]}
+        onClickOption={({ target: { textContent } }) => {
+          ;(dashboard !== 'favoritos' || dashboard !== 'descartados') &&
+            setConsumerDashboard({ ...consumerDashboard, dashboard: textContent.toLowerCase() })
+        }}
       />
       <NavigationButton
         text="Perfil"
         onClick={() =>
-          !consumerDashboard.perfil &&
-          setConsumerDashboard({
-            pedidos: false,
-            proximoPedido: false,
-            perfil: true,
-            favoritos: false
-          })
-        }
-      />
-      <NavigationButton
-        text="Mis Favoritos"
-        onClick={() =>
-          !consumerDashboard.favoritos &&
-          setConsumerDashboard({
-            pedidos: false,
-            proximoPedido: false,
-            perfil: false,
-            favoritos: true
-          })
+          dashboard !== 'perfil' &&
+          setConsumerDashboard({ ...consumerDashboard, dashboard: 'perfil' })
         }
       />
     </nav>

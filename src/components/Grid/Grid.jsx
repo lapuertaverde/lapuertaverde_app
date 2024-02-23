@@ -19,7 +19,8 @@ const Grid = forwardRef(
       rowSelection,
       rowDragManaged,
       rowDragMultiRow,
-      animateRows
+      animateRows,
+      handleGetRowId
     },
     gridRef
   ) => {
@@ -55,6 +56,41 @@ const Grid = forwardRef(
       []
     )
 
+    const dataTypeDefinitions = useMemo(() => {
+      return {
+        dateString: {
+          baseDataType: 'dateString',
+          extendsDataType: 'dateString',
+          valueParser: (params) =>
+            params.newValue != null && params.newValue.match('\\d{2}/\\d{2}/\\d{4}')
+              ? params.newValue
+              : null,
+          valueFormatter: (params) => (params.value == null ? '' : params.value),
+          dataTypeMatcher: (value) =>
+            typeof value === 'string' && !!value.match('\\d{2}/\\d{2}/\\d{4}'),
+          dateParser: (value) => {
+            if (value == null || value === '') {
+              return undefined
+            }
+            const dateParts = value.split('/')
+            return dateParts.length === 3
+              ? new Date(parseInt(dateParts[2]), parseInt(dateParts[1]) - 1, parseInt(dateParts[0]))
+              : undefined
+          },
+          dateFormatter: (value) => {
+            if (value == null) {
+              return undefined
+            }
+            const date = String(value.getDate())
+            const month = String(value.getMonth() + 1)
+            return `${date.length === 1 ? '0' + date : date}/${
+              month.length === 1 ? '0' + month : month
+            }/${value.getFullYear()}`
+          }
+        }
+      }
+    }, [])
+
     const defaultColDef = useMemo(
       () =>
         columnsConf || {
@@ -73,6 +109,10 @@ const Grid = forwardRef(
       if (typeof handleCellEditingStopped == 'function') handleCellEditingStopped(e)
     }, [])
 
+    const getRowId = useCallback((params) => {
+      return params.data.id
+    })
+
     return gridData?.length > 0 ? (
       <div className="ag-theme-alpine-dark" style={{ width: '100%', height: '100%' }}>
         <AgGridReact
@@ -86,7 +126,9 @@ const Grid = forwardRef(
             rowSelection,
             rowDragManaged,
             rowDragMultiRow,
-            animateRows
+            animateRows,
+            dataTypeDefinitions,
+            getRowId
           }}
           onCellClicked={cellClickedListener}
           onCellEditingStopped={cellEditingStopped}

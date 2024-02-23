@@ -14,14 +14,15 @@ const GridContainer = ({
   bills,
   finalRecords,
   castSheets,
-  consumerGroups
+  consumerGroups,
+  setAlert
 }) => {
   const { dashboard } = escritorio
 
   const gridsContainer = {
     consumerGroups: <GruposDeConsumo {...{ consumerGroups }} />,
     consumerGroup: <GrupoDeConsumo {...{ consumerGroup }} />,
-    consumer: <Consumidores {...{ consumers }} />,
+    consumer: <Consumidores {...{ consumers, setAlert }} />,
     castSheets: <HojasDeReparto {...{ castSheets }} />,
     createGroup: <CrearGrupo {...{ consumerGroups }} />,
     createConsumer: <CrearConsumidor {...{ consumers }} />,

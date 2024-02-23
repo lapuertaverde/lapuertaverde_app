@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { get } from '../../../services/APIServices'
 
-const useEscritorioFetch = ({ escritorio, setAlert }) => {
+const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
   const { endpoint, dashboard } = escritorio
 
   const [consumers, setConsumers] = useState(null)
@@ -23,16 +23,21 @@ const useEscritorioFetch = ({ escritorio, setAlert }) => {
   }
 
   useEffect(() => {
+    setIsLoading(true)
     get(endpoint)
-      .then((res) => dashboardController[dashboard](res))
-      .catch((error) =>
+      .then((res) => {
+        dashboardController[dashboard](res)
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        setIsLoading(false)
         setAlert({
           open: true,
           title: `Error getting ${escritorio}`,
           message: error.message,
           type: 'error'
         })
-      )
+      })
   }, [escritorio])
 
   return {
