@@ -6,8 +6,10 @@ import AlertMessage from '../../../components/AlertMessage/AlertMessage'
 
 import useEscritorioFetch from './useEscritorioFetch'
 import './Escritorio.css'
+import Loading from '../../../components/Loading/Loading'
 
 const Escritorio = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [alert, setAlert] = useState({ open: false })
   const [escritorio, setEscritorio] = useState({
     endpoint: 'consumerGroup',
@@ -24,7 +26,8 @@ const Escritorio = () => {
     castSheets
   } = useEscritorioFetch({
     escritorio,
-    setAlert
+    setAlert,
+    setIsLoading
   })
 
   return (
@@ -42,6 +45,7 @@ const Escritorio = () => {
         }}
       />
       {alert.open && <AlertMessage {...{ alert, setAlert }} />}
+      {isLoading && <Loading />}
     </main>
   )
 }
