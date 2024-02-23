@@ -16,3 +16,10 @@ export const formatDateToDDMMYYYY = (date) => {
 
   return day && `${formattedDay}/${formattedMonth}/${year}`
 }
+
+// Convierte una string en formato DD MM YYYY en un objeto Date
+export const parserSpanishDate = (date, separador = '-') => {
+  const splittedDate = finalRecord.date.split(separador)
+
+  return new Date(splittedDate[2], splittedDate[1], splittedDate[0])
+}
