@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useConsumerById } from './useConsumerById'
 import { NavConsumer } from '../../../components/NavConsumer/NavConsumer'
 import Loading from '../../../components/Loading/Loading'
@@ -6,6 +6,7 @@ import Loading from '../../../components/Loading/Loading'
 import { mainContainer } from './consumerProfile.module.scss'
 import GridContainerConsumer from './partials/GridContainerConsumer'
 import { getConsumerId } from '../../../utils/getConsumerId'
+import AlertMessage from '../../../components/AlertMessage/AlertMessage'
 
 const ConsumerProfile = () => {
   const [alert, setAlert] = useState({ open: false })
@@ -15,7 +16,6 @@ const ConsumerProfile = () => {
     dashboard: 'pedidos'
   })
 
-  console.log('dashboard', consumerDashboard)
   const { data: consumerInfo, loading } = useConsumerById({ consumerDashboard, setAlert })
 
   return (
@@ -23,6 +23,7 @@ const ConsumerProfile = () => {
       <NavConsumer {...{ consumerDashboard, setConsumerDashboard, consumerInfo }} />
       <Suspense>
         {loading ? <Loading /> : <GridContainerConsumer {...{ consumerDashboard, consumerInfo }} />}
+        {alert.open && <AlertMessage {...{ alert, setAlert }} />}
       </Suspense>
     </main>
   )
