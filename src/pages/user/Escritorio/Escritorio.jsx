@@ -1,29 +1,47 @@
-import { useState, useEffect, Suspense, lazy } from 'react'
+import { useState } from 'react'
 import Nav from '../../../components/Nav/Nav'
-import Loading from '../../../components/Loading/Loading'
+import GridContainer from './partials/GridContainer'
+
+import AlertMessage from '../../../components/AlertMessage/AlertMessage'
 
 import useEscritorioFetch from './useEscritorioFetch'
 import './Escritorio.css'
 
 const Escritorio = () => {
-  const GridContainer = lazy(() => import('./partials/GridContainer'))
-
+  const [alert, setAlert] = useState({ open: false })
   const [escritorio, setEscritorio] = useState({
-    gruposDeConsumo: true,
-    consumidores: false,
-    hojasDeReparto: false,
-    creargrupo: false
+    endpoint: 'consumerGroup',
+    dashboard: 'consumerGroups'
   })
 
-  const { consumers, consumerGroup, setConsumerGroup, consumerGroups } =
-    useEscritorioFetch(escritorio)
+  const {
+    consumers,
+    bills,
+    finalRecords,
+    consumerGroup,
+    setConsumerGroup,
+    consumerGroups,
+    castSheets
+  } = useEscritorioFetch({
+    escritorio,
+    setAlert
+  })
 
   return (
     <main className="mainContainer">
       <Nav {...{ escritorio, setEscritorio, consumerGroups, setConsumerGroup }} />
-      <Suspense fallback={<Loading />}>
-        <GridContainer {...{ consumerGroup, consumers, escritorio }} />
-      </Suspense>
+      <GridContainer
+        {...{
+          consumerGroup,
+          consumers,
+          escritorio,
+          bills,
+          finalRecords,
+          castSheets,
+          consumerGroups
+        }}
+      />
+      {alert.open && <AlertMessage {...{ alert, setAlert }} />}
     </main>
   )
 }

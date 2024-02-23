@@ -1,8 +1,6 @@
-import { useEffect, useRef } from 'react'
-import Grid from '../../../components/Grid/Grid'
+import Grid from '../../../../../components/Grid/Grid'
 
-const GruposDeConsumo = ({ consumerGroup }) => {
-  const ref = useRef(null)
+const GrupoDeConsumo = ({ consumerGroup }) => {
   const columns = [
     { field: 'name', filter: true, rowDrag: true },
     { field: 'address', filter: true },
@@ -18,17 +16,13 @@ const GruposDeConsumo = ({ consumerGroup }) => {
     console.log('cellEditingStopped', event)
   }
 
-  useEffect(() => {
-    if (ref?.current) console.log(ref.current)
-  }, [])
-
   return (
     consumerGroup && (
       <Grid
         gridData={consumerGroup.consumers}
-        {...{ ref, columns, handleCellClick, handleCellEditingStopped }}
+        {...{ columns, handleCellClick, handleCellEditingStopped }}
       />
     )
   )
 }
-export default GruposDeConsumo
+export default GrupoDeConsumo

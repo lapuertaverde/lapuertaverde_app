@@ -23,8 +23,8 @@
 }
 
 .mainContainer {
-  width: 600px;
-  height: 300px;
+  width: 590px;
+  height: 200px;
   background-color: white;
   display: flex;
   gap: 0.9rem;
@@ -35,8 +35,8 @@
 }
 
 .mainIconContainer {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
 
 .mainIcon {
@@ -45,6 +45,7 @@
 }
 
 .messageContainer {
+  width: 100%;
   font: 1.3rem gray;
   font-variant: historical-ligatures;
   flex: 1;
