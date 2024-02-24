@@ -1,7 +1,7 @@
 const DeleteConsumer = ({ consumers }) => {
   return (
     <div>
-      <p>Borrar Consumidor</p>
+      <p>Borrar Consumidor BY ID</p>
       <p>{JSON.stringify(consumers)}</p>{' '}
     </div>
   )
