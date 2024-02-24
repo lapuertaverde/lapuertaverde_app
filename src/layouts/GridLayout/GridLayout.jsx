@@ -11,11 +11,12 @@ export const GridLayout = ({
   background,
   gap,
   justifyContent,
-  padding
+  padding,
+  classCustom
 }) => {
   return (
     <div
-      className={gridContainer}
+      className={`${gridContainer} ${classCustom}`}
       style={{
         gridTemplateColumns,
         gridTemplateRows,
