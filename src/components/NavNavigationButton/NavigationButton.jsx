@@ -30,7 +30,11 @@ const NavigationButton = ({
   }
 
   return (
-    <div className={navigationButtonContainer} ref={parent}>
+    <div
+      className={navigationButtonContainer}
+      ref={parent}
+      style={options.length && show ? { paddingBottom: '1rem' } : {}}
+    >
       <div className={`${navigationButtonContent} ${variants[variant]}`}>
         <button
           className={navigationButton}
