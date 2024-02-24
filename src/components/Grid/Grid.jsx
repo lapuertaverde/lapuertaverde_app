@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-import { useMemo, useCallback } from 'react'
+import { useMemo, useCallback, memo } from 'react'
 import Loading from '../../components/Loading/Loading'
 
 import { AgGridReact } from 'ag-grid-react' // the AG Grid React Component
@@ -19,8 +19,7 @@ const Grid = forwardRef(
       rowSelection,
       rowDragManaged,
       rowDragMultiRow,
-      animateRows,
-      handleGetRowId
+      animateRows
     },
     gridRef
   ) => {
@@ -127,8 +126,8 @@ const Grid = forwardRef(
             rowDragManaged,
             rowDragMultiRow,
             animateRows,
-            dataTypeDefinitions,
-            getRowId
+            dataTypeDefinitions
+            // getRowId
           }}
           onCellClicked={cellClickedListener}
           onCellEditingStopped={cellEditingStopped}
@@ -154,4 +153,4 @@ Grid.defaultProps = {
   animateRows: true
 }
 
-export default Grid
+export default memo(Grid)

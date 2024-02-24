@@ -12,7 +12,21 @@ const RegistrosFinales = ({ finalRecords }) => {
     { field: 'deliveredKgs', filter: true },
     { filed: 'priceKgSuplements' },
     { field: 'priceKg', filter: true },
-    { field: 'date', cellDataType: 'date' },
+    {
+      field: 'date',
+      cellDataType: 'date',
+      valueFormatter: ({ value }) => {
+        if (value == null) {
+          return 'JODER NULL NO ES UNA FECHA!'
+        }
+
+        const date = String(value.getDate())
+        const month = String(value.getMonth() + 1)
+        return `${date.length === 1 ? '0' + date : date}/${
+          month.length === 1 ? '0' + month : month
+        }/${value.getFullYear()}`
+      }
+    },
     { field: 'totalEuros' }
   ]
 
