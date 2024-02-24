@@ -5,7 +5,7 @@
   max-width: 100%;
   flex-direction: column;
   gap: 1.5rem;
-  padding: 0.5rem 0;
+  padding-bottom: 1rem;
   align-items: center;
   color: whitesmoke;
   border-radius: 8px;
@@ -18,17 +18,30 @@
   justify-content: center;
   background: transparent;
   width: 100%;
-  padding: 0.5rem;
+
   border-radius: 10px;
   font-size: 1.1rem;
+}
+
+.navigationButton {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .optionsClass {
   text-align: center;
   font-size: 0.8rem;
   width: 90%;
+  height: 90%;
   border-radius: 8px;
-  padding: 0.3rem;
+}
+
+.navigationButtonContent:hover,
+.optionsClass:hover {
+  background-color: white;
+  color: blue;
 }
 
 .active {
