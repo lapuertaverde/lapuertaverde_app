@@ -104,7 +104,7 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
       />
       <NavigationButton
         text="Pedidos Registrados"
-        variant={getIsActive('finalRecord').color}
+        variant={getIsActive('finalRecord')}
         onClick={() => {
           setOptionsStyle(null)
           dashboard !== 'finalRecord' &&
