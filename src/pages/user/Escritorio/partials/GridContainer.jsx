@@ -20,7 +20,7 @@ const GridContainer = ({
   const { dashboard } = escritorio
 
   const gridsContainer = {
-    consumerGroups: <GruposDeConsumo {...{ consumerGroups }} />,
+    consumerGroups: <GruposDeConsumo {...{ consumerGroups, setAlert }} />,
     consumerGroup: <GrupoDeConsumo {...{ consumerGroup }} />,
     consumer: <Consumidores {...{ consumers, setAlert }} />,
     castSheets: <HojasDeReparto {...{ castSheets }} />,
