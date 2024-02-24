@@ -17,7 +17,8 @@ const NavigationButton = ({
   onClickOption,
   onBlurOption,
   variant,
-  optionStyle
+  optionStyle,
+  navigationButton
 }) => {
   const [show, setShow] = useState(false)
 
@@ -29,9 +30,14 @@ const NavigationButton = ({
   }
 
   return (
-    <div className={navigationButtonContainer} ref={parent}>
+    <div
+      className={navigationButtonContainer}
+      ref={parent}
+      style={options.length && show ? { paddingBottom: '1rem' } : {}}
+    >
       <div className={`${navigationButtonContent} ${variants[variant]}`}>
         <button
+          className={navigationButton}
           onClick={(e) => {
             onClick(e)
             setShow((prev) => !prev)
@@ -50,6 +56,18 @@ const NavigationButton = ({
                 ? { color: 'blue', backgroundColor: 'white' }
                 : { backgroundColor: 'inherit', color: 'white' }
             }
+            onMouseEnter={({ target: { style } }) => {
+              if (optionStyle?.toUpperCase() !== name?.toUpperCase()) {
+                style.color = 'blue'
+                style.backgroundColor = 'white'
+              }
+            }}
+            onMouseLeave={({ target: { style } }) => {
+              if (optionStyle?.toUpperCase() !== name?.toUpperCase()) {
+                style.color = 'white'
+                style.backgroundColor = 'inherit'
+              }
+            }}
             onBlur={(e) => typeof onBlurOption === 'function' && onBlurOption(e)}
             key={name}
             onClick={(e) => typeof onClickOption === 'function' && onClickOption(e)}
