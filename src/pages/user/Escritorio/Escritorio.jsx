@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Nav from '../../../components/Nav/Nav'
+import Nav from './partials/Nav/Nav'
 import GridContainer from './partials/GridContainer'
 
 import AlertMessage from '../../../components/AlertMessage/AlertMessage'

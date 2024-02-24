@@ -12,32 +12,35 @@ const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
   const [castSheets, setCastsSheets] = useState(null)
 
   const dashboardController = {
-    consumerGroups: (res) => setConsumerGroups(res),
-    consumerGroup: (res) => setConsumerGroups(res),
+    consumergroups: (res) => setConsumerGroups(res),
+    consumergroup: (res) => setConsumerGroups(res),
     consumer: (res) => setConsumers(res),
     bill: (res) => setBills(res),
-    createGroup: (res) => setConsumerGroups(res),
-    createConsumer: (res) => setConsumers(res),
-    castSheets: (res) => setCastsSheets(res),
-    finalRecord: (res) => setFinalRecords(res)
+    creategroup: (res) => setConsumerGroups(res),
+    'crear consumidor': (res) => setConsumers(res),
+    'borrar consumidor': (res) => setConsumers(res),
+    'editar consumidor': (res) => setConsumers(res),
+    castsheets: (res) => setCastsSheets(res),
+    finalrecord: (res) => setFinalRecords(res)
   }
 
   useEffect(() => {
     setIsLoading(true)
-    get(endpoint)
-      .then((res) => {
-        dashboardController[dashboard](res)
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        setIsLoading(false)
-        setAlert({
-          open: true,
-          title: `Error getting ${escritorio}`,
-          message: error.message,
-          type: 'error'
+    if (dashboard)
+      get(endpoint)
+        .then((res) => {
+          dashboardController[dashboard.toLowerCase()](res)
+          setIsLoading(false)
         })
-      })
+        .catch((error) => {
+          setIsLoading(false)
+          setAlert({
+            open: true,
+            title: 'Error getting escritorio',
+            message: error.message,
+            type: 'error'
+          })
+        })
   }, [escritorio])
 
   return {

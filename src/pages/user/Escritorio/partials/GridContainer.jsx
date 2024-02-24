@@ -6,6 +6,8 @@ import Facturas from './Facturas/Facturas'
 import CrearConsumidor from './CrearConsumidor/CrearConsumidor'
 import RegistrosFinales from './RegistrosFinales/RegistrosFinales'
 import GrupoDeConsumo from './GrupoDeConsumo/GrupoDeConsumo'
+import EditConsumer from './EditarConsumidor/EditConsumer'
+import DeleteConsumer from './BorrarConsumidor/DeleteConsumer'
 
 const GridContainer = ({
   consumerGroup,
@@ -20,12 +22,14 @@ const GridContainer = ({
   const { dashboard } = escritorio
 
   const gridsContainer = {
-    consumerGroups: <GruposDeConsumo {...{ consumerGroups }} />,
+    consumerGroups: <GruposDeConsumo {...{ consumerGroups, setAlert }} />,
     consumerGroup: <GrupoDeConsumo {...{ consumerGroup }} />,
     consumer: <Consumidores {...{ consumers, setAlert }} />,
     castSheets: <HojasDeReparto {...{ castSheets }} />,
     createGroup: <CrearGrupo {...{ consumerGroups }} />,
-    createConsumer: <CrearConsumidor {...{ consumers }} />,
+    'crear consumidor': <CrearConsumidor {...{ consumers }} />,
+    'editar consumidor': <EditConsumer {...{ consumers }} />,
+    'borrar consumidor': <DeleteConsumer {...{ consumers }} />,
     bill: <Facturas {...{ bills }} />,
     finalRecord: <RegistrosFinales {...{ finalRecords }} />
   }
