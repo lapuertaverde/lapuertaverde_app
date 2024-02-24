@@ -7,24 +7,41 @@ const Consumidores = memo(({ consumers, setAlert }) => {
   const gridRef = useRef('')
 
   const columns = [
-    { field: 'name', filter: true },
-    { field: 'address', filter: true },
-    { field: 'CP' },
-    { field: 'phone' },
-    { field: 'email' },
-    { field: 'dni' },
+    {
+      field: 'name',
+      filter: true,
+      flex: 2
+    },
+    { field: 'address', filter: true, flex: 2 },
+    { field: 'CP', flex: 1 },
+    { field: 'phone', flex: 1 },
+    { field: 'email', flex: 2 },
+    { field: 'dni', flex: 1 },
     {
       field: 'KgByDefault',
+      flex: 1,
+
       type: 'number',
       cellStyle: ({ value }) => {
-        if (value <= 5) return { color: 'white', backgroundColor: 'orange' }
+        const commonStyle = { display: 'flex', justifyContent: 'center' }
 
-        return { color: 'white', backgroundColor: 'green' }
+        if (value <= 5) return { color: 'green', backgroundColor: 'orange', ...commonStyle }
+
+        return {
+          color: 'white',
+          backgroundColor: 'green',
+          ...commonStyle
+        }
       }
     },
-    { field: 'active', cellDataType: 'boolean' },
-    { field: 'favorites' },
-    { field: 'discarded' }
+    {
+      field: 'active',
+      cellDataType: 'boolean',
+      flex: 1,
+      cellStyle: () => ({ display: 'flex', justifyContent: 'center' })
+    },
+    { field: 'favorites', flex: 1 },
+    { field: 'discarded', flex: 1 }
   ]
 
   const handleCellEditingStopped = useCallback((e) => {
