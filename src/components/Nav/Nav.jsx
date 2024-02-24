@@ -9,6 +9,8 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
 
   const options = consumerGroups?.map(({ name }) => ({ name }))
 
+  const { dashboard } = escritorio
+
   return (
     <nav className="nav">
       <div
@@ -31,14 +33,14 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
       <NavigationButton
         text="Grupos de consumo"
         onClick={() =>
-          escritorio !== 'consumerGroup' &&
+          dashboard !== 'consumerGroups' &&
           setEscritorio({ endpoint: 'consumerGroup', dashboard: 'consumerGroups' })
         }
         color={getIsActive('consumerGroups')}
         options={options}
         onBlurOption={({ target: { style } }) => (style.color = 'white')}
         onClickOption={({ target: { textContent, style } }) => {
-          escritorio !== 'gruposDeConsumo' &&
+          dashboard !== 'gruposDeConsumo' &&
             setEscritorio({
               endpoint: 'consumerGroup',
               dashboard: 'consumerGroup',
@@ -56,15 +58,14 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
         text="Consumidores"
         color={getIsActive('consumer')}
         onClick={() =>
-          escritorio !== 'consumer' &&
-          setEscritorio({ endpoint: 'consumer', dashboard: 'consumer' })
+          dashboard !== 'consumer' && setEscritorio({ endpoint: 'consumer', dashboard: 'consumer' })
         }
       />
       <NavigationButton
         text="Hojas de Reparto"
         color={getIsActive('castSheets')}
         onClick={() =>
-          escritorio !== 'castSheets' &&
+          dashboard !== 'castSheets' &&
           setEscritorio({ endpoint: 'castSheets', dashboard: 'castSheets' })
         }
       />
@@ -72,14 +73,14 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
         text="Facturas"
         color={getIsActive('bill')}
         onClick={() =>
-          escritorio !== 'bill' && setEscritorio({ endpoint: 'bill', dashboard: 'bill' })
+          dashboard !== 'bill' && setEscritorio({ endpoint: 'bill', dashboard: 'bill' })
         }
       />
       <NavigationButton
         text="Crear Grupo"
         color={getIsActive('createGroup')}
         onClick={() =>
-          escritorio !== 'createGroup' &&
+          dashboard !== 'createGroup' &&
           setEscritorio({ endpoint: 'consumerGroup', dashboard: 'createGroup' })
         }
       />
@@ -87,7 +88,7 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
         text="Crear Consumidor"
         color={getIsActive('createConsumer')}
         onClick={() =>
-          escritorio !== 'createConsumer' &&
+          dashboard !== 'createConsumer' &&
           setEscritorio({ endpoint: 'consumer', dashboard: 'createConsumer' })
         }
       />
@@ -95,7 +96,7 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
         text="Pedidos Registrados"
         color={getIsActive('finalRecord')}
         onClick={() =>
-          escritorio !== 'finalRecord' &&
+          dashboard !== 'finalRecord' &&
           setEscritorio({ endpoint: 'finalRecord', dashboard: 'finalRecord' })
         }
       />
