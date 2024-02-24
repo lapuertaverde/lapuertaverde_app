@@ -7,7 +7,7 @@ const AlertFooter = ({ setAlert }) => (
     <Button
       type="button"
       style={{
-        backgroundColor: 'gray',
+        backgroundColor: 'violet',
         color: 'white',
         border: 'none',
         width: '80px',

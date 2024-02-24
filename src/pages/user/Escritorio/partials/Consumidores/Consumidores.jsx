@@ -1,9 +1,9 @@
 import { patch } from '../../../../../services/APIServices'
 import Grid from '../../../../../components/Grid/Grid'
 import { toast } from 'react-toastify'
-import { useCallback, useRef } from 'react'
+import { memo, useCallback, useRef } from 'react'
 
-const Consumidores = ({ consumers, setAlert }) => {
+const Consumidores = memo(({ consumers, setAlert }) => {
   const gridRef = useRef('')
 
   const columns = [
@@ -13,15 +13,21 @@ const Consumidores = ({ consumers, setAlert }) => {
     { field: 'phone' },
     { field: 'email' },
     { field: 'dni' },
-    { field: 'KgByDefault' },
+    {
+      field: 'KgByDefault',
+      type: 'number',
+      cellStyle: ({ value }) => {
+        if (value <= 5) return { color: 'white', backgroundColor: 'orange' }
+
+        return { color: 'white', backgroundColor: 'green' }
+      }
+    },
     { field: 'active', cellDataType: 'boolean' },
     { field: 'favorites' },
     { field: 'discarded' }
   ]
 
   const handleCellEditingStopped = useCallback((e) => {
-    console.log(e)
-
     const {
       node,
       data,
@@ -31,20 +37,26 @@ const Consumidores = ({ consumers, setAlert }) => {
     } = e
     const { _id } = data
 
-    patch(`consumer/${_id}`, { [colId]: newValue })
-      .then(() => toast.success('Usuario actualizado correctamente!'))
-      .catch((error) =>
-        setAlert({
-          open: true,
-          title: `Error actualizando el perfil consumidor de ${data.name} `,
-          message: error.message,
-          type: 'error'
+    if (!newValue && ['name', 'address', 'CP', 'email', 'KgByDefault'].includes(colId)) {
+      setAlert({
+        open: true,
+        title: 'CAMPO OBLIGATORIO',
+        message: `El campo ${colId} es obligatorio `,
+        type: 'error'
+      })
+      return node.setData({ ...data, [colId]: oldValue })
+    }
+    if (oldValue !== newValue)
+      patch(`consumer/${_id}`, { [colId]: newValue })
+        .then(() => toast.success('Usuario actualizado correctamente!'))
+        .catch((error) => {
+          setAlert({
+            open: true,
+            title: `Error actualizando el perfil consumidor de ${data.name} `,
+            message: error.message,
+            type: 'error'
+          })
         })
-      )
-    // console.log({ ...node.data, [colId]: oldValue })
-    return gridRef.current.api.applyTransaction({
-      update: [{ ...node.data, [colId]: oldValue }]
-    })
   })
 
   return (
@@ -57,5 +69,8 @@ const Consumidores = ({ consumers, setAlert }) => {
       }}
     />
   )
-}
+})
+
+Consumidores.displayName = 'Consumidores'
+
 export default Consumidores
