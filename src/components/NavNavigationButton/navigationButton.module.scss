@@ -7,18 +7,35 @@
   gap: 1.5rem;
   align-items: center;
   color: whitesmoke;
+  border-radius: 8px;
   background-color: rgb(156, 111, 219);
   font-family: cursive;
 }
 
 .navigationButtonContent {
+  display: flex;
+  justify-content: center;
   background: transparent;
+  width: 100%;
   padding: 0.5rem;
   border-radius: 10px;
   font-size: 1.1rem;
 }
 
 .optionsClass {
+  text-align: center;
   font-size: 0.8rem;
-  padding: 0 0 0.3rem 0;
+  width: 100%;
+  border-radius: 8px;
+  padding: 0.3rem 0;
+}
+
+.active {
+  color: blue;
+  background-color: white;
+}
+
+.inActive {
+  color: white;
+  background-color: inherit;
 }

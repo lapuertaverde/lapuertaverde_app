@@ -38,7 +38,12 @@ const Consumidores = memo(({ consumers, setAlert }) => {
       field: 'active',
       cellDataType: 'boolean',
       flex: 1,
-      cellStyle: () => ({ display: 'flex', justifyContent: 'center' })
+
+      cellStyle: () => ({
+        display: 'flex',
+        justifyContent: 'center',
+        color: 'red'
+      })
     },
     { field: 'favorites', flex: 1 },
     { field: 'discarded', flex: 1 }

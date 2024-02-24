@@ -1,15 +1,19 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 
-import NavigationButton from '../NavNavigationButton/NavigationButton'
-import Avatar from '../Avatar/Avatar'
+import NavigationButton from '../../../../../components/NavNavigationButton/NavigationButton'
+import Avatar from '../../../../../components/Avatar/Avatar'
 import './Nav.css'
 
 const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup }) => {
-  const getIsActive = (dashboard) => (escritorio.dashboard === dashboard ? 'blue' : 'white')
+  const getIsActive = (dashboard) => (escritorio.dashboard === dashboard ? 'active' : 'inActive')
 
-  const options = consumerGroups?.map(({ name }) => ({ name }))
+  const options = consumerGroups?.map(({ name }) => ({
+    name
+  }))
 
   const { dashboard } = escritorio
+
+  const [optionStyle, setOptionsStyle] = useState(null)
 
   return (
     <nav className="nav">
@@ -32,14 +36,16 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
 
       <NavigationButton
         text="Grupos de consumo"
-        onClick={() =>
+        onClick={() => {
+          setOptionsStyle(null)
           dashboard !== 'consumerGroups' &&
-          setEscritorio({ endpoint: 'consumerGroup', dashboard: 'consumerGroups' })
-        }
-        color={getIsActive('consumerGroups')}
+            setEscritorio({ endpoint: 'consumerGroup', dashboard: 'consumerGroups' })
+        }}
+        variant={getIsActive('consumerGroups')}
         options={options}
-        onBlurOption={({ target: { style } }) => (style.color = 'white')}
-        onClickOption={({ target: { textContent, style } }) => {
+        {...{ optionStyle }}
+        onClickOption={({ target: { textContent } }) => {
+          setOptionsStyle(textContent)
           dashboard !== 'gruposDeConsumo' &&
             setEscritorio({
               endpoint: 'consumerGroup',
@@ -47,7 +53,6 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
               option: textContent
             })
 
-          style.color = 'blue'
           if (consumerGroups)
             setConsumerGroup(
               consumerGroups.find(({ name }) => textContent.toLowerCase() === name.toLowerCase())
@@ -56,49 +61,55 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
       />
       <NavigationButton
         text="Consumidores"
-        color={getIsActive('consumer')}
-        onClick={() =>
+        variant={getIsActive('consumer')}
+        onClick={() => {
+          setOptionsStyle(null)
           dashboard !== 'consumer' && setEscritorio({ endpoint: 'consumer', dashboard: 'consumer' })
-        }
+        }}
       />
       <NavigationButton
         text="Hojas de Reparto"
-        color={getIsActive('castSheets')}
-        onClick={() =>
+        variant={getIsActive('castSheets')}
+        onClick={() => {
+          setOptionsStyle(null)
           dashboard !== 'castSheets' &&
-          setEscritorio({ endpoint: 'castSheets', dashboard: 'castSheets' })
-        }
+            setEscritorio({ endpoint: 'castSheets', dashboard: 'castSheets' })
+        }}
       />
       <NavigationButton
         text="Facturas"
-        color={getIsActive('bill')}
-        onClick={() =>
+        variant={getIsActive('bill')}
+        onClick={() => {
+          setOptionsStyle(null)
           dashboard !== 'bill' && setEscritorio({ endpoint: 'bill', dashboard: 'bill' })
-        }
+        }}
       />
       <NavigationButton
         text="Crear Grupo"
-        color={getIsActive('createGroup')}
-        onClick={() =>
+        variant={getIsActive('createGroup')}
+        onClick={() => {
+          setOptionsStyle(null)
           dashboard !== 'createGroup' &&
-          setEscritorio({ endpoint: 'consumerGroup', dashboard: 'createGroup' })
-        }
+            setEscritorio({ endpoint: 'consumerGroup', dashboard: 'createGroup' })
+        }}
       />
       <NavigationButton
         text="Crear Consumidor"
-        color={getIsActive('createConsumer')}
-        onClick={() =>
+        variant={getIsActive('createConsumer')}
+        onClick={() => {
+          setOptionsStyle(null)
           dashboard !== 'createConsumer' &&
-          setEscritorio({ endpoint: 'consumer', dashboard: 'createConsumer' })
-        }
+            setEscritorio({ endpoint: 'consumer', dashboard: 'createConsumer' })
+        }}
       />
       <NavigationButton
         text="Pedidos Registrados"
-        color={getIsActive('finalRecord')}
-        onClick={() =>
+        variant={getIsActive('finalRecord').color}
+        onClick={() => {
+          setOptionsStyle(null)
           dashboard !== 'finalRecord' &&
-          setEscritorio({ endpoint: 'finalRecord', dashboard: 'finalRecord' })
-        }
+            setEscritorio({ endpoint: 'finalRecord', dashboard: 'finalRecord' })
+        }}
       />
     </nav>
   )
