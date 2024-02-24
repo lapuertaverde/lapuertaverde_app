@@ -1,5 +1,5 @@
 .nav {
-  width: 240px;
+  width: 260px;
   height: 100vh;
   background-color: rgb(159, 118, 246);
   display: flex;
@@ -8,5 +8,5 @@
   justify-content: flex-start;
   gap: 1.9rem;
   align-items: center;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
 }

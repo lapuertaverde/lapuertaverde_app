@@ -5,6 +5,7 @@
   max-width: 100%;
   flex-direction: column;
   gap: 1.5rem;
+  padding: 0.5rem 0;
   align-items: center;
   color: whitesmoke;
   border-radius: 8px;
@@ -25,9 +26,9 @@
 .optionsClass {
   text-align: center;
   font-size: 0.8rem;
-  width: 100%;
+  width: 90%;
   border-radius: 8px;
-  padding: 0.3rem 0;
+  padding: 0.3rem;
 }
 
 .active {

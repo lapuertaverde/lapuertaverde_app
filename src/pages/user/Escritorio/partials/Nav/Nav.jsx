@@ -15,12 +15,18 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
 
   const [optionStyle, setOptionsStyle] = useState(null)
 
+  const consumersOptions = [
+    { name: 'Crear Consumidor' },
+    { name: 'Editar Consumidor' },
+    { name: 'Borrar Consumidor' }
+  ]
+
   return (
     <nav className="nav">
       <div
         style={{
-          minHeight: '10rem',
-          minWidth: '10rem',
+          minHeight: '15rem',
+          minWidth: '15rem',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -33,7 +39,6 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
           size="l"
         />
       </div>
-
       <NavigationButton
         text="Grupos de consumo"
         onClick={() => {
@@ -66,7 +71,18 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
           setOptionsStyle(null)
           dashboard !== 'consumer' && setEscritorio({ endpoint: 'consumer', dashboard: 'consumer' })
         }}
+        options={consumersOptions}
+        {...{ optionStyle }}
+        onClickOption={({ target: { textContent } }) => {
+          setOptionsStyle(textContent)
+
+          setEscritorio({
+            endpoint: 'consumer',
+            dashboard: textContent.toLowerCase()
+          })
+        }}
       />
+
       <NavigationButton
         text="Hojas de Reparto"
         variant={getIsActive('castSheets')}
@@ -75,40 +91,61 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
           dashboard !== 'castSheets' &&
             setEscritorio({ endpoint: 'castSheets', dashboard: 'castSheets' })
         }}
+        options={[{ name: 'En Curso' }]}
+        {...{ optionStyle }}
+        onClickOption={({ target: { textContent } }) => {
+          setOptionsStyle(textContent)
+
+          setEscritorio({
+            endpoint: 'castSheets',
+            dashboard: textContent.toLowerCase()
+          })
+        }}
       />
       <NavigationButton
-        text="Facturas"
+        text="Recibos"
         variant={getIsActive('bill')}
         onClick={() => {
           setOptionsStyle(null)
           dashboard !== 'bill' && setEscritorio({ endpoint: 'bill', dashboard: 'bill' })
         }}
+        options={[{ name: 'Crear Recibo' }, { name: 'Editar Recibo' }, { name: 'Borrar Recibo' }]}
+        {...{ optionStyle }}
+        onClickOption={({ target: { textContent } }) => {
+          setOptionsStyle(textContent)
+
+          setEscritorio({
+            endpoint: 'castSheets',
+            dashboard: textContent.toLowerCase()
+          })
+        }}
       />
       <NavigationButton
-        text="Crear Grupo"
+        text="Pedidos Registrados"
+        variant={getIsActive('finalRecord')}
+        onClick={() => {
+          setOptionsStyle(null)
+          dashboard !== 'finalRecord' &&
+            setEscritorio({ endpoint: 'finalRecord', dashboard: 'finalRecord' })
+        }}
+      />
+      <NavigationButton
+        text="Grupo"
         variant={getIsActive('createGroup')}
         onClick={() => {
           setOptionsStyle(null)
           dashboard !== 'createGroup' &&
             setEscritorio({ endpoint: 'consumerGroup', dashboard: 'createGroup' })
         }}
-      />
-      <NavigationButton
-        text="Crear Consumidor"
-        variant={getIsActive('createConsumer')}
-        onClick={() => {
-          setOptionsStyle(null)
-          dashboard !== 'createConsumer' &&
-            setEscritorio({ endpoint: 'consumer', dashboard: 'createConsumer' })
-        }}
-      />
-      <NavigationButton
-        text="Pedidos Registrados"
-        variant={getIsActive('finalRecord').color}
-        onClick={() => {
-          setOptionsStyle(null)
-          dashboard !== 'finalRecord' &&
-            setEscritorio({ endpoint: 'finalRecord', dashboard: 'finalRecord' })
+        options={[{ name: 'Crear Grupo' }, { name: 'Editar Grupo' }, { name: 'Borrar Grupo' }]}
+        {...{ optionStyle }}
+        onClickOption={({ target: { textContent } }) => {
+          setOptionsStyle(textContent)
+
+          setEscritorio({
+            endpoint: 'castSheets',
+            dashboard: textContent.toLowerCase()
+          })
         }}
       />
     </nav>
