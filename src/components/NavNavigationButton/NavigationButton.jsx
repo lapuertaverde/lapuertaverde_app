@@ -9,7 +9,7 @@ import {
 } from './navigationButton.module.scss'
 
 const NavigationButton = ({ text, onClick, options, onClickOption, color, onBlurOption }) => {
-  const [show, setShow] = useState(true)
+  const [show, setShow] = useState(false)
 
   const [parent] = useAutoAnimate()
 
