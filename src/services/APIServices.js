@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
 const getToken = () => {
   const { token } = JSON.parse(sessionStorage.getItem('token'))
