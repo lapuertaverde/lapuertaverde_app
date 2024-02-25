@@ -17,6 +17,7 @@ import {
   footer,
   form
 } from './crearConsumidor.module.scss'
+import { toast } from 'react-toastify'
 
 const CrearConsumidor = ({ consumerGroups, setAlert }) => {
   const grupos = consumerGroups.map(({ name }) => name)
@@ -45,7 +46,10 @@ const CrearConsumidor = ({ consumerGroups, setAlert }) => {
     if (consumerGroupSelected) {
       const consumerGroupId = consumerGroupSelected._id
       post('consumer', { ...values, consumerGroup: consumerGroupId })
-        .then(() => reset(defaultValues))
+        .then(() => {
+          toast.success('Consumidor creado')
+          reset(defaultValues)
+        })
         .catch((error) =>
           setAlert({
             open: true,
@@ -59,7 +63,7 @@ const CrearConsumidor = ({ consumerGroups, setAlert }) => {
 
   return (
     <div className={superContainer}>
-      <header className={header}>Crear Grupo</header>
+      <header className={header}>Crear Consumidor</header>
       <div style={{ display: 'flex', gap: '1rem' }}>
         <div className={formContainer}>
           <Form {...{ methods, onSubmit }} id="createNewConsumerForm">
