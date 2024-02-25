@@ -18,8 +18,8 @@ const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
     bill: (res) => setBills(res),
     creategroup: (res) => setConsumerGroups(res),
     'crear consumidor': (res) => setConsumerGroups(res),
-    'borrar consumidor': (res) => setConsumers(res),
-    'editar consumidor': (res) => setConsumers(res),
+    'borrar consumidor': (res) => setConsumerGroups(res),
+    'editar consumidor': (res) => setConsumerGroups(res),
     castsheets: (res) => setCastsSheets(res),
     finalrecord: (res) => setFinalRecords(res)
   }
