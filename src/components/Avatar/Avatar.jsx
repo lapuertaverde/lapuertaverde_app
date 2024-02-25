@@ -3,9 +3,12 @@ import PropTypes from 'prop-types'
 import './Avatar.css'
 import { capLetters, coloringText, validate } from './avatarController'
 
-const Avatar = ({ src, size }) => {
+const Avatar = ({ src, size, style }) => {
   return (
-    <div className={`avatar avatar-${size}`} style={validate(src) ? {} : coloringText(src)}>
+    <div
+      className={`avatar avatar-${size}`}
+      style={{ ...(validate(src) ? {} : coloringText(src)), ...(style ? style : {}) }}
+    >
       {validate(src) ? (
         <img src={src} className={'avatar-image'} />
       ) : (

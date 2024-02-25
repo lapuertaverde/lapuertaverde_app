@@ -1,4 +1,4 @@
-import { string, number, bool, func } from 'prop-types'
+import { string, number, bool, func, oneOf } from 'prop-types'
 import { useId } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { numberSchema } from '../../utils/validationSchemas'
@@ -19,7 +19,9 @@ const InputNumber = ({
   placeholder,
   fontSize,
   color,
-  borderB
+  borderB,
+  flexDir,
+  width
 }) => {
   const id = useId()
 
@@ -35,12 +37,13 @@ const InputNumber = ({
       rules={numberSchema({ required, label, min, max })}
       render={({ field }) => (
         <Tooltip text={errors?.[name]?.message}>
-          <div className={inputContainer}>
+          <div className={inputContainer} style={{ flexDirection: flexDir, width }}>
             {label && (
               <LabelCustom {...{ label, htmlFor: id, fontSize, color, borderB, required }} />
             )}
-            <div style={{ display: 'flex', gap: '0.5rem', height: '13px' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', height: '13px', alignItems: 'center' }}>
               <Icon
+                color="white"
                 icon="minus"
                 className={inputControls}
                 onClick={() => {
@@ -49,6 +52,7 @@ const InputNumber = ({
                 }}
               />
               <input
+                style={{ height: '1.3rem' }}
                 {...{ id, max, min, step, placeholder }}
                 type="number"
                 value={field.value}
@@ -59,6 +63,7 @@ const InputNumber = ({
                 }}
               />
               <Icon
+                color="white"
                 icon="plus"
                 className={inputControls}
                 onClick={() => {
@@ -86,7 +91,9 @@ InputNumber.propTypes = {
   placeholder: string,
   fontSize: string,
   color: string,
-  borderB: bool
+  borderB: bool,
+  flexDir: oneOf(['row', 'row-reverse', 'column']),
+  width: string
 }
 
 InputNumber.defaultProps = {
@@ -96,7 +103,9 @@ InputNumber.defaultProps = {
   min: 0,
   required: true,
   step: 1,
-  placeholder: 'Introduce un número'
+  placeholder: 'Introduce un número',
+  flexDir: 'column',
+  width: '100%'
 }
 
 export default InputNumber

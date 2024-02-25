@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
 const getToken = () => {
   const { token } = JSON.parse(sessionStorage.getItem('token'))
@@ -14,7 +13,6 @@ export const get = (route) =>
       }
     })
     .then((res) => res.data.info.data)
-    .catch((error) => console.log(error))
 
 export const post = async (route, values) => {
   return axios
@@ -33,7 +31,6 @@ export const patch = (route, values) =>
       headers: { 'Content-Type': 'application/json', authorization: `Bearer ${getToken()}` }
     })
     .then((res) => res)
-    .catch((error) => console.log(error))
 
 export const deleteService = (route) =>
   axios
@@ -41,4 +38,3 @@ export const deleteService = (route) =>
       headers: { 'Content-Type': 'application/json', authorization: `Bearer ${getToken()}` }
     })
     .then((res) => res)
-    .catch((error) => console.log(error))

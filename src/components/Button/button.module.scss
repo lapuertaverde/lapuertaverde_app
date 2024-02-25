@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  border-radius: 0.3rem;
   background-color: #e220d2;
   border: 1px solid rgb(113, 34, 112);
   cursor: pointer;
@@ -14,20 +14,21 @@
   background-color: #d61fd1;
   border: 1px solid #a61aa6;
 }
-button:disabled, button:disabled:hover {
+button:disabled,
+button:disabled:hover {
   background-color: #d1d1d1;
   border: 1px solid #a6a6a6;
   cursor: not-allowed;
 }
 .small {
-    width: fit-content;
-    height: 1rem;
+  width: fit-content;
+  height: 1rem;
 }
 .medium {
-    width: fit-content;
-    height: 1.5rem;
+  width: fit-content;
+  height: 1.5rem;
 }
 .large {
-    width: fit-content;
-    height: 3rem;
+  width: fit-content;
+  height: 3rem;
 }

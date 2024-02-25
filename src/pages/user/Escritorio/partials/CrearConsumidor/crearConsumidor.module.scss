@@ -1,0 +1,48 @@
+.superContainer {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.header {
+  width: 100%;
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 3rem;
+}
+
+.boxes {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 6px;
+  border: 1px solid white;
+}
+
+.footer {
+  align-self: flex-end;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}

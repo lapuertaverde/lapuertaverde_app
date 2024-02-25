@@ -1,10 +1,9 @@
-import { string, array, bool, number, func } from 'prop-types'
+import { string, array, bool, number, func, oneOf } from 'prop-types'
 import { useId } from 'react'
 import { useFormContext } from 'react-hook-form'
 import { custom_select } from './InputSelect.module.scss'
 import { selectSchema } from '../../utils/validationSchemas'
 import { LabelCustom } from '../Label/LabelCustom'
-import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
 import { Tooltip } from '../Tooltip/Tooltip'
 
 const InputSelect = ({
@@ -17,7 +16,9 @@ const InputSelect = ({
   required,
   multiple,
   maxOptions,
-  onChange
+  onChange,
+  flexDir,
+  width
 }) => {
   const id = useId()
 
@@ -27,8 +28,8 @@ const InputSelect = ({
   } = useFormContext()
 
   return (
-    <div className={custom_select}>
-      {label && <LabelCustom {...{ label, id }} borderB />}
+    <div className={custom_select} style={{ width, flexDirection: flexDir }}>
+      {label && <LabelCustom {...{ label, id, required }} />}
       <Tooltip text={errors?.[name]?.message}>
         <select
           {...register(name, selectSchema({ name, label, required, maxOptions, multiple }))}
@@ -44,7 +45,6 @@ const InputSelect = ({
           )}
         </select>
       </Tooltip>
-      {errors[name] && <ErrorCustom error={errors[name].message} />}
     </div>
   )
 }
@@ -62,7 +62,9 @@ InputSelect.propTypes = {
   onChange: func,
   fontSize: string,
   color: string,
-  borderB: bool
+  borderB: bool,
+  flexDir: oneOf(['row', 'row-reverse', 'column']),
+  width: string
 }
 
 InputSelect.defaultProps = {
@@ -71,7 +73,9 @@ InputSelect.defaultProps = {
   autoFocus: false,
   disabled: false,
   required: false,
-  multiple: false
+  multiple: false,
+  flexDir: 'column',
+  width: '100%'
 }
 
 export default InputSelect
