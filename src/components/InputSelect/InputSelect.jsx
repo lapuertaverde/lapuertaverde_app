@@ -4,7 +4,6 @@ import { useFormContext } from 'react-hook-form'
 import { custom_select } from './InputSelect.module.scss'
 import { selectSchema } from '../../utils/validationSchemas'
 import { LabelCustom } from '../Label/LabelCustom'
-import { ErrorCustom } from '../ErrorCustom/ErrorCustom'
 import { Tooltip } from '../Tooltip/Tooltip'
 
 const InputSelect = ({
@@ -30,7 +29,7 @@ const InputSelect = ({
 
   return (
     <div className={custom_select} style={{ width, flexDirection: flexDir }}>
-      {label && <LabelCustom {...{ label, id, required }} style={{ flexDirection: flexDir }} />}
+      {label && <LabelCustom {...{ label, id, required }} />}
       <Tooltip text={errors?.[name]?.message}>
         <select
           {...register(name, selectSchema({ name, label, required, maxOptions, multiple }))}

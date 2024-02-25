@@ -70,7 +70,7 @@ const CrearConsumidor = ({ consumerGroups, setAlert }) => {
             <div className={form}>
               <div className={boxes}>
                 <InputSelect name="consumerGroup" label="Grupo" options={grupos} required />
-                <InputNumber name="KgByDefault" label="Kgs cesta" min={3} required />
+                <InputNumber name="KgByDefault" label="Kgs mínimos en cesta" min={3} required />
                 <Switcher name="active" label="Activx" />
               </div>
               <div className={boxes}>
@@ -79,8 +79,8 @@ const CrearConsumidor = ({ consumerGroups, setAlert }) => {
                 <InputText name="address" label="Dirección" required />
               </div>
               <div className={boxes}>
-                <InputText name="phone" label="Telefono" required />
-                <InputText name="CP" label="CP" required />
+                <InputText name="phone" label="Teléfono" required />
+                <InputText name="CP" label="Código Postal" required />
                 <InputText name="dni" label="DNI" required />
               </div>
             </div>
