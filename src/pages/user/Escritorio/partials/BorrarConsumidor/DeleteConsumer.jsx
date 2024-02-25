@@ -10,6 +10,12 @@ import { useState } from 'react'
 const DeleteConsumer = ({ consumerGroups, setAlert }) => {
   const [consumers, setConsumers] = useState(consumersFlatter(consumerGroups))
 
+  const footerButton = {
+    backgroundColor: 'rgb(159, 118, 246)',
+    color: 'white',
+    border: '1px solid white'
+  }
+
   const closeAlert = { open: false, footer: null }
 
   const handleDelete = (name, id) => {
@@ -37,8 +43,18 @@ const DeleteConsumer = ({ consumerGroups, setAlert }) => {
       open: true,
       footer: (
         <div className={alertFooter}>
-          <Button type="button" text="Cancelar" onClick={() => setAlert(closeAlert)} />
-          <Button type="button" text="Borrar" onClick={() => handleDelete(name, _id)} />
+          <Button
+            type="button"
+            text="Cancelar"
+            onClick={() => setAlert(closeAlert)}
+            style={footerButton}
+          />
+          <Button
+            type="button"
+            text="Borrar"
+            onClick={() => handleDelete(name, _id)}
+            style={footerButton}
+          />
         </div>
       )
     })

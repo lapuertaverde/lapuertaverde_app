@@ -10,9 +10,9 @@ const AlertFooter = ({ setAlert, footer }) => (
       <Button
         type="button"
         style={{
-          backgroundColor: 'violet',
+          backgroundColor: 'rgb(159, 118, 246)',
           color: 'white',
-          border: 'none',
+          border: '1px solid white',
           width: '80px',
           height: '1.5rem',
           padding: '5px'
