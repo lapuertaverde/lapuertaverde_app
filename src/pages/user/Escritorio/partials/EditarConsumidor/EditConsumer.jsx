@@ -5,13 +5,18 @@ import { header } from '../BorrarConsumidor/deleteConsumer.module.scss'
 import Drawer from '../../../../../components/Drawer/Drawer'
 import Form from '../../../../../components/Form/Form'
 import { InputText } from '../../../../../components/InputText/InputText'
+import InputNumber from '../../../../../components/InputNumber/InputNumber'
 import { Switcher } from '../../../../../components/Switcher/Switcher'
+import InputSelect from '../../../../../components/InputSelect/InputSelect'
 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
+import Avatar from '../../../../../components/Avatar/Avatar'
 
 const EditConsumer = ({ consumerGroups }) => {
   const consumers = consumersFlatter(consumerGroups)
+
+  const grupos = consumerGroups.map((group) => group.name)
 
   const [open, setOpen] = useState(false)
   const [width, setWidth] = useState('100%')
@@ -28,7 +33,7 @@ const EditConsumer = ({ consumerGroups }) => {
 
   const methods = useForm({ defaultValues, mode: 'onChange' })
 
-  const { reset } = methods
+  const { reset, watch } = methods
 
   const onClose = () => setOpen(false)
 
@@ -49,7 +54,16 @@ const EditConsumer = ({ consumerGroups }) => {
         <ConsumersCard {...{ consumers, onClick }} />
       </div>
 
-      <Drawer {...{ open, onClose }} width="350px">
+      <Drawer
+        {...{ open, onClose }}
+        width="350px"
+        drawerTitle={
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <Avatar src={watch('name') || ''} />
+            {watch('name') && watch('name').toUpperCase()}
+          </div>
+        }
+      >
         <Form {...{ methods }}>
           <div
             style={{
@@ -67,6 +81,8 @@ const EditConsumer = ({ consumerGroups }) => {
             <InputText name="CP" label="Código Postal" required />
             <InputText name="dni" label="DNI" required />
             <InputText name="phone" label="Teléfono" required />
+            <InputSelect name="groupName" label="Grupo" options={grupos || []} />
+            <InputNumber name="KgByDefault" label="Kg en cesta" />
             <Switcher name="active" label="Activo" />
           </div>
         </Form>
