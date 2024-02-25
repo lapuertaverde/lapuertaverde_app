@@ -1,6 +1,6 @@
-import ConsumersCard from '../ConsumerCard/ConsumersCard'
 import { consumersFlatter } from '../../../../../utils/consumers'
 
+import ConsumersCard from '../ConsumerCard/ConsumersCard'
 import { header } from '../BorrarConsumidor/deleteConsumer.module.scss'
 import Drawer from '../../../../../components/Drawer/Drawer'
 import Form from '../../../../../components/Form/Form'
@@ -8,13 +8,16 @@ import { InputText } from '../../../../../components/InputText/InputText'
 import InputNumber from '../../../../../components/InputNumber/InputNumber'
 import { Switcher } from '../../../../../components/Switcher/Switcher'
 import InputSelect from '../../../../../components/InputSelect/InputSelect'
+import Avatar from '../../../../../components/Avatar/Avatar'
 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import Avatar from '../../../../../components/Avatar/Avatar'
 
-const EditConsumer = ({ consumerGroups }) => {
-  const consumers = consumersFlatter(consumerGroups)
+import { patch } from '../../../../../services/APIServices'
+import { toast } from 'react-toastify'
+
+const EditConsumer = ({ consumerGroups, setAlert }) => {
+  const [consumers, setConsumers] = useState(consumersFlatter(consumerGroups))
 
   const grupos = consumerGroups.map((group) => group.name)
 
@@ -42,6 +45,26 @@ const EditConsumer = ({ consumerGroups }) => {
     if (!open) setOpen(true)
   }
 
+  const onSubmit = (values) =>
+    patch(`consumer/${values._id}`)
+      .then(() => {
+        toast.success('Consumidor Actualizado', { position: 'top-left' })
+
+        const consumersUpdated = consumers.map((consumer) => {
+          if (consumer._id === values._id) return values
+          else return consumer
+        })
+        setConsumers(consumersUpdated)
+      })
+      .catch((error) =>
+        setAlert({
+          open: true,
+          type: 'error',
+          title: `Error actualizando ${values.name}`,
+          message: error.message
+        })
+      )
+
   useEffect(() => {
     if (open) setWidth('calc(100% - 300px)')
     else setWidth('100%')
@@ -56,6 +79,7 @@ const EditConsumer = ({ consumerGroups }) => {
 
       <Drawer
         {...{ open, onClose }}
+        formId="editarConsumidorForm"
         width="350px"
         drawerTitle={
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -64,7 +88,7 @@ const EditConsumer = ({ consumerGroups }) => {
           </div>
         }
       >
-        <Form {...{ methods }}>
+        <Form id="editarConsumidorForm" {...{ methods, onSubmit }}>
           <div
             style={{
               width: '100%',

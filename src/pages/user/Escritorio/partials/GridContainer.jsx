@@ -28,7 +28,7 @@ const GridContainer = ({
     castSheets: <HojasDeReparto {...{ castSheets }} />,
     createGroup: <CrearGrupo {...{ consumerGroups }} />,
     'crear consumidor': <CrearConsumidor {...{ consumerGroups, setAlert }} />,
-    'editar consumidor': <EditConsumer {...{ consumerGroups }} />,
+    'editar consumidor': <EditConsumer {...{ consumerGroups, setAlert }} />,
     'borrar consumidor': <DeleteConsumer {...{ consumerGroups, setAlert }} />,
     bill: <Facturas {...{ bills }} />,
     finalRecord: <RegistrosFinales {...{ finalRecords }} />
