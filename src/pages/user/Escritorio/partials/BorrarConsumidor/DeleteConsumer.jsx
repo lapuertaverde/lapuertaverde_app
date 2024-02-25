@@ -31,9 +31,9 @@ const DeleteConsumer = ({ consumerGroups, setAlert }) => {
 
   const onClick = ({ name, _id }) => {
     setAlert({
-      title: `Borrando ${name}`,
+      title: `Borrar a ${name} !!`,
       type: 'warn',
-      message: `Estas segur@ de borrar a ${name}`,
+      message: `¿ Estás segur@ de borrar a ${name} ?`,
       open: true,
       footer: (
         <div className={alertFooter}>
