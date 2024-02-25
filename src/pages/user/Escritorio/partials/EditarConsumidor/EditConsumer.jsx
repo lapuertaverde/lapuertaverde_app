@@ -46,7 +46,7 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
   }
 
   const onSubmit = (values) =>
-    patch(`consumer/${values._id}`)
+    patch(`consumer/${values._id}`, values)
       .then(() => {
         toast.success('Consumidor Actualizado', { position: 'top-left' })
 
