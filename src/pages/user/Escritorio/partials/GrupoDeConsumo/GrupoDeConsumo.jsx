@@ -1,6 +1,7 @@
 import Grid from '../../../../../components/Grid/Grid'
+import { patchOnStopCellEditing } from '../../../../../utils/gridUtils'
 
-const GrupoDeConsumo = ({ consumerGroup }) => {
+const GrupoDeConsumo = ({ consumerGroup, setAlert }) => {
   const columns = [
     { field: 'name', filter: true, rowDrag: true },
     { field: 'address', filter: true },
@@ -8,20 +9,12 @@ const GrupoDeConsumo = ({ consumerGroup }) => {
     { field: 'monthOrder', type: ['dateColumn'] }
   ]
 
-  const handleCellClick = (event) => {
-    console.log('cellClicked', event)
-  }
-
-  const handleCellEditingStopped = (event) => {
-    console.log('cellEditingStopped', event)
-  }
+  const handleCellEditingStopped = (e) =>
+    patchOnStopCellEditing(e, ['name', 'phone', 'address'], setAlert)
 
   return (
     consumerGroup && (
-      <Grid
-        gridData={consumerGroup.consumers}
-        {...{ columns, handleCellClick, handleCellEditingStopped }}
-      />
+      <Grid gridData={consumerGroup.consumers} {...{ columns, handleCellEditingStopped }} />
     )
   )
 }

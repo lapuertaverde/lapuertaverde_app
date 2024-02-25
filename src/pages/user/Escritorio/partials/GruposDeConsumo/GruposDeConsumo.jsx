@@ -1,9 +1,8 @@
-import { useCallback } from 'react'
 import Grid from '../../../../../components/Grid/Grid'
 
 import { headerClass } from './gruposDeConsumo.module.scss'
-import { toast } from 'react-toastify'
-import { patch } from '../../../../../services/APIServices'
+
+import { patchOnStopCellEditing } from '../../../../../utils/gridUtils'
 
 const GruposDeConsumo = ({ consumerGroups, setAlert }) => {
   const gridData = consumerGroups
@@ -39,37 +38,8 @@ const GruposDeConsumo = ({ consumerGroups, setAlert }) => {
     // console.log('cellClicked', event)
   }
 
-  const handleCellEditingStopped = useCallback((e) => {
-    const {
-      node,
-      data,
-      oldValue,
-      newValue,
-      column: { colId }
-    } = e
-    const { _id } = data
-
-    if (!newValue && ['name', 'address', 'phone'].includes(colId)) {
-      setAlert({
-        open: true,
-        title: 'CAMPO OBLIGATORIO',
-        message: `El campo ${colId} es obligatorio `,
-        type: 'error'
-      })
-      return node.setData({ ...data, [colId]: oldValue })
-    }
-    if (oldValue !== newValue)
-      patch(`consumer/${_id}`, { [colId]: newValue })
-        .then(() => toast.success('Usuario actualizado correctamente!'))
-        .catch((error) => {
-          setAlert({
-            open: true,
-            title: `Error actualizando el perfil consumidor de ${data.name} `,
-            message: error.message,
-            type: 'error'
-          })
-        })
-  })
+  const handleCellEditingStopped = (e) =>
+    patchOnStopCellEditing(e, ['name', 'phone', 'address'], setAlert)
 
   return <Grid {...{ gridData, columns, handleCellClick, handleCellEditingStopped }} />
 }

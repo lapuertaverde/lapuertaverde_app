@@ -1,3 +1,8 @@
-.span_label{
-    color: red;
+.labelContainer {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.span_label {
+  color: red;
 }

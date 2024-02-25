@@ -77,7 +77,7 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
           setOptionsStyle(textContent)
 
           setEscritorio({
-            endpoint: 'consumer',
+            endpoint: 'consumerGroup',
             dashboard: textContent.toLowerCase()
           })
         }}

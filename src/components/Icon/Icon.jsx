@@ -54,8 +54,9 @@ const Icon = ({
           iconName: icon
         })}
         {...{ onBlur, onFocus, onKeyDown, style, className, tabIndex, disabled }}
-        style={style || { color }}
+        style={style || { color } || {}}
         onClick={onClick || callback}
+        onMouseEnter={({ target: { style } }) => (style.cursor = 'pointer')}
         focusable="true"
       />
     )

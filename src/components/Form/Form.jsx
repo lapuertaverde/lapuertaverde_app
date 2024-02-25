@@ -26,6 +26,7 @@ const Form = ({
   return (
     <FormProvider {...methods}>
       <form
+        style={{ width: '100%' }}
         method="post"
         noValidate
         onSubmit={handleSubmit(
