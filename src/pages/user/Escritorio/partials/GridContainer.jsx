@@ -23,7 +23,7 @@ const GridContainer = ({
 
   const gridsContainer = {
     consumerGroups: <GruposDeConsumo {...{ consumerGroups, setAlert }} />,
-    consumerGroup: <GrupoDeConsumo {...{ consumerGroup }} />,
+    consumerGroup: <GrupoDeConsumo {...{ consumerGroup, setAlert }} />,
     consumer: <Consumidores {...{ consumers, setAlert }} />,
     castSheets: <HojasDeReparto {...{ castSheets }} />,
     createGroup: <CrearGrupo {...{ consumerGroups }} />,
