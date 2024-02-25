@@ -93,7 +93,7 @@ InputNumber.propTypes = {
   color: string,
   borderB: bool,
   flexDir: oneOf(['row', 'row-reverse', 'column']),
-  width: 'string'
+  width: string
 }
 
 InputNumber.defaultProps = {

@@ -80,7 +80,7 @@ Drawer.propTypes = {
   open: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
-  drawerTitle: PropTypes.string,
+  drawerTitle: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   toolbaredChildren: PropTypes.bool,
   formId: PropTypes.string,
   titleHeader: PropTypes.bool,

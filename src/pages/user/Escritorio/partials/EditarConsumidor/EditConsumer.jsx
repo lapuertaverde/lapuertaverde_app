@@ -31,7 +31,9 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
     address: '',
     CP: '',
     phone: '',
-    active: false
+    active: false,
+    groupName: '',
+    KgByDefault: 0
   }
 
   const methods = useForm({ defaultValues, mode: 'onChange' })
@@ -108,6 +110,15 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
             <InputSelect name="groupName" label="Grupo" options={grupos || []} />
             <InputNumber name="KgByDefault" label="Kg en cesta" />
             <Switcher name="active" label="Activo" />
+            <p>
+              orderInProgress :
+              {watch('orderInProgress') && JSON.stringify(watch('orderInProgress'))}
+            </p>
+            <p>orderFavs : {watch('orderFavs') && JSON.stringify(watch('orderFavs'))}</p>
+            <p>favorites : {watch('favorites') && JSON.stringify(watch('favorites'))}</p>
+            <p>discarded : {watch('discarded') && JSON.stringify(watch('discarded'))}</p>
+            <p>bills : {watch('bills') && JSON.stringify(watch('bills'))}</p>
+            <p>weeklyLog : {watch('weeklyLog') && JSON.stringify(watch('weeklyLog'))}</p>
           </div>
         </Form>
       </Drawer>
