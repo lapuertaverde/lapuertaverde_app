@@ -6,6 +6,7 @@ import { pOrderCard, h4OrderCard, resault, gridCustom } from './recordCard.modul
 
 export const RecordCard = ({ record, setOrderDetail, setConsumerDashboard }) => {
   const handleClick = (record) => {
+    console.log('click', record)
     setOrderDetail(() => record)
     setConsumerDashboard((pre) => ({ ...pre, dashboard: 'orderDetail' }))
   }
@@ -13,7 +14,7 @@ export const RecordCard = ({ record, setOrderDetail, setConsumerDashboard }) => 
   return (
     <GridLayout
       height="230px"
-      gridTemplateColumns="400px 200px 200px"
+      gridTemplateColumns="300px 200px 200px"
       gridTemplateRows="150px"
       width="90%"
       classCustom={gridCustom}
