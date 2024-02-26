@@ -41,7 +41,7 @@ const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
             type: 'error'
           })
         })
-  }, [escritorio])
+  }, [escritorio.dashboard])
 
   return {
     consumers,
@@ -49,6 +49,7 @@ const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
     finalRecords,
     consumerGroup,
     setConsumerGroup,
+    setConsumerGroups,
     consumerGroups,
     castSheets
   }

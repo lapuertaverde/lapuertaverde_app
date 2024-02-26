@@ -22,6 +22,7 @@ const Escritorio = () => {
     finalRecords,
     consumerGroup,
     setConsumerGroup,
+    setConsumerGroups,
     consumerGroups,
     castSheets
   } = useEscritorioFetch({
@@ -42,7 +43,8 @@ const Escritorio = () => {
           finalRecords,
           castSheets,
           consumerGroups,
-          setAlert
+          setAlert,
+          setConsumerGroups
         }}
       />
       {alert.open && <AlertMessage {...{ alert, setAlert }} />}
