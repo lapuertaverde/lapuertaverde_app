@@ -7,8 +7,9 @@ import { deleteService } from '../../../../../services/APIServices'
 import { header, alertFooter } from './deleteConsumer.module.scss'
 import { useState } from 'react'
 
-const DeleteConsumer = ({ consumerGroups, setAlert }) => {
+const DeleteConsumer = ({ consumerGroups, setAlert, setConsumerGroups }) => {
   const [consumers, setConsumers] = useState(consumersFlatter(consumerGroups))
+  const [id, setId] = useState(null)
 
   const footerButton = {
     backgroundColor: 'rgb(159, 118, 246)',
@@ -18,10 +19,24 @@ const DeleteConsumer = ({ consumerGroups, setAlert }) => {
 
   const closeAlert = { open: false, footer: null }
 
-  const handleDelete = (name, id) => {
+  const handleDelete = (name, id, groupName) => {
     deleteService(`consumer/${id}`)
       .then(() => {
+        setConsumerGroups(
+          consumerGroups.map((group) => {
+            if (group.name === groupName)
+              return {
+                ...group,
+                consumers: consumers.filter(
+                  ({ _id: idConsumer, groupName }) => idConsumer !== id && groupName === group.name
+                )
+              }
+            else return group
+          })
+        )
+
         setConsumers(consumers.filter(({ _id: idConsumer }) => idConsumer !== id))
+
         setAlert(closeAlert)
       })
       .catch((error) =>
@@ -35,24 +50,29 @@ const DeleteConsumer = ({ consumerGroups, setAlert }) => {
       )
   }
 
-  const onClick = ({ name, _id }) => {
+  const onClick = ({ name, _id, groupName }) => {
+    setId(_id)
     setAlert({
       title: `Borrar a ${name} !!`,
       type: 'warn',
       message: `¿ Estás segur@ de borrar a ${name} ?`,
       open: true,
+      onClose: () => setId(null),
       footer: (
         <div className={alertFooter}>
           <Button
             type="button"
             text="Cancelar"
-            onClick={() => setAlert(closeAlert)}
+            onClick={() => {
+              setId(null)
+              setAlert(closeAlert)
+            }}
             style={footerButton}
           />
           <Button
             type="button"
             text="Borrar"
-            onClick={() => handleDelete(name, _id)}
+            onClick={() => handleDelete(name, _id, groupName)}
             style={footerButton}
           />
         </div>
@@ -62,7 +82,7 @@ const DeleteConsumer = ({ consumerGroups, setAlert }) => {
   return (
     <div>
       <header className={header}>Borrar Consumidor</header>
-      <ConsumersCard {...{ consumers, onClick }} />
+      <ConsumersCard {...{ consumers, onClick, id }} />
     </div>
   )
 }

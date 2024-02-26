@@ -7,7 +7,7 @@ import AlertHeader from './partials/AlertHeader'
 import { modalContainer, maskContainer } from './alertMessage.module.scss'
 
 const AlertMessage = ({ alert, setAlert }) => {
-  const { open, message, title, type, footer } = alert
+  const { open, message, title, type, footer, onClose } = alert
 
   const types = {
     error: { icon: 'xmark', color: 'red' },
@@ -23,9 +23,9 @@ const AlertMessage = ({ alert, setAlert }) => {
     createPortal(
       <div className={maskContainer}>
         <div className={modalContainer}>
-          <AlertHeader {...{ setAlert, title }} />
+          <AlertHeader {...{ setAlert, title, onClose }} />
           <AlertMain {...{ message, icon, color }} />
-          <AlertFooter {...{ setAlert, footer }} />
+          <AlertFooter {...{ setAlert, footer, onClose }} />
         </div>
       </div>,
       document.body

@@ -112,12 +112,12 @@ const Grid = forwardRef(
       return params.data.id
     })
 
-    return gridData?.length > 0 ? (
+    return gridData ? (
       <div className="ag-theme-alpine-dark" style={{ width: '100%', height: '100%' }}>
         <AgGridReact
           ref={gridRef}
           className="custom-theme"
-          rowData={gridData}
+          rowData={gridData.length ? gridData : []}
           {...{
             columnDefs: columns,
             defaultColDef,
