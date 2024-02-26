@@ -17,7 +17,8 @@ const GridContainer = ({
   finalRecords,
   castSheets,
   consumerGroups,
-  setAlert
+  setAlert,
+  setConsumerGroups
 }) => {
   const { dashboard } = escritorio
 
@@ -29,7 +30,7 @@ const GridContainer = ({
     createGroup: <CrearGrupo {...{ consumerGroups }} />,
     'crear consumidor': <CrearConsumidor {...{ consumerGroups, setAlert }} />,
     'editar consumidor': <EditConsumer {...{ consumerGroups, setAlert }} />,
-    'borrar consumidor': <DeleteConsumer {...{ consumerGroups, setAlert }} />,
+    'borrar consumidor': <DeleteConsumer {...{ consumerGroups, setAlert, setConsumerGroups }} />,
     bill: <Facturas {...{ bills }} />,
     finalRecord: <RegistrosFinales {...{ finalRecords }} />
   }

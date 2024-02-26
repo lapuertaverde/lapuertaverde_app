@@ -76,7 +76,7 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
     <div>
       <header className={header}>Editar Consumidor</header>
       <div style={{ width }}>
-        <ConsumersCard {...{ consumers, onClick }} />
+        <ConsumersCard {...{ consumers, onClick, id: !open ? null : watch('_id') }} />
       </div>
 
       <Drawer
