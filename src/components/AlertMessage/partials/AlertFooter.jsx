@@ -2,7 +2,7 @@ import Button from '../../Button/Button'
 
 import { footerContainer } from './alertMessagePartials.module.scss'
 
-const AlertFooter = ({ setAlert, footer }) => (
+const AlertFooter = ({ setAlert, footer, onClose }) => (
   <footer className={footerContainer}>
     {footer ? (
       footer
@@ -18,11 +18,12 @@ const AlertFooter = ({ setAlert, footer }) => (
           padding: '5px'
         }}
         text="OK"
-        onClick={() =>
+        onClick={(e) => {
+          typeof onClose === 'function' && onClose(e)
           setAlert({
             open: false
           })
-        }
+        }}
       />
     )}
   </footer>

@@ -9,6 +9,7 @@ import { useState } from 'react'
 
 const DeleteConsumer = ({ consumerGroups, setAlert }) => {
   const [consumers, setConsumers] = useState(consumersFlatter(consumerGroups))
+  const [id, setId] = useState(null)
 
   const footerButton = {
     backgroundColor: 'rgb(159, 118, 246)',
@@ -36,17 +37,22 @@ const DeleteConsumer = ({ consumerGroups, setAlert }) => {
   }
 
   const onClick = ({ name, _id }) => {
+    setId(_id)
     setAlert({
       title: `Borrar a ${name} !!`,
       type: 'warn',
       message: `¿ Estás segur@ de borrar a ${name} ?`,
       open: true,
+      onClose: () => setId(null),
       footer: (
         <div className={alertFooter}>
           <Button
             type="button"
             text="Cancelar"
-            onClick={() => setAlert(closeAlert)}
+            onClick={() => {
+              setId(null)
+              setAlert(closeAlert)
+            }}
             style={footerButton}
           />
           <Button
@@ -62,7 +68,7 @@ const DeleteConsumer = ({ consumerGroups, setAlert }) => {
   return (
     <div>
       <header className={header}>Borrar Consumidor</header>
-      <ConsumersCard {...{ consumers, onClick }} />
+      <ConsumersCard {...{ consumers, onClick, id }} />
     </div>
   )
 }

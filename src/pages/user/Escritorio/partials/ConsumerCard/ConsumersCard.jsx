@@ -1,8 +1,8 @@
 import Avatar from '../../../../../components/Avatar/Avatar'
 
-import { cardContainer } from './consumerCard.module.scss'
+import { cardContainer, active } from './consumerCard.module.scss'
 
-const ConsumersCard = ({ consumers, onClick }) => {
+const ConsumersCard = ({ consumers, onClick, id }) => {
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1rem' }}>
       {consumers?.map((consumer, i) => {
@@ -11,7 +11,7 @@ const ConsumersCard = ({ consumers, onClick }) => {
         return (
           <div
             key={i}
-            className={cardContainer}
+            className={`${cardContainer} ${id && id === consumer._id ? active : ''}`}
             onClick={(e) => typeof onClick === 'function' && onClick(consumer, e)}
           >
             <p style={{ color: 'white' }}>{name}</p>
