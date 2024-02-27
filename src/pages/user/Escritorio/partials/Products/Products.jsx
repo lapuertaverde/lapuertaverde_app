@@ -26,13 +26,7 @@ const Products = ({ products, setAlert }) => {
   ]
 
   const handleCellEditingStopped = (e) =>
-    patchOnStopCellEditing(
-      e,
-      ['name', 'priceKg', 'availability'],
-      setAlert,
-      'product',
-      'Producto Actualizado'
-    )
+    patchOnStopCellEditing(e, ['name', 'priceKg'], setAlert, 'product', 'Producto Actualizado')
 
   return (
     <Grid
