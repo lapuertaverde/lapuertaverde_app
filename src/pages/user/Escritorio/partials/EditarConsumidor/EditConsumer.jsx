@@ -17,7 +17,8 @@ import { patch } from '../../../../../services/APIServices'
 import { toast } from 'react-toastify'
 
 const EditConsumer = ({ consumerGroups, setAlert }) => {
-  const [consumers, setConsumers] = useState(consumersFlatter(consumerGroups))
+  const [allConsumers, setAllConsumers] = useState(consumersFlatter(consumerGroups))
+  const [consumers, setConsumers] = useState(allConsumers)
 
   const grupos = consumerGroups.map((group) => group.name)
 
@@ -52,10 +53,11 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
       .then(() => {
         toast.success('Consumidor Actualizado', { position: 'top-left' })
 
-        const consumersUpdated = consumers.map((consumer) => {
+        const consumersUpdated = allConsumers.map((consumer) => {
           if (consumer._id === values._id) return values
           else return consumer
         })
+        setAllConsumers(consumersUpdated)
         setConsumers(consumersUpdated)
       })
       .catch((error) =>
@@ -74,7 +76,26 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
 
   return (
     <div>
-      <header className={header}>Editar Consumidor</header>
+      <header className={header}>
+        <span>Editar Consumidor</span>
+      </header>
+      <div>
+        <div style={{ fontSize: '1rem', padding: '1rem' }}>
+          <InputSelect
+            name="groups"
+            options={['Todos', ...grupos]}
+            label="Filtrar por grupo"
+            onChange={({ target: { value } }) => {
+              setConsumers(
+                allConsumers.filter(({ groupName }) => {
+                  if (value === 'Todos') return groupName !== value
+                  else return groupName === value
+                })
+              )
+            }}
+          />
+        </div>
+      </div>
       <div style={{ width }}>
         <ConsumersCard {...{ consumers, onClick, id: !open ? null : watch('_id') }} />
       </div>
