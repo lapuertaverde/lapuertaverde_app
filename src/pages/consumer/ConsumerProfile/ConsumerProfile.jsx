@@ -1,5 +1,5 @@
 import { Suspense, useState } from 'react'
-import { useConsumerById } from './useConsumerById'
+import { useConsumerFetch } from './useConsumerFetch'
 import { NavConsumer } from '../../../components/NavConsumer/NavConsumer'
 import Loading from '../../../components/Loading/Loading'
 
@@ -9,6 +9,7 @@ import { getConsumerId } from '../../../utils/getConsumerId'
 import AlertMessage from '../../../components/AlertMessage/AlertMessage'
 
 const ConsumerProfile = () => {
+  const [isLoading, setIsLoading] = useState(true)
   const [alert, setAlert] = useState({ open: false })
 
   const [consumerDashboard, setConsumerDashboard] = useState({
@@ -16,13 +17,30 @@ const ConsumerProfile = () => {
     dashboard: 'pedidos'
   })
 
-  const { data: consumerInfo, loading } = useConsumerById({ consumerDashboard, setAlert })
+  const { consumerInfo, orderDetail, products, setOrderDetail } = useConsumerFetch({
+    consumerDashboard,
+    setAlert,
+    setIsLoading
+  })
 
   return (
     <main className={mainContainer}>
       <NavConsumer {...{ consumerDashboard, setConsumerDashboard, consumerInfo }} />
       <Suspense>
-        {loading ? <Loading /> : <GridContainerConsumer {...{ consumerDashboard, consumerInfo }} />}
+        {isLoading ? (
+          <Loading />
+        ) : (
+          <GridContainerConsumer
+            {...{
+              consumerDashboard,
+              consumerInfo,
+              orderDetail,
+              products,
+              setOrderDetail,
+              setConsumerDashboard
+            }}
+          />
+        )}
         {alert.open && <AlertMessage {...{ alert, setAlert }} />}
       </Suspense>
     </main>

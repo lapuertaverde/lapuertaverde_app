@@ -5,7 +5,6 @@ import NavigationButton from '../NavNavigationButton/NavigationButton'
 import { nav } from './navConsumer.module.scss'
 
 export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard, consumerInfo }) => {
-  console.log('log en nav de consumer', consumerInfo)
   const { dashboard } = consumerDashboard
   return (
     <nav className={nav}>

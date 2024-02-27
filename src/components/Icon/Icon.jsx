@@ -12,7 +12,8 @@ import {
   faCaretUp,
   faClipboardCheck,
   faTriangleExclamation,
-  faThumbsUp
+  faThumbsUp,
+  faFileInvoice
 } from '@fortawesome/free-solid-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -43,7 +44,8 @@ const Icon = ({
     faCaretUp,
     faClipboardCheck,
     faTriangleExclamation,
-    faThumbsUp
+    faThumbsUp,
+    faFileInvoice
   )
 
   return (

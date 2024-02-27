@@ -11,11 +11,12 @@ export const FlexLayout = ({
   height,
   background,
   gap,
-  padding
+  padding,
+  className
 }) => {
   return (
     <div
-      className={flexContainer}
+      className={`${flexContainer} ${className}`}
       style={{
         flexDirection,
         justifyContent,
