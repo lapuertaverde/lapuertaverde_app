@@ -10,6 +10,7 @@ const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
   const [finalRecords, setFinalRecords] = useState(null)
   const [bills, setBills] = useState(null)
   const [castSheets, setCastsSheets] = useState(null)
+  const [products, setProducts] = useState(null)
 
   const dashboardController = {
     consumergroups: (res) => setConsumerGroups(res),
@@ -21,7 +22,8 @@ const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
     'borrar consumidor': (res) => setConsumerGroups(res),
     'editar consumidor': (res) => setConsumerGroups(res),
     castsheets: (res) => setCastsSheets(res),
-    finalrecord: (res) => setFinalRecords(res)
+    finalrecord: (res) => setFinalRecords(res),
+    product: (res) => setProducts(res)
   }
 
   useEffect(() => {
@@ -51,7 +53,8 @@ const useEscritorioFetch = ({ escritorio, setAlert, setIsLoading }) => {
     setConsumerGroup,
     setConsumerGroups,
     consumerGroups,
-    castSheets
+    castSheets,
+    products
   }
 }
 
