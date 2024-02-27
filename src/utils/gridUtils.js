@@ -17,7 +17,7 @@ export const patchOnStopCellEditing = (
   } = e
   const { _id } = data
 
-  if (newValue === '' && mandatoryFields.includes(colId)) {
+  if ([null, undefined, ''].includes(newValue) && mandatoryFields.includes(colId)) {
     setAlert({
       open: true,
       title: 'CAMPO OBLIGATORIO',

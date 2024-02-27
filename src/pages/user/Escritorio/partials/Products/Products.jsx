@@ -17,7 +17,7 @@ const Products = ({ products, setAlert }) => {
       filter: true,
       flex: 2
     },
-    { field: 'priceKg', flex: 2 },
+    { field: 'priceKg', flex: 2, type: 'number' },
     { field: 'description', flex: 6 },
     {
       field: 'availability',
