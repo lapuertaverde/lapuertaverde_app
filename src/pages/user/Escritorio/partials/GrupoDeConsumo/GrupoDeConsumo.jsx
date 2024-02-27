@@ -2,7 +2,6 @@ import Grid from '../../../../../components/Grid/Grid'
 import { patchOnStopCellEditing } from '../../../../../utils/gridUtils'
 
 const GrupoDeConsumo = ({ consumerGroup, setAlert }) => {
-  console.log(consumerGroup)
   const columns = [
     { field: 'name', filter: true, rowDrag: true },
     { field: 'address', filter: true },

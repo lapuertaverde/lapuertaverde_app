@@ -20,6 +20,30 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
     { name: 'Editar Consumidor' },
     { name: 'Borrar Consumidor' }
   ]
+  const onClickOption = ({ target: { textContent } }) => {
+    setOptionsStyle(textContent)
+    dashboard !== 'gruposDeConsumo' &&
+      setEscritorio({
+        endpoint: 'consumerGroup',
+        dashboard: 'consumerGroup',
+        option: textContent
+      })
+
+    if (consumerGroups)
+      setConsumerGroup(
+        consumerGroups.find(({ name }) => textContent.toLowerCase() === name.toLowerCase())
+      )
+  }
+
+  const navigationButtons = [
+    {
+      text: 'Grupos de Consumo',
+      dashboard: 'consumerGroups',
+      endpoin: 'consumerGroups',
+      options,
+      onClickOption
+    }
+  ]
 
   return (
     <nav className="nav">
@@ -39,6 +63,7 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
           size="l"
         />
       </div>
+
       <NavigationButton
         text="Grupos de consumo"
         onClick={() => {
@@ -82,7 +107,29 @@ const Nav = memo(({ escritorio, setEscritorio, consumerGroups, setConsumerGroup 
           })
         }}
       />
+      <NavigationButton
+        text="Productos"
+        variant={getIsActive('product')}
+        onClick={() => {
+          setOptionsStyle(null)
+          dashboard !== 'product' && setEscritorio({ endpoint: 'product', dashboard: 'product' })
+        }}
+        options={[
+          { name: 'Crear Producto' },
+          { name: 'Editar Producto' },
+          { name: 'Borrar Producto' },
+          { name: 'Temporada' }
+        ]}
+        {...{ optionStyle }}
+        onClickOption={({ target: { textContent } }) => {
+          setOptionsStyle(textContent)
 
+          setEscritorio({
+            endpoint: 'product',
+            dashboard: textContent.toLowerCase()
+          })
+        }}
+      />
       <NavigationButton
         text="Hojas de Reparto"
         variant={getIsActive('castSheets')}

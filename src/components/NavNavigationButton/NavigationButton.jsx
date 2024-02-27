@@ -39,7 +39,7 @@ const NavigationButton = ({
         <button
           className={navigationButton}
           onClick={(e) => {
-            onClick(e)
+            typeof onClick() === 'funtion' && onClick(e)
             setShow((prev) => !prev)
           }}
         >
@@ -89,7 +89,7 @@ NavigationButton.propTypes = {
 
 NavigationButton.defaultProps = {
   text: 'NAV BUTTON',
-  onClick: () => console.log('onClick'),
+  // onClick: () => console.log('onClick'),
   options: [],
   onClickOption: () => null
 }
