@@ -17,7 +17,7 @@ export const patchOnStopCellEditing = (
   } = e
   const { _id } = data
 
-  if (!newValue && mandatoryFields.includes(colId)) {
+  if ([null, undefined, ''].includes(newValue) && mandatoryFields.includes(colId)) {
     setAlert({
       open: true,
       title: 'CAMPO OBLIGATORIO',
@@ -26,6 +26,7 @@ export const patchOnStopCellEditing = (
     })
     return node.setData({ ...data, [colId]: oldValue })
   }
+
   if (oldValue !== newValue)
     patch(`${endpoint}/${_id}`, { [colId]: newValue })
       .then(() => toast.success(toastMessage))

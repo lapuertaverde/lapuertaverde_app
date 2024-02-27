@@ -17,7 +17,7 @@ const Products = ({ products, setAlert }) => {
       filter: true,
       flex: 2
     },
-    { field: 'priceKg', flex: 2 },
+    { field: 'priceKg', flex: 2, type: 'number' },
     { field: 'description', flex: 6 },
     {
       field: 'availability',
@@ -26,13 +26,7 @@ const Products = ({ products, setAlert }) => {
   ]
 
   const handleCellEditingStopped = (e) =>
-    patchOnStopCellEditing(
-      e,
-      ['name', 'priceKg', 'availability'],
-      setAlert,
-      'product',
-      'Producto Actualizado'
-    )
+    patchOnStopCellEditing(e, ['name', 'priceKg'], setAlert, 'product', 'Producto Actualizado')
 
   return (
     <Grid
