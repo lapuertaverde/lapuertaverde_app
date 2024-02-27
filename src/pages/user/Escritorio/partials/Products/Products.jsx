@@ -2,7 +2,7 @@ import Avatar from '../../../../../components/Avatar/Avatar'
 import Grid from '../../../../../components/Grid/Grid'
 import { patchOnStopCellEditing } from '../../../../../utils/gridUtils'
 
-const Products = ({ products }) => {
+const Products = ({ products, setAlert }) => {
   const columns = [
     {
       field: 'image',
@@ -26,7 +26,13 @@ const Products = ({ products }) => {
   ]
 
   const handleCellEditingStopped = (e) =>
-    patchOnStopCellEditing(e, ['name', 'priceKg', 'availability'], setAlert)
+    patchOnStopCellEditing(
+      e,
+      ['name', 'priceKg', 'availability'],
+      setAlert,
+      'product',
+      'Producto Actualizado'
+    )
 
   return (
     <Grid

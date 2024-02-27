@@ -1,7 +1,13 @@
 import { toast } from 'react-toastify'
 import { patch } from '../services/APIServices'
 
-export const patchOnStopCellEditing = (e, mandatoryFields, setAlert, endpoint = 'consumer') => {
+export const patchOnStopCellEditing = (
+  e,
+  mandatoryFields,
+  setAlert,
+  endpoint = 'consumer',
+  toastMessage = 'Usuario actualizado correctamente!'
+) => {
   const {
     node,
     data,
@@ -22,7 +28,7 @@ export const patchOnStopCellEditing = (e, mandatoryFields, setAlert, endpoint = 
   }
   if (oldValue !== newValue)
     patch(`${endpoint}/${_id}`, { [colId]: newValue })
-      .then(() => toast.success('Usuario actualizado correctamente!'))
+      .then(() => toast.success(toastMessage))
       .catch((error) => {
         setAlert({
           open: true,

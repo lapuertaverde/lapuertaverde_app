@@ -35,7 +35,7 @@ const GridContainer = ({
     'borrar consumidor': <DeleteConsumer {...{ consumerGroups, setAlert, setConsumerGroups }} />,
     bill: <Facturas {...{ bills }} />,
     finalRecord: <RegistrosFinales {...{ finalRecords }} />,
-    product: <Products {...{ products }} />
+    product: <Products {...{ products, setAlert }} />
   }
 
   return <aside className="asideContainer">{gridsContainer[dashboard]}</aside>
