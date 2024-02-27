@@ -1,11 +1,22 @@
 import { RecordCard } from '../../../../../components/RecordCard/RecordCard'
 import { FlexLayout } from '../../../../../layouts/FlexLayout/FlexLayout'
 
-export const Pedidos = ({ consumerInfo, setOrderDetail, setConsumerDashboard }) => {
+export const Pedidos = ({ consumerInfo, setOrderDetail, setConsumerDashboard, setUpdate }) => {
   const handleClick = (record) => {
-    console.log('click', record)
     setOrderDetail(() => record)
     setConsumerDashboard((pre) => ({ ...pre, dashboard: 'orderDetail' }))
+  }
+
+  const handleLike = (id) => {
+    setUpdate((pre) => !pre)
+    setConsumerDashboard((pre) => ({
+      ...pre,
+      endpoint: `consumer/recordLike/${consumerInfo._id}`,
+      method: 'patch',
+      values: {
+        idRecord: id
+      }
+    }))
   }
   return (
     <FlexLayout height="auto" flexDirection="column">
@@ -15,8 +26,7 @@ export const Pedidos = ({ consumerInfo, setOrderDetail, setConsumerDashboard }) 
           <RecordCard
             key={record._id}
             buttonText="Ver pedido"
-            handleClick={handleClick}
-            {...{ record, setOrderDetail, setConsumerDashboard }}
+            {...{ record, setOrderDetail, handleLike, handleClick }}
           />
         ))
       ) : (

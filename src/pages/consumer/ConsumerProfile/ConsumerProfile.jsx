@@ -1,8 +1,8 @@
 import { Suspense, useState } from 'react'
 import { useConsumerFetch } from './useConsumerFetch'
-import { NavConsumer } from '../../../components/NavConsumer/NavConsumer'
-import Loading from '../../../components/Loading/Loading'
 
+import Loading from '../../../components/Loading/Loading'
+import { NavConsumer } from './partials/NavConsumer/NavConsumer'
 import { mainContainer } from './consumerProfile.module.scss'
 import GridContainerConsumer from './partials/GridContainerConsumer'
 import { getConsumerId } from '../../../utils/getConsumerId'
@@ -13,11 +13,13 @@ const ConsumerProfile = () => {
   const [alert, setAlert] = useState({ open: false })
 
   const [consumerDashboard, setConsumerDashboard] = useState({
+    method: 'get',
     endpoint: `consumer/${getConsumerId()}`,
-    dashboard: 'pedidos'
+    dashboard: 'pedidos',
+    values: {}
   })
 
-  const { consumerInfo, orderDetail, products, setOrderDetail } = useConsumerFetch({
+  const { consumerInfo, orderDetail, products, setOrderDetail, setUpdate } = useConsumerFetch({
     consumerDashboard,
     setAlert,
     setIsLoading
@@ -37,7 +39,8 @@ const ConsumerProfile = () => {
               orderDetail,
               products,
               setOrderDetail,
-              setConsumerDashboard
+              setConsumerDashboard,
+              setUpdate
             }}
           />
         )}

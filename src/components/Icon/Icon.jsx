@@ -13,8 +13,11 @@ import {
   faClipboardCheck,
   faTriangleExclamation,
   faThumbsUp,
-  faFileInvoice
+  faFileInvoice,
+  faHeart as heartSolid
 } from '@fortawesome/free-solid-svg-icons'
+
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -45,7 +48,9 @@ const Icon = ({
     faClipboardCheck,
     faTriangleExclamation,
     faThumbsUp,
-    faFileInvoice
+    faFileInvoice,
+    faHeart,
+    heartSolid
   )
 
   return (

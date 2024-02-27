@@ -1,6 +1,6 @@
 import { memo } from 'react'
-import Avatar from '../Avatar/Avatar'
-import NavigationButton from '../NavNavigationButton/NavigationButton'
+import Avatar from '../../../../../components/Avatar/Avatar'
+import NavigationButton from '../../../../../components/NavNavigationButton/NavigationButton'
 
 import { nav } from './navConsumer.module.scss'
 
@@ -11,9 +11,13 @@ export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard, cons
       <Avatar src={consumerInfo?.avatar} size="xl" />
       <NavigationButton
         text="Mis pedidos"
-        options={[{ name: 'Pedidos' }, { name: 'Facturas' }]}
+        options={[{ name: 'Facturas' }]}
+        onClick={() =>
+          dashboard !== 'pedidos' &&
+          setConsumerDashboard({ ...consumerDashboard, dashboard: 'pedidos' })
+        }
         onClickOption={({ target: { textContent } }) => {
-          ;(dashboard !== 'pedidos' || dashboard !== 'facturas') &&
+          dashboard !== 'facturas' &&
             setConsumerDashboard({ ...consumerDashboard, dashboard: textContent.toLowerCase() })
         }}
       />
@@ -34,6 +38,10 @@ export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard, cons
       <NavigationButton
         text="Mis preferencias"
         options={[{ name: 'Favoritos' }, { name: 'Descartados' }]}
+        onClick={() => {
+          dashboard !== 'favoritos' &&
+            setConsumerDashboard({ ...consumerDashboard, dashboard: 'favoritos' })
+        }}
         onClickOption={({ target: { textContent } }) => {
           ;(dashboard !== 'favoritos' || dashboard !== 'descartados') &&
             setConsumerDashboard({ ...consumerDashboard, dashboard: textContent.toLowerCase() })
