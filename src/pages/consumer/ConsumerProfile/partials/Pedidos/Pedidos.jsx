@@ -5,9 +5,13 @@ export const Pedidos = ({ consumerInfo, setOrderDetail, setConsumerDashboard }) 
   return (
     <FlexLayout height="auto" flexDirection="column">
       <h2>TODOS LOS PEDIDOS</h2>
-      {consumerInfo?.weeklyLog?.length > 0 ? (
-        consumerInfo.weeklyLog.map((record) => (
-          <RecordCard key={record._id} {...{ record, setOrderDetail, setConsumerDashboard }} />
+      {consumerInfo?.records?.length > 0 ? (
+        consumerInfo.records.map((record) => (
+          <RecordCard
+            key={record._id}
+            buttonText="Ver pedido"
+            {...{ record, setOrderDetail, setConsumerDashboard }}
+          />
         ))
       ) : (
         <p>"No hay pedidos que mostrar"</p>

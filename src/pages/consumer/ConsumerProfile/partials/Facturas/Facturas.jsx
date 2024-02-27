@@ -14,7 +14,7 @@ export const Facturas = ({ consumerInfo }) => {
   return (
     consumerInfo?.bills && (
       <Grid
-        gridData={consumerInfo.weeklyLog}
+        gridData={consumerInfo.records}
         {...{ columns, handleCellClick, handleCellEditingStopped }}
       />
     )

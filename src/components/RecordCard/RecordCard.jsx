@@ -4,7 +4,7 @@ import Button from '../Button/Button'
 
 import { pOrderCard, h4OrderCard, resault, gridCustom } from './recordCard.module.scss'
 
-export const RecordCard = ({ record, setOrderDetail, setConsumerDashboard }) => {
+export const RecordCard = ({ record, setOrderDetail, setConsumerDashboard, buttonText }) => {
   const handleClick = (record) => {
     console.log('click', record)
     setOrderDetail(() => record)
@@ -40,7 +40,7 @@ export const RecordCard = ({ record, setOrderDetail, setConsumerDashboard }) => 
         </FlexLayout>
       </FlexLayout>
       <FlexLayout alignItems="center">
-        <Button text="Ver pedido" onClick={() => handleClick(record)} />
+        <Button text={buttonText} onClick={() => handleClick(record)} />
       </FlexLayout>
     </GridLayout>
   )
