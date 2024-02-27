@@ -80,21 +80,23 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
         <span>Editar Consumidor</span>
       </header>
       <div>
-        <div style={{ fontSize: '1rem', padding: '1rem' }}>
-          <InputSelect
-            name="groups"
-            options={['Todos', ...grupos]}
-            label="Filtrar por grupo"
-            onChange={({ target: { value } }) => {
-              setConsumers(
-                allConsumers.filter(({ groupName }) => {
-                  if (value === 'Todos') return groupName !== value
-                  else return groupName === value
-                })
-              )
-            }}
-          />
-        </div>
+        <Form>
+          <div style={{ fontSize: '1rem', padding: '1rem' }}>
+            <InputSelect
+              name="groups"
+              options={['Todos', ...grupos]}
+              label="Filtrar por grupo"
+              onChange={({ target: { value } }) => {
+                setConsumers(
+                  allConsumers.filter(({ groupName }) => {
+                    if (value === 'Todos') return groupName !== value
+                    else return groupName === value
+                  })
+                )
+              }}
+            />
+          </div>
+        </Form>
       </div>
       <div style={{ width }}>
         <ConsumersCard {...{ consumers, onClick, id: !open ? null : watch('_id') }} />
