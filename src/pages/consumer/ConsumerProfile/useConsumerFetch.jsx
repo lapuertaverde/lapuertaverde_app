@@ -21,8 +21,8 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
   }
 
   useEffect(() => {
-    setIsLoading(true)
-    if (dashboard && method === 'get')
+    if (dashboard && method === 'get') {
+      setIsLoading(true)
       get(endpoint)
         .then((res) => {
           dashboardController[dashboard](res)
@@ -37,7 +37,9 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
             type: 'error'
           })
         })
-    if (dashboard == 'orderDetail' && method === 'patch')
+    }
+    if (dashboard == 'orderDetail' && method === 'patch') {
+      setIsLoading(true)
       patch(endpoint, values)
         .then((res) => {
           dashboardController[dashboard](res.data.info.data.finalRecord)
@@ -53,7 +55,9 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
             type: 'error'
           })
         })
-    if (dashboard == 'pedidos' && method === 'patch')
+    }
+    if (dashboard == 'pedidos' && method === 'patch') {
+      setIsLoading(true)
       patch(endpoint, values)
         .then((res) => {
           dashboardController[dashboard](res.data.info.data.consumer)
@@ -68,6 +72,7 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
             type: 'error'
           })
         })
+    }
   }, [update])
 
   return { consumerInfo, orderDetail, products, setOrderDetail, setUpdate }

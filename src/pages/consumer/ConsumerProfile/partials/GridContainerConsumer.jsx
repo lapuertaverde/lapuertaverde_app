@@ -14,7 +14,9 @@ const GridContainerConsumer = ({
   products,
   setOrderDetail,
   setConsumerDashboard,
-  setUpdate
+  setUpdate,
+  basket,
+  setBasket
 }) => {
   const { dashboard } = consumerDashboard
   const gridsContainer = {
@@ -23,7 +25,7 @@ const GridContainerConsumer = ({
       <OrderDetail {...{ orderDetail, setConsumerDashboard, setUpdate, consumerInfo }} />
     ),
     facturas: <Facturas {...{ consumerInfo }} />,
-    nuevoPedido: <NuevoPedido {...{ products, setConsumerDashboard }} />,
+    nuevoPedido: <NuevoPedido {...{ products, setConsumerDashboard, basket, setBasket }} />,
     pedidoEnCurso: <PedidoEnCurso {...{ consumerInfo }} />,
     perfil: <Perfil {...{ consumerInfo }} />,
     favoritos: <Favoritos {...{ consumerInfo }} />,

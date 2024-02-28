@@ -39,7 +39,7 @@ const NavigationButton = ({
         <button
           className={navigationButton}
           onClick={(e) => {
-            typeof onClick() === 'funtion' && onClick(e)
+            typeof onClick() === 'function' && onClick(e)
             setShow((prev) => !prev)
           }}
         >

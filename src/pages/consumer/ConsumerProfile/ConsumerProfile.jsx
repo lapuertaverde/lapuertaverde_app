@@ -19,6 +19,11 @@ const ConsumerProfile = () => {
     values: {}
   })
 
+  const [basket, setBasket] = useState(() => {
+    const basket = sessionStorage.getItem('basket')
+    return basket ? JSON.parse(basket) : null
+  })
+
   const { consumerInfo, orderDetail, products, setOrderDetail, setUpdate } = useConsumerFetch({
     consumerDashboard,
     setAlert,
@@ -27,7 +32,7 @@ const ConsumerProfile = () => {
 
   return (
     <main className={mainContainer}>
-      <NavConsumer {...{ consumerDashboard, setConsumerDashboard, consumerInfo }} />
+      <NavConsumer {...{ consumerDashboard, setConsumerDashboard, consumerInfo, setUpdate }} />
       <Suspense>
         {isLoading ? (
           <Loading />
@@ -40,7 +45,9 @@ const ConsumerProfile = () => {
               products,
               setOrderDetail,
               setConsumerDashboard,
-              setUpdate
+              setUpdate,
+              basket,
+              setBasket
             }}
           />
         )}

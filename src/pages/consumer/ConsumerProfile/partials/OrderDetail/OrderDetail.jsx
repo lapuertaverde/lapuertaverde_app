@@ -11,8 +11,6 @@ export const OrderDetail = ({ orderDetail, setConsumerDashboard, setUpdate, cons
 
   const handleLike = (id) => {
     setUpdate((pre) => !pre)
-    console.log('entro', id)
-    console.log(orderDetail)
     setConsumerDashboard((pre) => ({
       ...pre,
       endpoint: `consumer/recordLike/${consumerInfo._id}`,
@@ -35,16 +33,14 @@ export const OrderDetail = ({ orderDetail, setConsumerDashboard, setUpdate, cons
               {...{ handleLike, handleClick }}
             />
             {orderDetail.products?.map((product) =>
-              orderDetail.box.map(
-                (item) =>
+              orderDetail.box.map((item) => {
+                const key = `${item.id}${product._id}`
+                return (
                   item.idProducts == product._id && (
-                    <ProductCard
-                      key={`${item.id}${product._id}`}
-                      columns="10% 45% 15% 10%"
-                      {...{ item, product }}
-                    />
+                    <ProductCard key={key} columns="10% 45% 15% 10%" {...{ item, product }} />
                   )
-              )
+                )
+              })
             )}
           </FlexLayout>
         </FlexLayout>

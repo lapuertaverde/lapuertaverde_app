@@ -14,7 +14,8 @@ import {
   faTriangleExclamation,
   faThumbsUp,
   faFileInvoice,
-  faHeart as heartSolid
+  faHeart as heartSolid,
+  faBasketShopping
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
@@ -51,7 +52,8 @@ const Icon = ({
     faThumbsUp,
     faFileInvoice,
     faHeart,
-    heartSolid
+    heartSolid,
+    faBasketShopping
   )
 
   return (
