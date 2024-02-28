@@ -33,7 +33,8 @@ const Icon = ({
   onKeyDown,
   onClick,
   disabled,
-  color
+  color,
+  size
 }) => {
   library.add(
     faKey,
@@ -60,7 +61,7 @@ const Icon = ({
           prefix,
           iconName: icon
         })}
-        {...{ onBlur, onFocus, onKeyDown, style, className, tabIndex, disabled }}
+        {...{ onBlur, onFocus, onKeyDown, style, className, tabIndex, disabled, size }}
         style={style || { color } || {}}
         onClick={onClick || callback}
         onMouseEnter={({ target: { style } }) => (style.cursor = 'pointer')}

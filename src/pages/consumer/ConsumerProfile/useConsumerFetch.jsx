@@ -22,10 +22,6 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
 
   useEffect(() => {
     setIsLoading(true)
-    // if (dashboard === 'orderDetail') {
-    //   setIsLoading(false)
-    //   return
-    // }
     if (dashboard && method === 'get')
       get(endpoint)
         .then((res) => {
@@ -41,10 +37,25 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
             type: 'error'
           })
         })
-    if (dashboard && method === 'patch')
+    if (dashboard == 'orderDetail' && method === 'patch')
       patch(endpoint, values)
         .then((res) => {
-          dashboardController[dashboard](res.data.info.data)
+          dashboardController[dashboard](res.data.info.data.finalRecord)
+          setIsLoading(false)
+        })
+        .catch((error) => {
+          setIsLoading(false)
+          setAlert({
+            open: true,
+            title: `Error getting ${dashboard}`,
+            message: error.message,
+            type: 'error'
+          })
+        })
+    if (dashboard == 'pedidos' && method === 'patch')
+      patch(endpoint, values)
+        .then((res) => {
+          dashboardController[dashboard](res.data.info.data.consumer)
           setIsLoading(false)
         })
         .catch((error) => {

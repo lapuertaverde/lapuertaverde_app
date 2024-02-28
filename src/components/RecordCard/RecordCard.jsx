@@ -45,6 +45,14 @@ export const RecordCard = ({ record, handleClick, buttonText, handleLike }) => {
         prefix={record.like ? 'fas' : 'far'}
         icon="heart"
         onClick={() => handleLike(record._id)}
+        size="xl"
+        style={{
+          color: record.like && 'yellow', //'#e220d2',
+          position: 'absolute',
+          top: '1rem',
+          margin: '1rem',
+          right: '2rem'
+        }}
       />
     </GridLayout>
   )
