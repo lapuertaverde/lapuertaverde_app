@@ -19,7 +19,9 @@ const GridContainerConsumer = ({
   const { dashboard } = consumerDashboard
   const gridsContainer = {
     pedidos: <Pedidos {...{ consumerInfo, setOrderDetail, setConsumerDashboard, setUpdate }} />,
-    orderDetail: <OrderDetail {...{ orderDetail }} />,
+    orderDetail: (
+      <OrderDetail {...{ orderDetail, setConsumerDashboard, setUpdate, consumerInfo }} />
+    ),
     facturas: <Facturas {...{ consumerInfo }} />,
     nuevoPedido: <NuevoPedido {...{ products, setConsumerDashboard }} />,
     pedidoEnCurso: <PedidoEnCurso {...{ consumerInfo }} />,

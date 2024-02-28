@@ -4,9 +4,23 @@ import { FlexLayout } from '../../../../../layouts/FlexLayout/FlexLayout'
 
 import { orderDetailContainer } from './orderDetail.module.scss'
 
-export const OrderDetail = ({ orderDetail }) => {
+export const OrderDetail = ({ orderDetail, setConsumerDashboard, setUpdate, consumerInfo }) => {
   const handleClick = () => {
     console.log('entro')
+  }
+
+  const handleLike = (id) => {
+    setUpdate((pre) => !pre)
+    console.log('entro', id)
+    console.log(orderDetail)
+    setConsumerDashboard((pre) => ({
+      ...pre,
+      endpoint: `consumer/recordLike/${consumerInfo._id}`,
+      method: 'patch',
+      values: {
+        idRecord: id
+      }
+    }))
   }
 
   return (
@@ -18,9 +32,9 @@ export const OrderDetail = ({ orderDetail }) => {
             <RecordCard
               record={orderDetail}
               buttonText="Pedir de nuevo"
-              handleClick={handleClick}
+              {...{ handleLike, handleClick }}
             />
-            {orderDetail.products.map((product) =>
+            {orderDetail.products?.map((product) =>
               orderDetail.box.map(
                 (item) =>
                   item.idProducts == product._id && (

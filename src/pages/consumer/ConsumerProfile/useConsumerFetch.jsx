@@ -22,10 +22,10 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
 
   useEffect(() => {
     setIsLoading(true)
-    if (dashboard === 'orderDetail') {
-      setIsLoading(false)
-      return
-    }
+    // if (dashboard === 'orderDetail') {
+    //   setIsLoading(false)
+    //   return
+    // }
     if (dashboard && method === 'get')
       get(endpoint)
         .then((res) => {

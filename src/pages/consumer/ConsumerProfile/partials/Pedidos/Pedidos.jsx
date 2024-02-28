@@ -9,6 +9,7 @@ export const Pedidos = ({ consumerInfo, setOrderDetail, setConsumerDashboard, se
 
   const handleLike = (id) => {
     setUpdate((pre) => !pre)
+    console.log('entro', id)
     setConsumerDashboard((pre) => ({
       ...pre,
       endpoint: `consumer/recordLike/${consumerInfo._id}`,
