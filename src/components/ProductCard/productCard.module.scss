@@ -7,7 +7,7 @@
     padding: 1rem;
 }
 .productCardContainer input {
-   width: 33px;
+   width: 43px;
 }
 
 .productCardContainer form {
@@ -19,10 +19,10 @@
     margin: 0 auto;
 }
 
-.formContainer {
-  flex: 1;
+.boxes {
+  width: fit-content;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  justify-content: center;
 }
 
