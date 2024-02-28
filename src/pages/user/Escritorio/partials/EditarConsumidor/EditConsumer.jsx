@@ -37,6 +37,10 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
     KgByDefault: 0
   }
 
+  const headerMethods = useForm({ defaultValues: { groups: 'Todos' } })
+
+  const { watch: watchGroups } = headerMethods
+
   const methods = useForm({ defaultValues, mode: 'onChange' })
 
   const { reset, watch } = methods
@@ -58,7 +62,9 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
           else return consumer
         })
         setAllConsumers(consumersUpdated)
-        setConsumers(consumersUpdated)
+        setConsumers(
+          consumersUpdated.filter(({ groupName }) => watchGroups('groups') === groupName)
+        )
       })
       .catch((error) =>
         setAlert({
@@ -80,7 +86,7 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
         <span>Editar Consumidor</span>
       </header>
       <div>
-        <Form>
+        <Form id="headerForm" {...{ methods: headerMethods }}>
           <div style={{ fontSize: '1rem', padding: '1rem' }}>
             <InputSelect
               name="groups"
