@@ -14,7 +14,12 @@ export const NavConsumer = memo(({ consumerDashboard, setConsumerDashboard, cons
         options={[{ name: 'Facturas' }]}
         onClick={() =>
           dashboard !== 'pedidos' &&
-          setConsumerDashboard({ ...consumerDashboard, dashboard: 'pedidos' })
+          setConsumerDashboard({
+            ...consumerDashboard,
+            dashboard: 'pedidos',
+            method: 'get',
+            endpoint: `consumer/${consumerInfo._id}`
+          })
         }
         onClickOption={({ target: { textContent } }) => {
           dashboard !== 'facturas' &&

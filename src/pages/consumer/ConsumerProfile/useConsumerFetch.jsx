@@ -41,6 +41,7 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
       patch(endpoint, values)
         .then((res) => {
           dashboardController[dashboard](res.data.info.data.finalRecord)
+          dashboardController.pedidos(res.data.info.data.consumer)
           setIsLoading(false)
         })
         .catch((error) => {
