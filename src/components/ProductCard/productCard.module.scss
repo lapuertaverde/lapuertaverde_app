@@ -20,9 +20,13 @@
 }
 
 .boxes {
-  width: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formProduct {
+    display: flex;
+    justify-content: center;
 }
 

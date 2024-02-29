@@ -7,7 +7,7 @@ import Form from '../Form/Form'
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 
-import { productCardContainer, boxes } from './productCard.module.scss'
+import { productCardContainer, boxes, formProduct } from './productCard.module.scss'
 
 export const ProductCard = ({ item, product, columns, all, basket, setBasket }) => {
   const [disabled, setDisabled] = useState(false)
@@ -95,9 +95,9 @@ export const ProductCard = ({ item, product, columns, all, basket, setBasket }) 
       )}
       {all && (
         <FlexLayout flexDirection="column">
-          <Form id={product._id} {...{ methods, onSubmit }}>
-            <FlexLayout className={boxes}>
-              <InputNumber name="kg" placeholder="Kgs" min={1} required width="30px" />
+          <Form className={formProduct} id={product._id} {...{ methods, onSubmit }}>
+            <FlexLayout className={boxes} width="auto">
+              <InputNumber name="kg" placeholder="Kgs" min={1} required />
             </FlexLayout>
           </Form>
           <Button text="" icon="basket-shopping" form={product._id} {...{ disabled }}></Button>
