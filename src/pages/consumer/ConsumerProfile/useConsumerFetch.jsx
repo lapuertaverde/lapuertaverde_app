@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
-import { get } from '../../../services/APIServices'
+import { get, patch } from '../../../services/APIServices'
 
 export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) => {
-  const { endpoint, dashboard } = consumerDashboard
+  const { endpoint, dashboard, method, values } = consumerDashboard
 
   const [consumerInfo, setConsumerInfo] = useState(null)
   const [orderDetail, setOrderDetail] = useState(null)
   const [products, setProducts] = useState(null)
+  const [update, setUpdate] = useState(false)
 
   const dashboardController = {
     pedidos: (res) => setConsumerInfo(res),
@@ -20,12 +21,8 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
   }
 
   useEffect(() => {
-    setIsLoading(true)
-    if (dashboard === 'orderDetail') {
-      setIsLoading(false)
-      return
-    }
-    if (dashboard)
+    if (dashboard && method === 'get') {
+      setIsLoading(true)
       get(endpoint)
         .then((res) => {
           dashboardController[dashboard](res)
@@ -40,7 +37,43 @@ export const useConsumerFetch = ({ consumerDashboard, setAlert, setIsLoading }) 
             type: 'error'
           })
         })
-  }, [dashboard])
+    }
+    if (dashboard == 'orderDetail' && method === 'patch') {
+      setIsLoading(true)
+      patch(endpoint, values)
+        .then((res) => {
+          dashboardController[dashboard](res.data.info.data.finalRecord)
+          dashboardController.pedidos(res.data.info.data.consumer)
+          setIsLoading(false)
+        })
+        .catch((error) => {
+          setIsLoading(false)
+          setAlert({
+            open: true,
+            title: `Error getting ${dashboard}`,
+            message: error.message,
+            type: 'error'
+          })
+        })
+    }
+    if (dashboard == 'pedidos' && method === 'patch') {
+      setIsLoading(true)
+      patch(endpoint, values)
+        .then((res) => {
+          dashboardController[dashboard](res.data.info.data.consumer)
+          setIsLoading(false)
+        })
+        .catch((error) => {
+          setIsLoading(false)
+          setAlert({
+            open: true,
+            title: `Error getting ${dashboard}`,
+            message: error.message,
+            type: 'error'
+          })
+        })
+    }
+  }, [update])
 
-  return { consumerInfo, orderDetail, products, setOrderDetail }
+  return { consumerInfo, orderDetail, products, setOrderDetail, setUpdate }
 }

@@ -3,4 +3,30 @@
     align-content: center;
     place-self: center;
     margin-top: 2rem;
+    align-items: center;
+    padding: 1rem;
 }
+.productCardContainer input {
+   width: 43px;
+}
+
+.productCardContainer form {
+   height: auto;
+   width: auto;
+}
+
+.productCardContainer button {
+    margin: 0 auto;
+}
+
+.boxes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formProduct {
+    display: flex;
+    justify-content: center;
+}
+

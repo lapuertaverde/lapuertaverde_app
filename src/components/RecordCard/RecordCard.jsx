@@ -6,7 +6,7 @@ import { Tooltip } from '../Tooltip/Tooltip'
 
 import { pOrderCard, h4OrderCard, resault, gridCustom } from './recordCard.module.scss'
 
-export const RecordCard = ({ record, handleClick, buttonText }) => {
+export const RecordCard = ({ record, handleClick, buttonText, handleLike }) => {
   return (
     <GridLayout
       height="230px"
@@ -41,6 +41,19 @@ export const RecordCard = ({ record, handleClick, buttonText }) => {
           <Icon icon="file-invoice" />
         </Tooltip>
       </FlexLayout>
+      <Icon
+        prefix={record.like ? 'fas' : 'far'}
+        icon="heart"
+        onClick={() => handleLike(record._id)}
+        size="xl"
+        style={{
+          color: record.like && 'yellow', //'#e220d2',
+          position: 'absolute',
+          top: '1rem',
+          margin: '1rem',
+          right: '2rem'
+        }}
+      />
     </GridLayout>
   )
 }

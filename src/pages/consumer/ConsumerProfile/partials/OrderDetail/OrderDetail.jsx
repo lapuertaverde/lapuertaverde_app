@@ -4,9 +4,21 @@ import { FlexLayout } from '../../../../../layouts/FlexLayout/FlexLayout'
 
 import { orderDetailContainer } from './orderDetail.module.scss'
 
-export const OrderDetail = ({ orderDetail }) => {
+export const OrderDetail = ({ orderDetail, setConsumerDashboard, setUpdate, consumerInfo }) => {
   const handleClick = () => {
     console.log('entro')
+  }
+
+  const handleLike = (id) => {
+    setUpdate((pre) => !pre)
+    setConsumerDashboard((pre) => ({
+      ...pre,
+      endpoint: `consumer/recordLike/${consumerInfo._id}`,
+      method: 'patch',
+      values: {
+        idRecord: id
+      }
+    }))
   }
 
   return (
@@ -18,19 +30,17 @@ export const OrderDetail = ({ orderDetail }) => {
             <RecordCard
               record={orderDetail}
               buttonText="Pedir de nuevo"
-              handleClick={handleClick}
+              {...{ handleLike, handleClick }}
             />
-            {orderDetail.products.map((product) =>
-              orderDetail.box.map(
-                (item) =>
+            {orderDetail.products?.map((product) =>
+              orderDetail.box.map((item) => {
+                const key = `${item.id}${product._id}`
+                return (
                   item.idProducts == product._id && (
-                    <ProductCard
-                      key={`${item.id}${product._id}`}
-                      columns="10% 45% 15% 10%"
-                      {...{ item, product }}
-                    />
+                    <ProductCard key={key} columns="10% 45% 15% 10%" {...{ item, product }} />
                   )
-              )
+                )
+              })
             )}
           </FlexLayout>
         </FlexLayout>

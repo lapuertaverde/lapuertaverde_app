@@ -13,14 +13,19 @@ const GridContainerConsumer = ({
   orderDetail,
   products,
   setOrderDetail,
-  setConsumerDashboard
+  setConsumerDashboard,
+  setUpdate,
+  basket,
+  setBasket
 }) => {
   const { dashboard } = consumerDashboard
   const gridsContainer = {
-    pedidos: <Pedidos {...{ consumerInfo, setOrderDetail, setConsumerDashboard }} />,
-    orderDetail: <OrderDetail {...{ orderDetail }} />,
+    pedidos: <Pedidos {...{ consumerInfo, setOrderDetail, setConsumerDashboard, setUpdate }} />,
+    orderDetail: (
+      <OrderDetail {...{ orderDetail, setConsumerDashboard, setUpdate, consumerInfo }} />
+    ),
     facturas: <Facturas {...{ consumerInfo }} />,
-    nuevoPedido: <NuevoPedido {...{ products, setConsumerDashboard }} />,
+    nuevoPedido: <NuevoPedido {...{ products, setConsumerDashboard, basket, setBasket }} />,
     pedidoEnCurso: <PedidoEnCurso {...{ consumerInfo }} />,
     perfil: <Perfil {...{ consumerInfo }} />,
     favoritos: <Favoritos {...{ consumerInfo }} />,
