@@ -101,7 +101,7 @@ InputNumber.defaultProps = {
   label: null,
   max: Infinity,
   min: 0,
-  required: true,
+  required: false,
   step: 1,
   placeholder: 'Introduce un número',
   flexDir: 'column',
