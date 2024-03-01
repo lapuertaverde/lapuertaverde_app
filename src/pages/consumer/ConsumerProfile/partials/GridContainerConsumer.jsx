@@ -5,17 +5,31 @@ import { PedidoEnCurso } from './PedidoEnCurso/PedidoEnCurso'
 import { NuevoPedido } from './NuevoPedido/NuevoPedido'
 import { Descartados } from './Descartados/Descartados'
 import { Facturas } from './Facturas/Facturas'
+import { OrderDetail } from './OrderDetail/OrderDetail'
 
-const GridContainerConsumer = ({ consumerDashboard, consumerInfo, setConsumer }) => {
+const GridContainerConsumer = ({
+  consumerDashboard,
+  consumerInfo,
+  orderDetail,
+  products,
+  setOrderDetail,
+  setConsumerDashboard,
+  setUpdate,
+  basket,
+  setBasket
+}) => {
   const { dashboard } = consumerDashboard
   const gridsContainer = {
-    pedidos: <Pedidos {...{ consumerInfo }} />,
+    pedidos: <Pedidos {...{ consumerInfo, setOrderDetail, setConsumerDashboard, setUpdate }} />,
+    orderDetail: (
+      <OrderDetail {...{ orderDetail, setConsumerDashboard, setUpdate, consumerInfo }} />
+    ),
     facturas: <Facturas {...{ consumerInfo }} />,
-    nuevoPedido: <NuevoPedido {...{ consumerInfo, setConsumer }} />,
-    pedidoEnCurso: <PedidoEnCurso {...{ consumerInfo, setConsumer }} />,
-    perfil: <Perfil {...{ consumerInfo, setConsumer }} />,
-    favoritos: <Favoritos {...{ consumerInfo, setConsumer }} />,
-    descartados: <Descartados {...{ consumerInfo, setConsumer }} />
+    nuevoPedido: <NuevoPedido {...{ products, setConsumerDashboard, basket, setBasket }} />,
+    pedidoEnCurso: <PedidoEnCurso {...{ consumerInfo }} />,
+    perfil: <Perfil {...{ consumerInfo }} />,
+    favoritos: <Favoritos {...{ consumerInfo }} />,
+    descartados: <Descartados {...{ consumerInfo }} />
   }
   return <aside className="asideContainer">{gridsContainer[dashboard]}</aside>
 }

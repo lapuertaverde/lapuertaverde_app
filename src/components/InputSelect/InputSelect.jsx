@@ -74,8 +74,8 @@ InputSelect.defaultProps = {
   disabled: false,
   required: false,
   multiple: false,
-  flexDir: 'column',
-  width: '100%'
+  flexDir: 'column'
+  //  width: '100%'
 }
 
 export default InputSelect

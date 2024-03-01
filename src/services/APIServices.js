@@ -30,7 +30,7 @@ export const patch = (route, values) =>
     .patch(`http://localhost:8080/api/v1/${route}`, values, {
       headers: { 'Content-Type': 'application/json', authorization: `Bearer ${getToken()}` }
     })
-    .then((res) => res)
+    .then((res) => res && res)
 
 export const deleteService = (route) =>
   axios

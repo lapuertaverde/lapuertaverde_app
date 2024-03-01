@@ -24,7 +24,7 @@ const Fieldset = ({ id: customId, legend, style, collapsible, children, collapse
             onClick={handleIconClick}
           />
         )}
-        {legend && <legend>{legend}</legend>}
+        <legend>{legend || ''}</legend>
       </div>
 
       <fieldset className={fieldset} {...{ legend, id }}>

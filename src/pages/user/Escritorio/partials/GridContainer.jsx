@@ -8,6 +8,7 @@ import RegistrosFinales from './RegistrosFinales/RegistrosFinales'
 import GrupoDeConsumo from './GrupoDeConsumo/GrupoDeConsumo'
 import EditConsumer from './EditarConsumidor/EditConsumer'
 import DeleteConsumer from './BorrarConsumidor/DeleteConsumer'
+import Products from './Products/Products'
 
 const GridContainer = ({
   consumerGroup,
@@ -18,7 +19,8 @@ const GridContainer = ({
   castSheets,
   consumerGroups,
   setAlert,
-  setConsumerGroups
+  setConsumerGroups,
+  products
 }) => {
   const { dashboard } = escritorio
 
@@ -32,7 +34,8 @@ const GridContainer = ({
     'editar consumidor': <EditConsumer {...{ consumerGroups, setAlert }} />,
     'borrar consumidor': <DeleteConsumer {...{ consumerGroups, setAlert, setConsumerGroups }} />,
     bill: <Facturas {...{ bills }} />,
-    finalRecord: <RegistrosFinales {...{ finalRecords }} />
+    finalRecord: <RegistrosFinales {...{ finalRecords }} />,
+    product: <Products {...{ products, setAlert }} />
   }
 
   return <aside className="asideContainer">{gridsContainer[dashboard]}</aside>

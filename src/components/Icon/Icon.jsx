@@ -12,8 +12,13 @@ import {
   faCaretUp,
   faClipboardCheck,
   faTriangleExclamation,
-  faThumbsUp
+  faThumbsUp,
+  faFileInvoice,
+  faHeart as heartSolid,
+  faBasketShopping
 } from '@fortawesome/free-solid-svg-icons'
+
+import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -29,7 +34,8 @@ const Icon = ({
   onKeyDown,
   onClick,
   disabled,
-  color
+  color,
+  size
 }) => {
   library.add(
     faKey,
@@ -43,7 +49,11 @@ const Icon = ({
     faCaretUp,
     faClipboardCheck,
     faTriangleExclamation,
-    faThumbsUp
+    faThumbsUp,
+    faFileInvoice,
+    faHeart,
+    heartSolid,
+    faBasketShopping
   )
 
   return (
@@ -53,7 +63,7 @@ const Icon = ({
           prefix,
           iconName: icon
         })}
-        {...{ onBlur, onFocus, onKeyDown, style, className, tabIndex, disabled }}
+        {...{ onBlur, onFocus, onKeyDown, style, className, tabIndex, disabled, size }}
         style={style || { color } || {}}
         onClick={onClick || callback}
         onMouseEnter={({ target: { style } }) => (style.cursor = 'pointer')}
