@@ -9,18 +9,19 @@ import InputNumber from '../../../../../components/InputNumber/InputNumber'
 import { Switcher } from '../../../../../components/Switcher/Switcher'
 import InputSelect from '../../../../../components/InputSelect/InputSelect'
 import Avatar from '../../../../../components/Avatar/Avatar'
+import Fieldset from '../../../../../components/Fieldset/Fieldset'
 
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { get, patch } from '../../../../../services/APIServices'
+import { patch } from '../../../../../services/APIServices'
 import { toast } from 'react-toastify'
 import Button from '../../../../../components/Button/Button'
+import ConsumerInfoCard from './ConsumerInfoCard/ConsumerInfoCard'
 
 const EditConsumer = ({ consumerGroups, setAlert }) => {
   const [allConsumers, setAllConsumers] = useState(consumersFlatter(consumerGroups))
   const [consumers, setConsumers] = useState(allConsumers)
-  const [favorites, setFavorites] = useState([])
 
   const grupos = consumerGroups.map((group) => group.name)
 
@@ -90,22 +91,6 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
     else setWidth('100%')
   }, [open])
 
-  useEffect(() => {
-    if (drawerWidth === '890px' && watch('favorites').length)
-      watch('favorites').forEach((id) => {
-        get(`product/${id}`)
-          .then((res) => res && setFavorites([...favorites, res]))
-          .catch((error) =>
-            setAlert({
-              open: true,
-              type: 'error',
-              title: 'Error trayendo favoritos',
-              message: error.message
-            })
-          )
-      })
-  }, [drawerWidth])
-
   return (
     <div>
       <header className={header}>
@@ -169,7 +154,7 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
             <Button
               type="button"
               text={
-                drawerWidth === '890px'
+                drawerWidth === '1350px'
                   ? 'Ocultar Información Detallada'
                   : 'Mostrar Información Detallada'
               }
@@ -184,30 +169,62 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
               }}
             />
           </div>
+        </Form>
 
-          {drawerWidth === '1350px' && (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <p>
-                orderInProgress :
-                {watch('orderInProgress') && JSON.stringify(watch('orderInProgress'))}
-              </p>
-              FAVORITOS:
-              {favorites.length > 0 && (
-                <div style={{ border: '1px solid white', width: '100%', display: 'flex' }}>
-                  {favorites.map(({ name, priceKg, description, _id }) => (
+        {drawerWidth === '1350px' && (
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '1rem',
+              width: '100%',
+              justifyContent: 'center'
+            }}
+          >
+            <ConsumerInfoCard values={watch('discarded')} legend="DESCARTADOS" />
+
+            <ConsumerInfoCard values={watch('favorites')} legend="FAVORITOS" />
+
+            <Fieldset legend="PEDIDO EN CURSO" collapsible>
+              {watch('orderInProgress')?.length > 0 && (
+                <div
+                  style={{
+                    border: '1px solid white',
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '1rem'
+                  }}
+                >
+                  {watch('orderInProgress')?.map(({ name }) => (
                     <div key={name}>
-                      <p>{_id}</p>
                       <p>{name}</p>
                     </div>
                   ))}
                 </div>
               )}
-              <p>discarded : {watch('discarded') && JSON.stringify(watch('discarded'))}</p>
-              <p>bills : {watch('bills') && JSON.stringify(watch('bills'))}</p>
-              <p>weeklyLog : {watch('weeklyLog') && JSON.stringify(watch('weeklyLog'))}</p>
-            </div>
-          )}
-        </Form>
+            </Fieldset>
+            <Fieldset legend="RECIBOS DEL CONSUMIDOR" collapsible>
+              {watch('bills')?.length > 0 && (
+                <div
+                  style={{
+                    border: '1px solid white',
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    gap: '1rem'
+                  }}
+                >
+                  {watch('bills')?.map(({ name }) => (
+                    <div key={name}>
+                      <p>{name}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </Fieldset>
+          </div>
+        )}
       </Drawer>
     </div>
   )
