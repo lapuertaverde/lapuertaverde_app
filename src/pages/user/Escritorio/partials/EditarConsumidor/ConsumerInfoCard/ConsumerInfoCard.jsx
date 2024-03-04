@@ -6,7 +6,7 @@ import { cardContainer, card, field } from './consumerInfoCard.module.scss'
 import Button from '../../../../../../components/Button/Button'
 import Icon from '../../../../../../components/Icon/Icon'
 
-const ConsumerInfoCard = ({ values, legend }) => {
+const ConsumerInfoCard = ({ values, legend, setValue, watch }) => {
   return (
     <Fieldset {...{ legend }} collapsible collapse={Boolean(values?.length)}>
       <div className={cardContainer}>
@@ -30,7 +30,25 @@ const ConsumerInfoCard = ({ values, legend }) => {
                 </div>
 
                 <Avatar src={image} size="l" />
-                <Button type="button" text="Eliminar de favoritos" />
+                <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                  <Button type="button" text={`Eliminar de ${legend.toLowerCase()}`} />
+                  <Button
+                    type="button"
+                    text={legend === 'FAVORITOS' ? 'Descartar' : 'Añadir a Favoritos'}
+                    onClick={() => {
+                      const fieldsetToSet = legend === 'FAVORITOS' ? 'favorites' : 'discarded'
+                      const fieldsetToDelete = legend === 'FAVORITOS' ? 'discarded' : 'favorites'
+                      setValue(
+                        fieldsetToSet,
+                        values.filter((value) => value.name !== name)
+                      )
+                      setValue(fieldsetToDelete, [
+                        ...watch(fieldsetToDelete),
+                        values.find((value) => value.name === name)
+                      ])
+                    }}
+                  />
+                </div>
               </div>
             )
           })

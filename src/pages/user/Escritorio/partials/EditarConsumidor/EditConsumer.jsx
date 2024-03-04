@@ -47,7 +47,7 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
 
   const methods = useForm({ defaultValues, mode: 'onChange' })
 
-  const { reset, watch } = methods
+  const { reset, watch, setValue } = methods
 
   const onClose = () => setOpen(false)
 
@@ -181,9 +181,17 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
               justifyContent: 'center'
             }}
           >
-            <ConsumerInfoCard values={watch('discarded')} legend="DESCARTADOS" />
+            <ConsumerInfoCard
+              values={watch('discarded')}
+              legend="DESCARTADOS"
+              {...{ setValue, watch }}
+            />
 
-            <ConsumerInfoCard values={watch('favorites')} legend="FAVORITOS" />
+            <ConsumerInfoCard
+              values={watch('favorites')}
+              legend="FAVORITOS"
+              {...{ setValue, watch }}
+            />
 
             <Fieldset legend="PEDIDO EN CURSO" collapsible>
               {watch('orderInProgress')?.length > 0 && (
@@ -196,8 +204,8 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
                     gap: '1rem'
                   }}
                 >
-                  {watch('orderInProgress')?.map(({ name }) => (
-                    <div key={name}>
+                  {watch('orderInProgress')?.map(({ name }, index) => (
+                    <div key={name + index}>
                       <p>{name}</p>
                     </div>
                   ))}
