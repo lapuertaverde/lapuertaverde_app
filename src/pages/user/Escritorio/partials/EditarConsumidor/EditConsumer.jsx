@@ -56,10 +56,25 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
     if (!open) setOpen(true)
   }
 
-  const onSubmit = (values) =>
+  const onSubmit = (values) => {
+    const favorites = values.favorites.length
+      ? values.favorites.map((favorite) => {
+          if (typeof favorite === 'string') return favorite
+          else return favorite._id
+        })
+      : []
+
+    const discarded = values.discarded.length
+      ? values.discarded.map((discarded) => {
+          if (typeof discarded === 'string') return discarded
+          else return discarded._id
+        })
+      : []
+
     patch(`consumer/${values._id}`, {
       ...values,
-      favorites: ['65d9e544112ae95f4637a63b', '65d8f16e1a57081cb8d94b9c']
+      favorites,
+      discarded
     })
       .then(() => {
         toast.success('Consumidor Actualizado', { position: 'top-left' })
@@ -68,6 +83,7 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
           if (consumer._id === values._id) return values
           else return consumer
         })
+
         setAllConsumers(consumersUpdated)
         setConsumers(
           consumersUpdated.filter(({ groupName }) =>
@@ -85,6 +101,7 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
           message: error.message
         })
       )
+  }
 
   useEffect(() => {
     if (open) setWidth('calc(100% - 290px)')

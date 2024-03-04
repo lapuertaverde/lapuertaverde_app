@@ -14,7 +14,7 @@ const ConsumerInfoCard = ({ values, legend, setValue, watch }) => {
           values.map(({ name, priceKg, image, availability, priceKgSuplements }, index) => {
             return (
               <div className={card} key={name + index}>
-                <div className={field}>Producto: {name.toUpperCase()}</div>
+                <div className={field}>Producto: {name?.toUpperCase()}</div>
                 <div className={field}>€/Kg: {priceKg}</div>
                 <div className={field}>Suplemento €/Kg: {priceKgSuplements}</div>
                 <div className={field}>€/Kg: {priceKg}</div>
@@ -31,7 +31,18 @@ const ConsumerInfoCard = ({ values, legend, setValue, watch }) => {
 
                 <Avatar src={image} size="l" />
                 <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
-                  <Button type="button" text={`Eliminar de ${legend.toLowerCase()}`} />
+                  <Button
+                    type="button"
+                    text={`Eliminar de ${legend.toLowerCase()}`}
+                    onClick={() => {
+                      const fieldsetToSet = legend === 'FAVORITOS' ? 'favorites' : 'discarded'
+
+                      setValue(
+                        fieldsetToSet,
+                        values.filter((value) => value.name !== name)
+                      )
+                    }}
+                  />
                   <Button
                     type="button"
                     text={legend === 'FAVORITOS' ? 'Descartar' : 'Añadir a Favoritos'}
