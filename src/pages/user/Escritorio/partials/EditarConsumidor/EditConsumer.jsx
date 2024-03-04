@@ -56,25 +56,19 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
     if (!open) setOpen(true)
   }
 
+  const getIdsArr = (arr) =>
+    arr.length
+      ? arr.map((item) => {
+          if (typeof item === 'string') return item
+          else return item._id
+        })
+      : []
+
   const onSubmit = (values) => {
-    const favorites = values.favorites.length
-      ? values.favorites.map((favorite) => {
-          if (typeof favorite === 'string') return favorite
-          else return favorite._id
-        })
-      : []
-
-    const discarded = values.discarded.length
-      ? values.discarded.map((discarded) => {
-          if (typeof discarded === 'string') return discarded
-          else return discarded._id
-        })
-      : []
-
     patch(`consumer/${values._id}`, {
       ...values,
-      favorites,
-      discarded
+      favorites: getIdsArr(values.favorites),
+      discarded: getIdsArr(values.discarded)
     })
       .then(() => {
         toast.success('Consumidor Actualizado', { position: 'top-left' })
