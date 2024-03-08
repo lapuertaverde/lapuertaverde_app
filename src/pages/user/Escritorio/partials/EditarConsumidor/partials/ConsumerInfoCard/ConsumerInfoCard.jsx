@@ -1,10 +1,9 @@
-import Avatar from '../../../../../../components/Avatar/Avatar'
-import Fieldset from '../../../../../../components/Fieldset/Fieldset'
-
 import { cardContainer, card, field } from './consumerInfoCard.module.scss'
 
-import Button from '../../../../../../components/Button/Button'
-import Icon from '../../../../../../components/Icon/Icon'
+import Fieldset from '../../../../../../../components/Fieldset/Fieldset'
+import Icon from '../../../../../../../components/Icon/Icon'
+import Avatar from '../../../../../../../components/Avatar/Avatar'
+import Button from '../../../../../../../components/Button/Button'
 
 const ConsumerInfoCard = ({ values, legend, setValue, watch }) => {
   return (
