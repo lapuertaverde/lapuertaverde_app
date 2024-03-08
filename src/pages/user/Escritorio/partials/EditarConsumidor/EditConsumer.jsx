@@ -1,5 +1,6 @@
 import { consumersFlatter } from '../../../../../utils/consumers'
 
+import { defaultValues } from './editConsumerController'
 import FormEditConsumers from './partials/FormEditConsumer/FormEditConsumers'
 import CardsContainer from './partials/CardsContainer/CardsContainer'
 import HeaderEditConsumer from './partials/HeaderEditConsumer/HeaderEditConsumer'
