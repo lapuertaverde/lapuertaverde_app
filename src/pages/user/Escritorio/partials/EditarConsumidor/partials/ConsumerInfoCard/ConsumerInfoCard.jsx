@@ -30,6 +30,10 @@ const ConsumerInfoCard = ({ values, legend, setValue, watch }) => {
               <Avatar src={image} size="l" />
               <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
                 <Button
+                  disabled={
+                    watch('discarded')?.some((discard) => discard.name === name) &&
+                    legend === 'PRODUCTOS'
+                  }
                   type="button"
                   text={
                     legend === 'PRODUCTOS'
@@ -64,6 +68,10 @@ const ConsumerInfoCard = ({ values, legend, setValue, watch }) => {
                   }}
                 />
                 <Button
+                  disabled={
+                    watch('favorites')?.some((favorite) => favorite.name === name) &&
+                    legend === 'PRODUCTOS'
+                  }
                   type="button"
                   text={legend === 'FAVORITOS' ? 'Descartar' : 'Añadir a Favoritos'}
                   onClick={() => {
