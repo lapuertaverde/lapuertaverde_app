@@ -58,8 +58,8 @@ const CardsContainer = ({ setValue, watch }) => {
               gap: '1rem'
             }}
           >
-            {watch('bills')?.map(({ name }) => (
-              <div key={name}>
+            {watch('bills')?.map(({ name }, i) => (
+              <div key={name + i}>
                 <p>{name}</p>
               </div>
             ))}
