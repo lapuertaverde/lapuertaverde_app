@@ -62,14 +62,15 @@ input[type='number'] {
   --ag-header-column-resize-handle-color: rgb(126, 46, 132);
 
   /* Selections */
-  --ag-selected-row-background-color: rgb(159, 118, 246);
-  --ag-range-selection-border-color: rgb(246, 246, 246);
+  --ag-selected-row-background-color: rgba(36, 22, 240, 1);
+  /* --ag-selected-row-background-color: rgba(0, 38, 255, 0.1); */
+  --ag-range-selection-border-color: rgb(89, 32, 247);
   --ag-range-selection-border-style: solid;
-  --ag-range-selection-background-color: rgb(255, 0, 128, 0.1);
+  /* --ag-range-selection-background-color: rgb(255, 0, 128, 0.1);
   --ag-range-selection-background-color-2: rgb(255, 0, 128, 0.19);
   --ag-range-selection-background-color-3: rgb(255, 0, 128, 0.27);
-  --ag-range-selection-background-color-4: rgb(255, 0, 128, 0.34);
-  --ag-range-selection-highlight-color: rgb(219, 240, 210);
+  --ag-range-selection-background-color-4: rgb(255, 0, 128, 0.34); */
+  /* --ag-range-selection-highlight-color: rgb(219, 240, 210); */
 
   --ag-font-size: 17px;
   --ag-font-family: monospace;
