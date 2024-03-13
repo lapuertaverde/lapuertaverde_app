@@ -12,6 +12,8 @@ const CardsContainer = ({ setValue, watch }) => {
       .catch((error) => console.log(error))
   }, [])
 
+  console.log(watch('orderInProgress'))
+
   return (
     <div
       style={{
@@ -32,18 +34,23 @@ const CardsContainer = ({ setValue, watch }) => {
         {watch('orderInProgress')?.length > 0 && (
           <div
             style={{
-              border: '1px solid white',
               width: '100%',
               display: 'flex',
               justifyContent: 'center',
               gap: '1rem'
             }}
           >
-            {watch('orderInProgress')?.map(({ name }, index) => (
-              <div key={name + index}>
-                <p>{name}</p>
-              </div>
-            ))}
+            {watch('orderInProgress')?.map(
+              ({ totalEuros, date, deliveredKgs, like, box }, index) => (
+                <div key={index}>
+                  <p>{date}</p>
+                  <p>{totalEuros}</p>
+                  <p>{deliveredKgs}</p>
+                  <p>{like}</p>
+                  {box?.length && box.map(({ name }) => <p key={name}>{name}</p>)}
+                </div>
+              )
+            )}
           </div>
         )}
       </Fieldset>
