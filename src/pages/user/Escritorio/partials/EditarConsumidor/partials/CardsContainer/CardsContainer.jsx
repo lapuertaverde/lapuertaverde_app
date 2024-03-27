@@ -51,7 +51,8 @@ const CardsContainer = ({ setValue, watch }) => {
                     flexDirection: 'column',
                     alignItems: 'center',
                     border: '1px solid white',
-                    borderRadius: '8px'
+                    borderRadius: '8px',
+                    backgroundColor: 'rgb(146, 108, 228)'
                   }}
                 >
                   <p>Fecha : {date}</p>
