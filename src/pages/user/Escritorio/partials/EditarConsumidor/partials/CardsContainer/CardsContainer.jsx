@@ -47,7 +47,7 @@ const CardsContainer = ({ setValue, watch }) => {
                   <p>{totalEuros}</p>
                   <p>{deliveredKgs}</p>
                   <p>{like}</p>
-                  {box?.length && box.map(({ name }) => <p key={name}>{name}</p>)}
+                  {box?.length && box.map(({ name }, i) => <p key={name + i}>{name}</p>)}
                 </div>
               )
             )}
