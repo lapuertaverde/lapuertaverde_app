@@ -52,25 +52,6 @@ const FormEditConsumers = ({
       <InputNumber name="KgByDefault" label="Kg en cesta" />
       <Switcher name="active" label="Activo" />
     </div>
-    <div style={{ display: 'flex', justifyContent: 'center' }}>
-      <Button
-        type="button"
-        text={
-          drawerWidth === '1350px'
-            ? 'Ocultar Información Detallada'
-            : 'Mostrar Información Detallada'
-        }
-        onClick={() => {
-          if (drawerWidth === '280px') {
-            setWidth('300px')
-            setDrawerWidth('1350px')
-          } else {
-            setWidth('calc(100% - 290px)')
-            setDrawerWidth('280px')
-          }
-        }}
-      />
-    </div>
   </Form>
 )
 
