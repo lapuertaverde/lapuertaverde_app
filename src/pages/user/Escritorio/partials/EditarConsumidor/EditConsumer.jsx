@@ -11,6 +11,7 @@ import useDrawerWidth from './hooks/useDrawerWidth'
 
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
+import Button from '../../../../../components/Button/Button'
 
 const EditConsumer = ({ consumerGroups, setAlert }) => {
   const [allConsumers, setAllConsumers] = useState(consumersFlatter(consumerGroups))
@@ -40,9 +41,27 @@ const EditConsumer = ({ consumerGroups, setAlert }) => {
       <MainEditConsumer {...{ consumers, reset, watch, open, width, setOpen }} />
       <Drawer
         {...{ open, onClose }}
-        formId="editarConsumidorForm"
         width={drawerWidth}
         drawerTitle={<DrawerTitle {...{ watch }} />}
+        drawerFooter={
+          <>
+            <Button type="button" text="Cerrar" onClick={() => onClose()} />
+            <Button
+              type="button"
+              text={drawerWidth === '1350px' ? 'Ocultar información detallada' : 'Mostrar +'}
+              onClick={() => {
+                if (drawerWidth === '280px') {
+                  setWidth('300px')
+                  setDrawerWidth('1350px')
+                } else {
+                  setWidth('calc(100% - 290px)')
+                  setDrawerWidth('280px')
+                }
+              }}
+            />
+            <Button text="Guardar" form={'editarConsumidorForm'} />
+          </>
+        }
       >
         <FormEditConsumers
           {...{

@@ -5,21 +5,24 @@ import styles from './Drawer.module.scss'
 import Button from '../Button/Button'
 
 const Drawer = memo(
-  ({ open, onClose, children, drawerTitle, toolbaredChildren, formId, isValid, width }) => {
+  ({
+    open,
+    onClose,
+    children,
+    drawerTitle,
+    toolbaredChildren,
+    formId,
+    isValid,
+    width,
+    drawerFooter
+  }) => {
     /* It could accept more options regarding its position in the future */
     const position = 'right'
-    const titleHeader = true
 
     const [closeDrawer, setCloseDrawer] = useState(false)
 
     /* Ref for the drawer for resizing it*/
     const drawerRef = useRef()
-
-    /* Avoid propagation issues on clicking the drawer area */
-    const handleDrawerClick = (e) => {
-      e.stopPropagation()
-      setCloseDrawer(true)
-    }
 
     useEffect(() => {
       if (isValid && closeDrawer) {
@@ -62,8 +65,12 @@ const Drawer = memo(
                     gap: '1rem'
                   }}
                 >
-                  <Button type="button" text="Cerrar" onClick={() => onClose()} />
-                  <Button text="Guardar" form={formId} />
+                  {drawerFooter || (
+                    <>
+                      <Button type="button" text="Cerrar" onClick={() => onClose()} />
+                      <Button text="Guardar" form={formId} />
+                    </>
+                  )}
                 </div>
               )}
             </div>
@@ -84,7 +91,8 @@ Drawer.propTypes = {
   toolbaredChildren: PropTypes.bool,
   formId: PropTypes.string,
   titleHeader: PropTypes.bool,
-  isValid: PropTypes.bool
+  isValid: PropTypes.bool,
+  drawerFooter: PropTypes.node
 }
 
 Drawer.defaultProps = {
@@ -92,7 +100,8 @@ Drawer.defaultProps = {
   titleHeader: true,
   isValid: false,
   width: '900px',
-  drawerTitle: 'DRAWER'
+  drawerTitle: 'DRAWER',
+  drawerFooter: null
 }
 
 export default Drawer

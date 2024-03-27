@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import Fieldset from '../../../../../../../components/Fieldset/Fieldset'
 import ConsumerInfoCard from '../ConsumerInfoCard/ConsumerInfoCard'
 import { get } from '../../../../../../../services/APIServices'
+import Avatar from '../../../../../../../components/Avatar/Avatar'
+import Icon from '../../../../../../../components/Icon/Icon'
+import { Tooltip } from '../../../../../../../components/Tooltip/Tooltip'
 
 const CardsContainer = ({ setValue, watch }) => {
   const [products, setProducts] = useState([])
@@ -11,8 +14,6 @@ const CardsContainer = ({ setValue, watch }) => {
       .then((res) => setProducts(res))
       .catch((error) => console.log(error))
   }, [])
-
-  console.log(watch('orderInProgress'))
 
   return (
     <div
@@ -41,13 +42,44 @@ const CardsContainer = ({ setValue, watch }) => {
             }}
           >
             {watch('orderInProgress')?.map(
-              ({ totalEuros, date, deliveredKgs, like, box }, index) => (
-                <div key={index}>
-                  <p>{date}</p>
-                  <p>{totalEuros}</p>
-                  <p>{deliveredKgs}</p>
-                  <p>{like}</p>
-                  {box?.length && box.map(({ name }, i) => <p key={name + i}>{name}</p>)}
+              ({ totalEuros, date, deliveredKgs, like, box, active }, index) => (
+                <div
+                  key={index}
+                  style={{
+                    width: '190px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    border: '1px solid white',
+                    borderRadius: '8px',
+                    backgroundColor: 'rgb(146, 108, 228)'
+                  }}
+                >
+                  <p>Fecha : {date}</p>
+                  <p>Precio Cesta: {totalEuros}</p>
+                  <p>Kg en cesta: {deliveredKgs}</p>
+                  <p style={{ display: 'flex', gap: '.61rem' }}>
+                    Like:
+                    <Icon
+                      style={{ color: like ? 'green' : 'red' }}
+                      icon={like ? 'thumbs-up' : 'xmark'}
+                    />
+                  </p>
+                  <p style={{ display: 'flex', gap: '.61rem' }}>
+                    En Reparto:
+                    <Icon
+                      style={{ color: active ? 'green' : 'red' }}
+                      icon={active ? 'thumbs-up' : 'xmark'}
+                    />
+                  </p>
+                  <p style={{ display: 'flex' }}>
+                    {box?.length &&
+                      box.map(({ name, image }, i) => (
+                        <Tooltip text={name} key={name + i}>
+                          <Avatar src={image} />
+                        </Tooltip>
+                      ))}
+                  </p>
                 </div>
               )
             )}
